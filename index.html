@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Algo + que Música y Radio">
+  <title>Algo + que Música y Radio</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+  --bg:#f5f2ec; --ink:#171717; --muted:#6e6a63;
+  --accent:#e64b35; --blue-btn:#1d4ed8; --card:#ffffff; --line:#ddd7cc; --dark:#171717;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+
+/* --- CABECERA ORIGINAL --- */
+header{
+  min-height:600px;
+  color:white;
+  padding:20px 7vw 60px;
+  background:
+    linear-gradient(rgba(18, 17, 17, 0.45), rgba(26, 14, 14, 0.55)),
+    url("https://i.ibb.co/vvBZYSkQ/radio-vintage-taller-retro.jpg")
+    center/cover no-repeat;
+  position: relative;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #e64b35, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899);
+  z-index: 10;
+}
+
+nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:20px;flex-wrap:wrap;gap:20px}
+.logo{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;font-weight:700}
+.logo b{color:var(--accent);font-size:1.8em}
+.menu{display:flex;gap:22px;font-size:.95rem;flex-wrap:wrap}.menu a:hover{color:#ff826f}
+
+/* HERO CON CALENDARIO EN EL CENTRO */
+.hero-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+.hero{max-width:600px}
+.tag{font-size:.78rem;font-weight:700;letter-spacing:.14em;margin:0 0 12px;text-transform:uppercase}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.05}
+h1{font-size:clamp(2.5rem,5vw,5rem);margin:0 0 18px;letter-spacing:-.055em;text-shadow:0 4px 20px rgba(0,0,0,0.6);color: white;}
+h1 span{color:var(--accent)}
+.hero>p:not(.tag){max-width:640px;color:#e8e5df;font-size:1.1rem;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+.button{display:inline-block;background:var(--accent);padding:11px 20px;border-radius:4px;font-weight:700;cursor:pointer;color:white;border:none}
+.button.blue{background:var(--blue-btn);color:white;border:none}
+.button.blue:hover{background:#1e40af}
+.button:hover{transform:translateY(-2px)}
+
+/* --- CALENDARIO SEMITRANSPARENTE DINÁMICO --- */
+.hero-calendar-card {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  max-width: 290px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.cal-nav-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.cal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+.calendar-day-head {
+  font-weight: 700;
+  color: #ff826f;
+  font-size: 0.7rem;
+  padding-bottom: 4px;
+}
+.calendar-day {
+  padding: 5px 0;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.78rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+.calendar-day.empty {
+  background: transparent;
+}
+.calendar-day.past-post {
+  background: var(--blue-btn);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(29, 78, 216, 0.8);
+  transition: transform 0.2s;
+}
+.calendar-day.past-post:hover {
+  transform: scale(1.15);
+}
+.calendar-day.latest-post {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 10px rgba(230, 75, 53, 0.8);
+  animation: pulse 2s infinite;
+}
+.calendar-day.latest-post::after {
+  content: '★';
+  position: absolute;
+  top: -5px;
+  right: -2px;
+  font-size: 0.55rem;
+  color: #facc15;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.calendar-legend {
+  margin-top: 12px;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #ffffff;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 8px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.calendar-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.calendar-legend-dot.latest { background: var(--accent); }
+.calendar-legend-dot.past { background: var(--blue-btn); }
+
+.section{
+  padding:70px 7vw;
+  border-bottom: none;
+  box-shadow: inset 0 -6px 12px -4px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #e64b35, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899);
+  z-index: 10;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(0,0,0,0.35) 0%, transparent 65%),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.55) 0%, transparent 55%),
+    repeating-radial-gradient(circle at 0 0, transparent 0, rgba(0,0,0,0.18) 3px, transparent 6px),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0px, rgba(0,0,0,0.14) 3px, transparent 6px);
+  background-size: 100% 100%, 100% 100%, 12px 12px, 18px 18px;
+  background-blend-mode: multiply, screen, normal, overlay;
+  opacity: 0.95;
+}
+
+.section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- ANIMACIÓN EN SECCIÓN RINCONES --- */
+#rincones {
+  background-color: #0c081e;
+  color: #ffffff;
+}
+#rincones::before {
+  display: none;
+}
+#poolCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.water-content {
+  position: relative;
+  z-index: 1;
+}
+#rincones h2, #rincones .tag {
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.load-more-container {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+.btn-archive {
+  background: rgba(255,255,255,0.8);
+  border: 2px dashed rgba(0,0,0,0.2);
+  color: var(--ink);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-archive:hover {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
+.grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.post{
+  background: var(--card);
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:8px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+.post.hidden-archive {
+  display: none;
+}
+.cover{
+  height: 180px;
+  background:#d3b7a0;
+  display:grid;
+  place-items:center;
+  background-size:cover;
+  background-position:center;
+}
+.content{padding:20px;display:flex;flex-direction:column;flex-grow:1}
+.content small{color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+h3{font-size:1.2rem;margin:6px 0 8px;line-height:1.2;color:var(--ink)}
+.content p{
+  color:var(--muted);
+  font-size:.9rem;
+  line-height:1.4;
+  margin:0 0 14px;
+}
+.content a, .content button{color:var(--accent);font-weight:700;margin-top:auto;display:inline-block;background:none;border:none;padding:0;font-size:.9rem;font-family:inherit;cursor:pointer;text-align:left}
+
+#archivo-search {
+  background: #ffffff;
+  padding: 30px 7vw;
+  border-bottom: none;
+  box-shadow: inset 0 -6px 12px -4px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+#archivo-search::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #e64b35, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899);
+  z-index: 10;
+}
+.search-box {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+#pensamientos { background-color: #d8b4fe; color: #ffffff; }
+#pensamientos h2, #pensamientos .tag { color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+/* SECCIÓN ESCUCHA ESTO CON FONDO OSCURECIDO Y TEXTO EN ROJO */
+#escucha {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)),
+    url("https://images.unsplash.com/photo-1789420465924-b579dcba5f87?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/cover no-repeat;
+  color: #ffffff;
+}
+#escucha::before {
+  display: none;
+}
+#escucha h2, #escucha .tag { 
+  color: #ff4d4d; 
+  text-shadow: 0 2px 4px rgba(0,0,0,0.9); 
+  font-weight: 800;
+}
+
+#delantal { background-color: #fed7aa; color: #ffffff; }
+#delantal h2, #delantal .tag { color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+#sabias { background-color: #fcd34d; color: #ffffff; }
+#sabias h2, #sabias .tag { color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+#saganeando { background-color: #bef264; color: #ffffff; }
+#saganeando h2, #saganeando .tag { color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+#estrellas { background-color: #f472b6; color: #ffffff; }
+#estrellas h2, #estrellas .tag { color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+.about{padding:80px 7vw;color:#ffffff;position:relative;overflow:hidden;background:transparent}
+#cosmosCanvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+.about-content{position:relative;z-index:2}
+
+.player-container{margin-top:8px;background:#000;border-radius:6px;overflow:hidden}
+.player-container iframe{width:100%;height:140px;border:none;display:block}
+.yt-music-btn{display:inline-flex;align-items:center;gap:6px;background:#ff0000;color:white!important;padding:5px 12px;border-radius:12px;font-size:.78rem;margin-top:6px;text-decoration:none}
+
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);display:none;justify-content:center;align-items:center;z-index:1000;padding:20px;backdrop-filter:blur(4px)}
+.modal-content{background:var(--card);max-width:750px;width:100%;max-height:85vh;overflow-y:auto;border-radius:12px;padding:35px;position:relative;border:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
+.modal-close{position:absolute;top:15px;right:20px;font-size:1.8rem;cursor:pointer;color:var(--muted);background:none;border:none;line-height:1}
+.article-text{font-size:1rem;line-height:1.7;color:var(--ink);margin-top:15px}
+
+.visit-counter{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);background:rgba(0,0,0,0.04);padding:6px 14px;border-radius:20px;border:1px solid var(--line)}
+.visit-counter span{font-weight:700;color:var(--ink)}
+
+footer{display:flex;justify-content:space-between;align-items:center;padding:30px 7vw;font-size:.85rem;background:#0f172a;color:#94a3b8;flex-wrap:wrap;gap:15px}
+
+.cover.escucha-1{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1789420465924-b579dcba5f87?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/cover no-repeat; }
+.cover.escucha-player{ background: linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.45)), url("https://images.unsplash.com/photo-1616681255209-368a2cd3e643?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/cover no-repeat; }
+.cover.rincones-1{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.rincones-2{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.pensamientos-1{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.pensamientos-2{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.pensamientos-3{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.delantal-1{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.delantal-2{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.sabias-1{ background: linear-gradient(rgba(34, 30, 30, 0.558),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.sabias-2{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.saganeando-1{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.saganeando-2{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.estrellas-1{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+.cover.estrellas-2{ background: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=80") center/cover no-repeat; }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <a class="logo" href="#">Algo <b>+</b> que</a>
+    <div class="menu">
+      <a href="#pensamientos">Pensamientos</a>
+      <a href="#rincones">Lugares</a>
+      <a href="#escucha">Escucha Esto</a>
+      <a href="#delantal">Delantal</a>
+      <a href="#sabias">¿Sabías esto?</a>
+      <a href="#saganeando">Saganeando</a>
+      <a href="#estrellas">Estrellas</a>
+      <a href="#archivo-search" style="color:var(--accent); font-weight:bold;">🔍 Buscador</a>
+    </div>
+  </nav>
+  
+  <div class="hero-container">
+    <section class="hero">
+      <p class="tag" style="color:var(--accent)">MÚSICA · HISTORIAS · VIDA</p>
+      <h1>Algo <span>+</span> que<br>Música y Radio</h1>
+      <p>Un espacio para compartir viajes, reflexiones, buena cocina, curiosidades, relatos y las grandes historias humanas detrás de la música.</p>
+      <div class="hero-buttons">
+        <a class="button" href="#sobre">Algo sobre mí ↓</a>
+        <a class="button blue" href="#escucha">Lo último subido ★</a>
+      </div>
+    </section>
+
+    <!-- CALENDARIO NAVEGABLE -->
+    <div class="hero-calendar-card">
+      <div class="calendar-header">
+        <button class="cal-nav-btn" onclick="changeMonth(-1)">&#10094;</button>
+        <span id="calMonthTitle">Septiembre 2026</span>
+        <button class="cal-nav-btn" onclick="changeMonth(1)">&#10095;</button>
+      </div>
+      
+      <div class="calendar-grid">
+        <div class="calendar-day-head">L</div>
+        <div class="calendar-day-head">M</div>
+        <div class="calendar-day-head">X</div>
+        <div class="calendar-day-head">J</div>
+        <div class="calendar-day-head">V</div>
+        <div class="calendar-day-head">S</div>
+        <div class="calendar-day-head">D</div>
+      </div>
+      
+      <div id="calendarDays" class="calendar-grid" style="margin-top: 5px;"></div>
+
+      <div class="calendar-legend">
+        <div class="legend-item">
+          <span class="calendar-legend-dot latest"></span>
+          <span><b>Naranja:</b> Última publicación</span>
+        </div>
+        <div class="legend-item">
+          <span class="calendar-legend-dot past"></span>
+          <span><b>Azul:</b> Publicaciones anteriores</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SECCIÓN BUSCADOR / ARCHIVO RÁPIDO -->
+<section id="archivo-search">
+  <p class="tag" style="margin:0; color:var(--accent);">HEMEROTECA</p>
+  <h2 style="margin: 5px 0 0 0; font-size:1.5rem;">Buscar en publicaciones anteriores</h2>
+  <div class="search-box">
+    <input type="text" id="searchInput" class="search-input" placeholder="Escribe un título o palabra clave..." onkeyup="filterArticles()">
+  </div>
+</section>
+
+<main>
+
+<!-- PENSAMIENTOS -->
+<section id="pensamientos" class="section">
+  <p class="tag">OPINIÓN Y PENSAMIENTOS</p>
+  <h2>HOY QUIERO HABLARTE DE</h2>
+  <div class="grid" id="grid-pensamientos">
+    <article class="post">
+      <div class="cover pensamientos-3"></div>
+      <div class="content">
+        <small>24 SEPTIEMBRE 2026 · REFLEXIÓN</small>
+        <h3>PRESENTACIÓN</h3>
+        <p>Nunca pensé que iba a hacer nada parecido a esto. De hecho, no tenía ni idea por dónde empezar...</p>
+        <button onclick="openModal('art-pensamientos-3')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post">
+      <div class="cover pensamientos-1"></div>
+      <div class="content">
+        <small>2 SEPTIEMBRE 2026 · SOCIEDAD</small>
+        <h3>El arte perdido de escuchar en silencio</h3>
+        <p>Vivimos en una época obsesionada con responder de inmediato. ¿Qué pasó con el placer de atender una conversación sin prisa?</p>
+        <button onclick="openModal('art-pensamientos-1')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post hidden-archive">
+      <div class="cover pensamientos-2"></div>
+      <div class="content">
+        <small>20 AGOSTO 2026 · MEDIOS</small>
+        <h3>Titulares estruendosos y voces vacías</h3>
+        <p>Un análisis directo sobre cómo la inmediatez de la comunicación actual ha terminado por cambiar el fondo profundo por la forma superficial.</p>
+        <button onclick="openModal('art-pensamientos-2')">Seguir leyendo →</button>
+      </div>
+    </article>
+  </div>
+  <div class="load-more-container">
+    <button class="btn-archive" onclick="toggleArchive('grid-pensamientos', this)">Ver artículos en histórico (+1)</button>
+  </div>
+</section>
+
+<!-- LUGARES DE MI MEMORIA CON RED NEURONAL -->
+<section id="rincones" class="section">
+  <canvas id="poolCanvas"></canvas>
+  <div class="water-content">
+    <p class="tag">BITÁCORA DE MIS HUELLAS</p>
+    <h2>LUGARES DE MI MEMORIA</h2>
+    <div class="grid" id="grid-rincones">
+      <article class="post">
+        <div class="cover rincones-2"></div>
+        <div class="content">
+          <small>24 SEPTIEMBRE 2026 · VIVENCIAS</small>
+          <h3>CADA PERSONA ENCIERRA SU PROPIO UNIVERSO</h3>
+          <p>Es uno de mis pensamientos más recurrentes. Las miles de historias que se pierden por el camino de cada vida...</p>
+          <button onclick="openModal('art-rincones-universo')">Seguir leyendo →</button>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="cover rincones-1"></div>
+        <div class="content">
+          <small>4 SEPTIEMBRE 2026 · VIAJES</small>
+          <h3>El callejón empedrado que el tiempo olvidó</h3>
+          <p>Un paseo silencioso al atardecer por uno de esos pueblos medievales donde cada piedra parece guardar el secreto de siglos pasados.</p>
+          <button onclick="openModal('art-rincones-1')">Seguir leyendo →</button>
+        </div>
+      </article>
+      <article class="post hidden-archive">
+        <div class="cover rincones-2"></div>
+        <div class="content">
+          <small>28 AGOSTO 2026 · RUTAS</small>
+          <h3>Donde el mar choca contra el acantilado</h3>
+          <p>Buscando el fin del horizonte en una ruta costera llena de brisa salada, faros solitarios y el rugido incansable del océano.</p>
+          <button onclick="openModal('art-rincones-2')">Seguir leyendo →</button>
+        </div>
+      </article>
+      <article class="post hidden-archive">
+        <div class="cover rincones-1"></div>
+        <div class="content">
+          <small>12 JUNIO 2026 · VIAJES</small>
+          <h3>Senderos entre la niebla del valle</h3>
+          <p>Una caminata matutina descubriendo senderos escondidos tras la espesa brisa matinal en las montañas.</p>
+          <button onclick="openModal('art-rincones-3')">Seguir leyendo →</button>
+        </div>
+      </article>
+    </div>
+    <div class="load-more-container">
+      <button class="btn-archive" onclick="toggleArchive('grid-rincones', this)">Ver artículos en histórico (+3)</button>
+    </div>
+  </div>
+</section>
+
+<!-- ESCUCHA ESTO (FONDO OSCURECIDO Y TEXTO EN ROJO) -->
+<section id="escucha" class="section">
+  <p class="tag">SENTIMIENTO+MEMORIA+ENERGIA: LA MÚSICA</p>
+  <h2>ESCUCHA ESTO</h2>
+  <div class="grid" id="grid-escucha">
+    <article class="post">
+      <div class="cover escucha-1"></div>
+      <div class="content">
+        <small>6 SEPTIEMBRE 2026 · RECOMENDACIÓN</small>
+        <h3>Una joya atemporal para empezar la semana</h3>
+        <p>A veces te cruzas con canciones que parecen detener el tiempo y te devuelven una sensación reconfortante que creías olvidada.</p>
+        <button onclick="openModal('art-escucha-1')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post">
+      <div class="cover escucha-player"></div>
+      <div class="content">
+        <small>5 SEPTIEMBRE 2026 · REPRODUCTOR DE MÚSICA</small>
+        <h3>Canción Destacada</h3>
+        <p style="margin-bottom: 4px;">Dale al play para disfrutar de una selección especial directamente desde nuestra lista recomendada.</p>
+        
+        <div class="player-container">
+          <iframe id="ytPlayer" src="https://www.youtube.com/embed/5qap5aO4i9A?enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-top: 8px;">
+          <a id="ytMusicLink" href="https://music.youtube.com/watch?v=5qap5aO4i9A" target="_blank" class="yt-music-btn">
+            ▶ Escuchar en YouTube Music
+          </a>
+          <button onclick="changeRandomSong()" style="color:var(--accent); font-size:.8rem;">🔀 Otra canción</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- DELANTALES DE SABOR -->
+<section id="delantal" class="section">
+  <p class="tag">GASTRONOMÍA</p>
+  <h2>DELANTALES DE SABOR</h2>
+  <div class="grid" id="grid-delantal">
+    <article class="post">
+      <div class="cover delantal-1"></div>
+      <div class="content">
+        <small>3 SEPTIEMBRE 2026 · RECETAS</small>
+        <h3>El guiso a fuego lento de las abuelas</h3>
+        <p>Verduras frescas, paciencia y especias. Los secretos de un plato tradicional que reconforta el alma en los días de otoño.</p>
+        <button onclick="openModal('art-delantal-1')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post hidden-archive">
+      <div class="cover delantal-2"></div>
+      <div class="content">
+        <small>15 AGOSTO 2026 · PANADERÍA</small>
+        <h3>El aroma inolvidable del pan recién horneado</h3>
+        <p>Harina, agua, masa madre y mucho tiempo. Mi experiencia intentando recrear el pan artesanal de pueblo en casa.</p>
+        <button onclick="openModal('art-delantal-2')">Seguir leyendo →</button>
+      </div>
+    </article>
+  </div>
+  <div class="load-more-container">
+    <button class="btn-archive" onclick="toggleArchive('grid-delantal', this)">Ver artículos en histórico (+1)</button>
+  </div>
+</section>
+
+<!-- SABIAS ESTO? YO TAMPOCO -->
+<section id="sabias" class="section">
+  <p class="tag">CURIOSIDADES</p>
+  <h2>¿SABÍAS ESTO? YO TAMPOCO</h2>
+  <div class="grid" id="grid-sabias">
+    <article class="post">
+      <div class="cover sabias-1"></div>
+      <div class="content">
+        <small>1 SEPTIEMBRE 2026 · HISTORIA</small>
+        <h3>El curioso origen del surco en los vinilos</h3>
+        <p>Descubriendo los detalles de ingeniería que hicieron posible grabar el sonido analógico en discos de acetato e historia del formato.</p>
+        <button onclick="openModal('art-sabias-1')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post hidden-archive">
+      <div class="cover sabias-2"></div>
+      <div class="content">
+        <small>10 AGOSTO 2026 · RETRO</small>
+        <h3>¿Por qué los casetes duraban 60 o 90 minutos?</h3>
+        <p>La verdadera historia sobre las limitaciones técnicas y decisiones de mercado que estandarizaron las famosas cintas magnéticas.</p>
+        <button onclick="openModal('art-sabias-2')">Seguir leyendo →</button>
+      </div>
+    </article>
+  </div>
+  <div class="load-more-container">
+    <button class="btn-archive" onclick="toggleArchive('grid-sabias', this)">Ver artículos en histórico (+1)</button>
+  </div>
+</section>
+
+<!-- SAGANEANDO -->
+<section id="saganeando" class="section">
+  <p class="tag">CIENCIA</p>
+  <h2>SAGANEANDO</h2>
+  <div class="grid" id="grid-saganeando">
+    <article class="post">
+      <div class="cover saganeando-1"></div>
+      <div class="content">
+        <small>30 AGOSTO 2026 · NARRATIVA</small>
+        <h3>Las cartas que nunca llegaron a su destino</h3>
+        <p>A través del chasquido de las teclas, doy forma a frases que nunca enviamos pero que necesitábamos escribir para seguir adelante.</p>
+        <button onclick="openModal('art-saganeando-1')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post hidden-archive">
+      <div class="cover saganeando-2"></div>
+      <div class="content">
+        <small>5 AGOSTO 2026 · DIARIO</small>
+        <h3>Un café frío y una libreta a medio llenar</h3>
+        <p>Observar a la gente pasar desde la esquina de una cafetería antigua mientras las ideas van cobrando forma sin prisa.</p>
+        <button onclick="openModal('art-saganeando-2')">Seguir leyendo →</button>
+      </div>
+    </article>
+  </div>
+  <div class="load-more-container">
+    <button class="btn-archive" onclick="toggleArchive('grid-saganeando', this)">Ver artículos en histórico (+1)</button>
+  </div>
+</section>
+
+<!-- TERRENALES Y CELESTIALES -->
+<section id="estrellas" class="section">
+  <p class="tag">FÍSICA O ESPIRITUALMENTE SIGUEN ENTRE NOSOTROS</p>
+  <h2>Terrenales y Celestiales</h2>
+  <div class="grid" id="grid-estrellas">
+    <article class="post">
+      <div class="cover estrellas-1"></div>
+      <div class="content">
+        <small>25 AGOSTO 2026 · RETRATOS</small>
+        <h3>La noche en que la gran voz dudó en el escenario</h3>
+        <p>Detrás de los focos cegadores y los aplausos multitudinarios se esconde la fragilidad de quienes convierten sus vidas en arte.</p>
+        <button onclick="openModal('art-estrellas-1')">Seguir leyendo →</button>
+      </div>
+    </article>
+    <article class="post hidden-archive">
+      <div class="cover estrellas-2"></div>
+      <div class="content">
+        <small>12 AGOSTO 2026 · ANÉCDOTAS</small>
+        <h3>Entre bastidores: Antes de encenderse los focos</h3>
+        <p>Pequeñas manías, rituales y momentos sencillos de las estrellas de la música minutos antes de saltar ante miles de espectadores.</p>
+        <button onclick="openModal('art-estrellas-2')">Seguir leyendo →</button>
+      </div>
+    </article>
+  </div>
+  <div class="load-more-container">
+    <button class="btn-archive" onclick="toggleArchive('grid-estrellas', this)">Ver artículos en histórico (+1)</button>
+  </div>
+</section>
+
+<!-- SOBRE EL BLOG -->
+<section id="sobre" class="about">
+  <canvas id="cosmosCanvas"></canvas>
+  <div class="about-content">
+    <p class="tag" style="color:#ff826f;">SOBRE EL BLOG</p>
+    <h2>Un lugar con personalidad propia.</h2>
+    <p><strong>Algo + que Música & Radio</strong> es un espacio que nace gracias a personas autodidactas que crean emisoras minoritarias en redes sociales. Ellas me han dado la inspiración que me faltaba para atreverme a compartir mi pequeño mundo. Si te gusta, te invito a visitarlo cuando quieras.</p>
+  </div>
+</section>
+</main>
+
+<!-- MODAL PARA ARTÍCULOS -->
+<div id="articleModal" class="modal-overlay" onclick="closeModalOnOuter(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <strong>Algo + que Música & Radio</strong><br>
+    <span>© 2026 · Todos los derechos reservados</span>
+  </div>
+  <div class="visit-counter" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#94a3b8;">
+    👁️ Lectores del blog: <span id="counterValue" style="color:#ffffff;">0</span>
+  </div>
+</footer>
+
+<!-- REPRODUCTOR DE MÚSICA AMBIENTAL EN BUCLE -->
+<div id="ambient-player-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: rgba(0,0,0,0.85); padding: 10px 16px; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px);">
+  <span id="ambientStatusText" style="font-size: 0.75rem; color: #fff; font-family: sans-serif;">🎵 Música ambiental</span>
+  <button id="playPauseBtn" style="background: #e64b35; border: none; color: white; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">▶</button>
+</div>
+
+<audio id="bgAudio" preload="auto" loop>
+  <source src="andriih-france-french-coffee-585919.mp3" type="audio/mpeg">
+  Tu navegador no soporta elementos de audio.
+</audio>
+
+<script>
+  const audioElement = document.getElementById('bgAudio');
+  let isAmbientPlaying = false;
+
+  function toggleAmbientMusic() {
+    const btn = document.getElementById('playPauseBtn');
+    const statusText = document.getElementById('ambientStatusText');
+    
+    if (isAmbientPlaying) {
+      audioElement.pause();
+      btn.innerText = "▶";
+      statusText.innerText = "🎵 Música pausada";
+      isAmbientPlaying = false;
+    } else {
+      audioElement.load();
+      audioElement.play().then(() => {
+        btn.innerText = "⏸";
+        statusText.innerText = "🎵 Reproduciendo";
+        isAmbientPlaying = true;
+      }).catch(error => {
+        console.log("Reproducción bloqueada:", error);
+        statusText.innerText = "🎵 Pulsa de nuevo";
+      });
+    }
+  }
+
+  // Reproducción optimizada para Android y Windows
+  function playAudioDirect() {
+    audioElement.load();
+    audioElement.play().then(() => {
+      isAmbientPlaying = true;
+      document.getElementById('playPauseBtn').innerText = "⏸";
+      document.getElementById('ambientStatusText').innerText = "🎵 Reproduciendo";
+    }).catch(e => {
+      console.log("Autoplay directo bloqueado:", e);
+    });
+  }
+
+  const publishedPosts = {
+    "2026-09-24": { id: "art-rincones-universo" },
+    "2026-09-06": { id: "art-escucha-1" },
+    "2026-09-04": { id: "art-rincones-1" },
+    "2026-09-03": { id: "art-delantal-1" },
+    "2026-09-02": { id: "art-pensamientos-1" },
+    "2026-09-01": { id: "art-sabias-1" },
+    "2026-08-30": { id: "art-saganeando-1" },
+    "2026-08-28": { id: "art-rincones-2" },
+    "2026-08-25": { id: "art-estrellas-1" },
+    "2026-08-20": { id: "art-pensamientos-2" },
+    "2026-08-15": { id: "art-delantal-2" },
+    "2026-08-12": { id: "art-estrellas-2" },
+    "2026-08-10": { id: "art-sabias-2" },
+    "2026-08-05": { id: "art-saganeando-2" },
+    "2026-06-12": { id: "art-rincones-3" }
+  };
+
+  let currentCalDate = new Date(2026, 8, 1);
+
+  const monthNames = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+
+  function renderCalendar() {
+    const year = currentCalDate.getFullYear();
+    const month = currentCalDate.getMonth();
+
+    document.getElementById('calMonthTitle').innerText = `${monthNames[month]} ${year}`;
+
+    const container = document.getElementById('calendarDays');
+    container.innerHTML = '';
+
+    let firstDayIndex = new Date(year, month, 1).getDay();
+    firstDayIndex = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    const postDates = Object.keys(publishedPosts);
+    const latestDateKey = postDates.length > 0 ? postDates.reduce((latest, current) => current > latest ? current : latest) : null;
+
+    for (let i = 0; i < firstDayIndex; i++) {
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'calendar-day empty';
+      container.appendChild(emptyDiv);
+    }
+
+    for (let day = 1; day <= totalDays; day++) {
+      const dayDiv = document.createElement('div');
+      dayDiv.className = 'calendar-day';
+      dayDiv.innerText = day;
+
+      const formattedMonth = String(month + 1).padStart(2, '0');
+      const formattedDay = String(day).padStart(2, '0');
+      const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
+
+      if (publishedPosts[dateKey]) {
+        const postInfo = publishedPosts[dateKey];
+        const isLatest = (dateKey === latestDateKey);
+
+        if (isLatest) {
+          dayDiv.classList.add('latest-post');
+          dayDiv.title = 'Última publicación (Abre artículo y música)';
+          
+          dayDiv.onclick = () => {
+            playAudioDirect();
+            openModal(postInfo.id);
+          };
+        } else {
+          dayDiv.classList.add('past-post');
+          dayDiv.title = 'Ver publicación anterior';
+          dayDiv.onclick = () => openModal(postInfo.id);
+        }
+      }
+
+      container.appendChild(dayDiv);
+    }
+  }
+
+  function changeMonth(delta) {
+    currentCalDate.setMonth(currentCalDate.getMonth() + delta);
+    renderCalendar();
+  }
+
+  function toggleArchive(gridId, btn) {
+    playAudioDirect(); // Reproducción directa en Android/Windows
+
+    const grid = document.getElementById(gridId);
+    const hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
+    
+    let isHidden = false;
+    hiddenPosts.forEach(post => {
+      if (post.style.display === 'flex') {
+        post.style.display = 'none';
+      } else {
+        post.style.display = 'flex';
+        isHidden = true;
+      }
+    });
+
+    if (isHidden) {
+      btn.innerText = 'Ocultar históricos';
+    } else {
+      btn.innerText = `Ver artículos en histórico (+${hiddenPosts.length})`;
+    }
+  }
+
+  function filterArticles() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const posts = document.querySelectorAll('.post');
+
+    posts.forEach(post => {
+      const text = post.innerText.toLowerCase();
+      const parentGrid = post.closest('.grid');
+      const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+      const isExpanded = btn && btn.innerText.includes('Ocultar');
+      const isInitiallyHidden = post.classList.contains('hidden-archive');
+
+      if (query === "") {
+        if (isInitiallyHidden && !isExpanded) {
+          post.style.display = 'none';
+        } else {
+          post.style.display = 'flex';
+        }
+      } else {
+        if (text.includes(query)) {
+          post.style.display = 'flex';
+        } else {
+          post.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  const poolCanvas = document.getElementById('poolCanvas');
+  const poolCtx = poolCanvas.getContext('2d');
+  let pWidth, pHeight, particles = [];
+
+  function initPoolCanvas() {
+    const parent = poolCanvas.parentElement;
+    if (!parent) return;
+    pWidth = poolCanvas.width = parent.offsetWidth;
+    pHeight = poolCanvas.height = parent.offsetHeight;
+    
+    particles = [];
+    const count = Math.floor((pWidth * pHeight) / 14000);
+    for (let i = 0; i < (count < 35 ? 35 : count); i++) {
+      particles.push({
+        x: Math.random() * pWidth,
+        y: Math.random() * pHeight,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        radius: Math.random() * 2 + 1.2,
+        hue: Math.random() * 360,
+        hueSpeed: (Math.random() - 0.5) * 1.5
+      });
+    }
+  }
+
+  function drawPoolCanvas() {
+    if (!poolCanvas || !poolCtx) return;
+
+    poolCtx.fillStyle = '#0c081e';
+    poolCtx.fillRect(0, 0, pWidth, pHeight);
+
+    for (let i = 0; i < particles.length; i++) {
+      let p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > pWidth) p.vx *= -1;
+      if (p.y < 0 || p.y > pHeight) p.vy *= -1;
+
+      p.hue += p.hueSpeed;
+      if (p.hue > 360) p.hue = 0;
+      if (p.hue < 0) p.hue = 360;
+
+      poolCtx.fillStyle = `hsl(${p.hue}, 80%, 70%)`;
+      poolCtx.beginPath();
+      poolCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      poolCtx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        let p2 = particles[j];
+        let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if (dist < 130) {
+          poolCtx.strokeStyle = `hsla(${p.hue}, 80%, 70%, ${0.25 * (1 - dist / 130)})`;
+          poolCtx.lineWidth = 1;
+          poolCtx.beginPath();
+          poolCtx.moveTo(p.x, p.y);
+          poolCtx.lineTo(p2.x, p2.y);
+          poolCtx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(drawPoolCanvas);
+  }
+
+  const canvas = document.getElementById('cosmosCanvas');
+  const ctx = canvas.getContext('2d');
+  let width, height, stars = [], nebulae = [];
+
+  function initCosmos() {
+    const parent = canvas.parentElement;
+    width = canvas.width = parent.offsetWidth;
+    height = canvas.height = parent.offsetHeight;
+    stars = []; nebulae = [];
+
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 1.8,
+        alpha: Math.random(),
+        speed: Math.random() * 0.015 + 0.005
+      });
+    }
+
+    const colors = ['rgba(142, 68, 173, ', 'rgba(41, 128, 185, ', 'rgba(231, 76, 60, '];
+    for (let i = 0; i < 4; i++) {
+      nebulae.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 200 + 150,
+        color: colors[i % colors.length]
+      });
+    }
+  }
+
+  function drawCosmos() {
+    ctx.clearRect(0, 0, width, height);
+    let bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+    bgGradient.addColorStop(0, '#0a0813');
+    bgGradient.addColorStop(1, '#020105');
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(0, 0, width, height);
+
+    nebulae.forEach(n => {
+      let gradient = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
+      gradient.addColorStop(0, n.color + '0.2)');
+      gradient.addColorStop(0.5, n.color + '0.08)');
+      gradient.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    stars.forEach(s => {
+      s.alpha += s.speed;
+      if (s.alpha > 1 || s.alpha < 0) s.speed = -s.speed;
+      ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.alpha)})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(drawCosmos);
+  }
+
+  window.addEventListener('resize', () => {
+    initPoolCanvas();
+    initCosmos();
+  });
+
+  const randomSongs = [
+    { id: '5qap5aO4i9A', title: 'Lofi Hip Hop - Beats to Relax/Study' },
+    { id: 'jfKfPfyJRdk', title: 'Lofi Chill Beats' },
+    { id: 'DWuZBoX6868', title: 'Acoustic Guitar Melodies' },
+    { id: 'fEvM-OUbaKs', title: 'Jazz Piano Classics' }
+  ];
+
+  function changeRandomSong() {
+    const randomItem = randomSongs[Math.floor(Math.random() * randomSongs.length)];
+    document.getElementById('ytPlayer').src = `https://www.youtube.com/embed/${randomItem.id}?autoplay=1`;
+    document.getElementById('ytMusicLink').href = `https://music.youtube.com/watch?v=${randomItem.id}`;
+  }
+
+  const articlesData = {
+    'art-rincones-universo': {
+      title: "CADA PERSONA ENCIERRA SU PROPIO UNIVERSO",
+      meta: "24 SEPTIEMBRE 2026 · VIVENCIAS",
+      content: "<p>Es uno de mis pensamientos más recurrentes.</p><p>Las miles de historias que se pierden por el camino de cada vida y nunca serán contadas. Quizá porque el que lo vivió no le dio ningún tipo de importancia. O sí, pero nadie le prestó la suficiente atención para que ese recuerdo perdurara en el tiempo.</p><p>En esta sección iré comentando vivencias, anécdotas, historias propias, o que me han contado durante mi vida.</p>"
+    },
+    'art-escucha-1': {
+      title: "Una joya atemporal para empezar la semana",
+      meta: "6 SEPTIEMBRE 2026 · RECOMENDACIÓN MUSICAL",
+      content: "<p>Hay canciones que tienen el poder mágico de cambiar el ritmo de todo tu día. No importa si estás trabajando o paseando; una buena producción musical logra transportarte inmediatamente a otro estado de ánimo.</p><p>Esta pieza destaca no solo por su instrumentación limpia y evocadora, sino por la sutileza con la que construye la emoción compás a compás. Dale una oportunidad con unos buenos auriculares.</p>"
+    },
+    'art-rincones-1': {
+      title: "El callejón empedrado que el tiempo olvidó",
+      meta: "4 SEPTIEMBRE 2026 · VIAJES",
+      content: "<p>Llegué al pueblo justo cuando el sol empezaba a esconderse tras las colinas. Sin mapas ni rutas planeadas, mis pasos me llevaron por una callejuela estrecha donde el musgo crecía entre las piedras desgastadas por los siglos.</p><p>El silencio allí tenía una densidad distinta, interrumpido únicamente por el lejano tañido de una campana. Lugares como este nos recuerdan que el verdadero viaje no consiste en acumular kilómetros, sino en saber detenerse.</p>"
+    },
+    'art-rincones-2': {
+      title: "Donde el mar choca contra el acantilado",
+      meta: "28 AGOSTO 2026 · RUTAS",
+      content: "<p>Pocos paisajes resultan tan sobrecogedores como un acantilado del norte golpeado repetidamente por la marejada. Sentarse al borde de la hierba, a una distancia segura, ofrece un contraste único entre la quietud de la tierra firme y la furia constante del agua.</p><p>El olor a sal, las gaviotas planeando contra el viento y el sonido rítmico de la espuma al romper crean una atmósfera perfecta para despejar cualquier preocupación diaria.</p>"
+    },
+    'art-rincones-3': {
+      title: "Senderos entre la niebla del valle",
+      meta: "12 JUNIO 2026 · VIAJES",
+      content: "<p>Un recorrido matutino por los valles del norte cuando las nubes bajas cubren las copas de los árboles, creando una estampa de tranquilidad absoluta.</p>"
+    },
+    'art-pensamientos-3': {
+      title: "PRESENTACIÓN",
+      meta: "24 SEPTIEMBRE 2026 · REFLEXIÓN",
+      content: "<p>Nunca pensé que iba a hacer nada parecido a esto. De hecho, no tenía ni idea por dónde empezar. Hoy en día disponemos de tanta tecnología a nuestros alcance que, después de mucho tiempo dedicado, he podido darle cierto sentido a lo que tenía en mente y, finalmente, darlo a conocer.</p><p>Este espacio no está pensado para gustar a todo el mundo. Ni lo pretendo, ni me importa. Nace para compartir esas pequeñas huellas que la vida te va dejando. Siempre desde mi punto de vista, vivencias, experiencias y gustos.</p><p>Tampoco se trata de aleccionar ni convenceros de nada. Ni siquiera de que compartas lo que me gusta o lo que pienso.</p><p>Pero si consigo que por un momento me leas, pienses, o sientas que te transmito algún tipo de emoción, habrá valido la pena el tiempo dedicado.</p><p>Mi espacio es integrador, así que no voy a discriminar canciones, escritos o quod quiera expresar por razones de idiomas o cualquier otra limitación.</p><p>Como os he comentado, no me dedico a nada relacionado con esto que hoy comienza. Así que no me marco frecuencias de nada. Cuando me plazca, tenga tiempo o pueda, iré añadiendo contenido.</p><p>Cuido mucho la privacidad. Tanto la mía como la de este lugar. Así que, como se dice en las películas:<br>\"Todos los personajes de mis vivencias son ficticios y cualquier parecido con la realidad es mera coincidencia\".</p><p>Los relatos, vivencias y demás escritos son originales y creados por mí.</p><p>De otra manera, pondría la fuente y/o el enlace oficial.</p><p>También quiero dejar claro que el contenido aquí compartido quiere agradecer siempre la fuente original y cumplir con los derechos de autor y copyright.</p><p>Las publicaciones no tienen por qué llevar un orden. De hecho, no lo van a llevar.</p><p>Lo mismo escribiré una anécdota que otro día hablaré de un artista o pondré una canción.</p><p>Intentaré no extenderme mucho en el contenido que comparto. No tiene sentido. Hoy en día, con las redes e internet, se puede informar del tema tratado de mil y una maneras diferentes.</p><p>A grandes rasgos, eso es todo lo que os quiero decir para que sepáis de qué va esto.</p>"
+    },
+    'art-pensamientos-1': {
+      title: "El arte perdido de escuchar en silencio",
+      meta: "2 SEPTIEMBRE 2026 · SOCIEDAD",
+      content: "<p>Vivimos instalados en la urgencia. En las tertulias actuales —ya sean en televisión, radio o redes sociales— parece que interrumpir al interlocutor es más prioritario que comprender lo que está exponiendo.</p><p>Aprender a escuchar sin formular la respuesta en nuestra cabeza mientras el otro habla es un ejercicio de empatía que hemos ido perdiendo. Recuperar el valor de la pausa y del silencio en una conversación es el primer paso para volver a entendernos.</p>"
+    },
+    'art-pensamientos-2': {
+      title: "Titulares estruendosos y voces vacías",
+      meta: "20 AGOSTO 2026 · MEDIOS",
+      content: "<p>El periodismo de titulares rimbombantes busca el impacto rápido para captar nuestra atención en cuestión de segundos. Sin embargo, tras el envoltorio deslumbrante, la mayoría de las historias carecen de contenido real.</p><p>Frente a esta marea de ruido informativo, se vuelve imprescindible reivindicar los espacios que apostamos por la pausa, la verificación pausada y el análisis sin estridencias ni alarmismos innecesarios.</p>"
+    },
+    'art-delantal-1': {
+      title: "El guiso a fuego lento de las abuelas",
+      meta: "3 SEPTIEMBRE 2026 · RECETAS",
+      content: "<p>No hay atajos en la buena cocina de toda la vida. Un pochado suave de cebolla, ajo y pimiento requiere su tiempo, igual que el chup-chup pausado de una olla de barro durante un par de horas.</p><p>El secreto no reside en ingredientes exóticos ni en técnicas complejas, sino en el respeto por los tiempos de cocción y el uso de productos de temporada bien seleccionados.</p>"
+    },
+    'art-delantal-2': {
+      title: "El aroma inolvidable del pan recién horneado",
+      meta: "15 AGOSTO 2026 · PANADERÍA",
+      content: "<p>Elaborar pan artesanal en casa es un proceso casi místico. Requiere apenas harina, agua, sal y masa madre, pero sobre todo exige aprender a observar y respetar los tiempos de fermentación.</p><p>El momento en que el olor a corteza tostada empieza a inundar toda la cocina justifica por sí solo las horas previas de amasado y espera.</p>"
+    },
+    'art-sabias-1': {
+      title: "El curioso origen del surco en los vinilos",
+      meta: "1 SEPTIEMBRE 2026 · HISTORIA",
+      content: "<p>¿Sabías que un disco de vinilo en realidad no tiene 'surcos', sino un único surco continuo que va desde el borde exterior hasta el centro?</p><p>La aguja del tocadiscos recorre ese laberinto diminuto vibrando en función de las ondulaciones talladas en sus paredes, transformando esas vibraciones mecánicas en impulsos eléctricos que terminan convertidos en la música que escuchamos.</p>"
+    },
+    'art-sabias-2': {
+      title: "¿Por qué los casetes duraban 60 o 90 minutos?",
+      meta: "10 AGOSTO 2026 · RETRO",
+      content: "<p>En los años 70 y 80, los casetes C-60 y C-90 eran el estándar para grabar música. Pero la elección de estas duraciones estuvo directamente ligada al grosor de la cinta magnética en su interior.</p><p>Una cinta de 120 minutos, aunque atractiva por su capacidad, resultó tan fina que solía enredarse en los mecanismos de reproducción de la época con tremenda facilidad.</p>"
+    },
+    'art-saganeando-1': {
+      title: "Las cartas que nunca llegaron a su destino",
+      meta: "30 AGOSTO 2026 · NARRATIVA",
+      content: "<p>A través del chasquido de las teclas, doy forma a frases que nunca enviamos pero que necesitábamos escribir para seguir adelante.</p>"
+    },
+    'art-saganeando-2': {
+      title: "Un café frío y una libreta a medio llenar",
+      meta: "5 AGOSTO 2026 · DIARIO",
+      content: "<p>Observar a la gente pasar desde la esquina de una cafetería antigua mientras las ideas van cobrando forma sin prisa.</p>"
+    },
+    'art-estrellas-1': {
+      title: "La noche en que la gran voz dudó en el escenario",
+      meta: "25 AGOSTO 2026 · RETRATOS",
+      content: "<p>Ocurrió en un auditorio abarrotado en 1974. La mítica estrella se quedó en absoluto silencio a mitad de la canción más célebre, mirando fijamente a la penumbra del público.</p><p>Lejos de arruinar el espectáculo, ese instante de vulnerabilidad pura convirtió aquella actuación en una de las noches más memorables de la historia del recinto.</p>"
+    },
+    'art-estrellas-2': {
+      title: "Entre bastidores: Antes de encenderse los focos",
+      meta: "12 AGOSTO 2026 · ANÉCDOTAS",
+      content: "<p>Los camerinos de las grandes giras suelen ser reflejo de la personalidad de sus artistas. Algunos exigen silencio absoluto, mientras otros improvisan fiestas frenéticas antes de subir al escenario.</p><p>Repasamos las manías y costumbres más curiosas que acompañaron a los grandes nombres de la música justo antes de enfrentarse al clamor del público.</p>"
+    }
+  };
+
+  function openModal(articleId) {
+    playAudioDirect();
+
+    const data = articlesData[articleId] || { title: "Artículo no encontrado", meta: "INFORMACIÓN", content: "<p>Próximamente disponible.</p>" };
+    document.getElementById('modalBody').innerHTML = `<p class="tag">${data.meta}</p><h2>${data.title}</h2><div class="article-text">${data.content}</div>`;
+    document.getElementById('articleModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('articleModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  function closeModalOnOuter(e) {
+    if (e.target.id === 'articleModal') closeModal();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderCalendar();
+    
+    initPoolCanvas();
+    drawPoolCanvas();
+
+    initCosmos();
+    drawCosmos();
+
+    // Soporte táctil directo para móviles y PC en el botón flotante
+    const playBtn = document.getElementById('playPauseBtn');
+    playBtn.addEventListener('click', toggleAmbientMusic);
+    playBtn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      toggleAmbientMusic();
+    });
+
+    let visits = localStorage.getItem('blog_visits') || 0;
+    visits = parseInt(visits) + 1;
+    localStorage.setItem('blog_visits', visits);
+    document.getElementById('counterValue').innerText = visits;
+  });
+</script>
+</body>
+</html>
