@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Algo + que Música y Radio">
+    <title>Lo Encontré</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap');
+        :root {
+            --bg:#f5f2ec;
+            --ink:#171717;
+            --muted:#6e6a63;
+            --accent:#e64b35;
+            --blue-btn:#1d4ed8;
+            --card:#ffffff;
+            --line:#ddd7cc;
+            --dark:#171717;
+        }
+        *{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.5}
+        a{color:inherit;text-decoration:none}
+
+        header{
+            min-height:600px;
+            color:white;
+            padding:20px 7vw 60px;
+            background: linear-gradient(rgba(18, 17, 17, 0.45), rgba(26, 14, 14, 0.55)), url("https://i.ibb.co/vvBZYSkQ/radio-vintage-taller-retro.jpg") center/cover no-repeat;
+            position: relative;
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #e64b35, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899);
+            z-index: 10;
+        }
+        nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:20px;flex-wrap:wrap;gap:20px}
+        .logo{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;font-weight:700}
+        .logo b{color:var(--accent);font-size:1.8em}
+        .menu{display:flex;gap:18px;font-size:.9rem;flex-wrap:wrap;align-items:center;}.menu a{cursor:pointer}.menu a:hover{color:#ff826f}
+
+        #language-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.45)), url("https://i.ibb.co/qL6DWRWG/Screenshot-2026-09-21-10-58-00-149-com-miui-gallery-edit.jpg") center/cover no-repeat;
+            padding: 35px 7vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        #language-section p {
+            color: #ffffff;
+            font-size: 0.85rem;
+            margin: 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+        }
+        #language-tabs {
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            gap: 6px;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.75);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        #language-tabs button {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+            white-space: nowrap;
+            text-align: center;
+        }
+        #language-tabs button:hover {
+            background: rgba(230, 75, 53, 0.8);
+        }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+        #google_translate_element { display: none; }
+
+        .hero-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        .hero{max-width:600px}
+        .tag{font-size:.78rem;font-weight:700;letter-spacing:.14em;margin:0 0 12px;text-transform:uppercase}
+        h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.05}
+        h1{font-size:clamp(2.5rem,5vw,5rem);margin:0 0 18px;letter-spacing:-.055em;text-shadow:0 4px 20px rgba(0,0,0,0.6);color: white;}
+        h1 span{color:var(--accent)}
+        .hero>p:not(.tag){max-width:640px;color:#e8e5df;font-size:1.1rem;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
+        .hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+        .button{display:inline-block;background:var(--accent);padding:11px 20px;border-radius:4px;font-weight:700;cursor:pointer;color:white;border:none}
+        .button.blue{background:var(--blue-btn);color:white;border:none}
+        .button.blue:hover{background:#1e40af}
+        .button:hover{transform:translateY(-2px)}
+
+        .pinned-message-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.45)), url("https://i.ibb.co/qL6DWRWG/Screenshot-2026-09-21-10-58-00-149-com-miui-gallery-edit.jpg") center/cover no-repeat;
+            color: #ffffff;
+            padding: 50px 7vw;
+            border-bottom: 6px solid var(--accent);
+            position: relative;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .pinned-content {
+            max-width: 800px;
+            margin: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 35px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .pinned-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .pinned-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.3rem);
+            margin: 0 0 15px 0;
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+        }
+        .pinned-content p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin: 0 0 15px 0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        }
+        .pinned-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero-calendar-card {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            width: 100%;
+            max-width: 290px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .cal-nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: white;
+            border-radius: 6px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .cal-nav-btn:hover { background: rgba(255, 255, 255, 0.35); }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .calendar-day-head { font-weight: 700; color: #ff826f; font-size: 0.7rem; padding-bottom: 4px; }
+        .calendar-day { padding: 5px 0; border-radius: 6px; color: #ffffff; font-size: 0.78rem; background: rgba(0, 0, 0, 0.2); }
+        .calendar-day.empty { background: transparent; }
+        .calendar-day.past-post {
+            background: var(--blue-btn);
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(29, 78, 216, 0.8);
+            transition: transform 0.2s;
+        }
+        .calendar-day.past-post:hover { transform: scale(1.15); }
+        .calendar-day.latest-post {
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0 10px rgba(230, 75, 53, 0.8);
+            animation: pulse 2s infinite;
+        }
+        .calendar-day.latest-post::after {
+            content: '★';
+            position: absolute;
+            top: -5px;
+            right: -2px;
+            font-size: 0.55rem;
+            color: #facc15;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        .calendar-legend {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: #ffffff;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 8px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .calendar-legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .calendar-legend-dot.latest { background: var(--accent); }
+        .calendar-legend-dot.past { background: var(--blue-btn); }
+
+        .ambient-widget-box {
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ambient-widget-info {
+            font-size: 0.73rem;
+            color: #fff;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ambient-play-btn {
+            background: var(--accent);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .ambient-play-btn:hover { transform: scale(1.1); }
+
+        .section {
+            display: block;
+            padding: 70px 7vw;
+            border-bottom: none;
+            box-shadow: inset 0 -6px 12px -4px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #e64b35, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899);
+            z-index: 10;
+        }
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            background-image: radial-gradient(circle at 25% 25%, rgba(0,0,0,0.35) 0%, transparent 65%), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.55) 0%, transparent 55%), repeating-radial-gradient(circle at 0 0, transparent 0, rgba(0,0,0,0.18) 3px, transparent 6px), repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0px, rgba(0,0,0,0.14) 3px, transparent 6px);
+            background-size: 100% 100%, 100% 100%, 12px 12px, 18px 18px;
+            background-blend-mode: multiply, screen, normal, overlay;
+            opacity: 0.95;
+        }
+        .section > * { position: relative; z-index: 1; }
+
+        #lugares {
+            background: linear-gradient(rgba(10, 10, 15, 0.65), rgba(15, 15, 20, 0.75)), url("https://i.ibb.co/21N9X8rS/Memoria.jpg") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #lugares::before { display: none; }
+        #poolCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .water-content { position: relative; z-index: 1; }
+        #lugares h2, #lugares .tag { color: #ffffff; text-shadow: 0 2px 6px rgba(0,0,0,0.9); font-weight: 800; }
+
+        .load-more-container { width: 100%; margin-top: 20px; text-align: left; }
+        .btn-archive {
+            background: rgba(255,255,255,0.8);
+            border: 2px dashed rgba(0,0,0,0.2);
+            color: var(--ink);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-archive:hover { background: var(--ink); color: #ffffff; border-color: var(--ink); }
+
+        .grid{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .post{
+            background: var(--card);
+            border:1px solid rgba(0,0,0,0.08);
+            border-radius:8px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: box-shadow 0.3s ease;
+        }
+        .post.highlight-post {
+            box-shadow: 0 0 25px var(--accent);
+            border: 2px solid var(--accent);
+        }
+        .post.hidden-archive { display: none; }
+        
+        .cover{
+            height: 180px;
+            background:#111;
+            display:grid;
+            place-items:center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top 20%;
+        }
+        
+        .content{padding:20px;display:flex;flex-direction:column;flex-grow:1}
+        .content small{color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+        h3{font-size:1.2rem;margin:6px 0 8px;line-height:1.2;color:var(--ink)}
+        .content p{
+            color:var(--muted);
+            font-size:.9rem;
+            line-height:1.4;
+            margin:0 0 14px;
+        }
+        .content a, .content button{
+            color:var(--accent);
+            font-weight:700;
+            margin-top:auto;
+            display:inline-block;
+            background:none;
+            border:none;
+            padding:0;
+            font-size:.9rem;
+            font-family:inherit;
+            cursor:pointer;
+            text-align:left;
+        }
+        .content .original-link {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #1d4ed8;
+            font-weight: 700;
+        }
+        .content .original-link:hover {
+            text-decoration: underline;
+        }
+
+        #archivo-search {
+            display: block;
+            background: #ffffff;
+            padding: 30px 7vw;
+            border-bottom: none;
+            box-shadow: inset 0 -6px 12px -4px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+        #archivo-search::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 8px;
+            background: linear-gradient(90deg, #e64b35, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899);
+            z-index: 10;
+        }
+        .search-box { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 15px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        #pensamientos {
+            background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.45)), url("https://i.ibb.co/DPDKnFFb/Pensamientos.jpg") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #pensamientos::before { display: none; }
+        #pensamientos h2, #pensamientos .tag {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            font-weight: 800;
+        }
+
+        #musica {
+            background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25)), url("https://i.ibb.co/ksXkRyxZ/Reproductores-musicales.jpg") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #musica::before { display: none; }
+        #musica h2, #musica .tag {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            font-weight: 800;
+        }
+
+        #delantal {
+            background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.45)), url("https://i.ibb.co/KpZC18QR/Delantales-fiesta.png") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #delantal::before { display: none; }
+        #delantal h2, #delantal .tag {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            font-weight: 800;
+        }
+
+        #sabias {
+            background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.45)), url("https://i.ibb.co/sJXM5RPW/Sabias-esto.jpg") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #sabias::before { display: none; }
+        #sabias h2, #sabias .tag {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            font-weight: 800;
+        }
+
+        #sinpermiso {
+            background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.45)), url("https://i.ibb.co/Q7r80zqB/Que-canci-n-es.jpg") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #sinpermiso::before { display: none; }
+        #sinpermiso h2, #sinpermiso .tag {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            font-weight: 800;
+        }
+
+        #ciencia { 
+            background-color: #000000; 
+            color: #ffffff; 
+            position: relative; 
+            overflow: hidden; 
+            padding: 70px 7vw;
+            min-height: auto;
+        }
+        #ciencia::before { display: none; }
+        #earthCanvas { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0; 
+            pointer-events: none; 
+        }
+        .ciencia-content { 
+            position: relative; 
+            z-index: 1; 
+            width: 100%;
+        }
+        #ciencia h2, #ciencia .tag { 
+            color: #ffffff; 
+            text-shadow: 0 2px 8px rgba(0,0,0,0.95); 
+            font-weight: 800; 
+        }
+        #ciencia .tag {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 0.4rem;
+        }
+        #ciencia h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            margin: 0 0 1.8rem 0;
+            line-height: 1.1;
+        }
+
+        #estrellas {
+            background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.45)), url("https://i.ibb.co/H1xgMHD/terrenales-y-celestiales.jpg") center/cover no-repeat;
+            color: #ffffff;
+        }
+        #estrellas::before { display: none; }
+        #estrellas h2, #estrellas .tag {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            font-weight: 800;
+        }
+
+        .about{
+            display: block;
+            padding:80px 7vw;color:#ffffff;position:relative;overflow:hidden;background:transparent;
+        }
+        #cosmosCanvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+        .about-content{position:relative;z-index:2}
+
+        .modal-overlay{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,0.75);display:none;justify-content:center;align-items:center;
+            z-index:1000;padding:20px;backdrop-filter:blur(4px);
+        }
+        .modal-content{
+            background:var(--card);max-width:750px;width:100%;max-height:85vh;
+            overflow-y:auto;border-radius:12px;padding:35px;position:relative;
+            border:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,0.3);
+        }
+        .modal-close{
+            position:absolute;top:15px;right:20px;font-size:1.8rem;cursor:pointer;
+            color:var(--muted);background:none;border:none;line-height:1;
+        }
+        .article-text{font-size:1rem;line-height:1.7;color:var(--ink);margin-top:15px}
+
+        .visit-counter{
+            display:inline-flex;align-items:center;gap:8px;font-size:.8rem;
+            color:var(--muted);background:rgba(0,0,0,0.04);padding:6px 14px;
+            border-radius:20px;border:1px solid var(--line);
+        }
+        .visit-counter span{font-weight:700;color:var(--ink)}
+
+        footer{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:30px 7vw;font-size:.85rem;background:#0f172a;color:#94a3b8;
+            flex-wrap:wrap;gap:15px;
+        }
+
+        .cover.musica-new{ background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ytimg.com/vi/rYNW1IxaFf4/hqdefault.jpg"); background-position: center top 20%; }
+        .cover.lugares-new{ background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ibb.co/mVzHwNPw/1789482567467.png"); background-position: center top 15%; }
+        .cover.pensamientos-new{ background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ibb.co/hFCrqLDK/Pensamientos.png"); background-position: center top 20%; }
+        .cover.ciencia-new{ background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ibb.co/wFFPqdtL/Domimio-p-blico-Carl-Sagan.jpg"); background-position: center top 10%; }
+        .cover.test-new { background-image: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://i.ibb.co/spHFTDqr/Ideas.jpg"); background-position: center top 20%; }
+        .cover.delantal-new { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ibb.co/1fPdQyxb/Delantales-de-sabor.jpg"); background-position: center top 20%; }
+        .cover.imprescindible-bg { background-image: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url("https://i.ibb.co/PvLzq7j5/Localizador-canciones.png"); background-position: center top 20%; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a class="logo notranslate" href="#">Algo <b>+</b> que</a>
+            <div class="menu">
+                <a href="#musica">Música</a>
+                <a href="#pensamientos">Pensamientos</a>
+                <a href="#lugares">Vivencias</a>
+                <a href="#ciencia">Saganeando</a>
+                <a href="#delantal">El Delantal</a>
+                <a href="#sabias">¿Lo sabías?</a>
+                <a href="#sinpermiso">Identificado</a>
+                <a href="#estrellas">Estrellas</a>
+                <a href="#archivo-search" style="color:var(--accent); font-weight:bold;">🔍 Buscador</a>
+                <a href="#language-section" style="color:#f59e0b; font-weight:bold;">🌐 Language</a>
+            </div>
+        </nav>
+        
+        <div id="google_translate_element"></div>
+        
+        <div class="hero-container">
+            <section class="hero">
+                <p class="tag" style="color: #ffffff;">MÚSICA · HISTORIAS · VIDA</p>
+                <h1>Algo <span>+</span> que<br>Música y Radio</h1>
+                <p>Cuando era pequeño, mi padre me regaló un transistor de la marca LAVIS. Era el modelo 500. Encendido debajo de mi almohada me acompañaba noche tras noche en mis sueños de niño. Y esa música y esos locutores fueron luz y guia hacia mi mundo exterior.</p>
+                <div class="hero-buttons">
+                    <a class="button blue" href="#sobre">Algo sobre mí ↓</a>
+                    <a class="button" href="#musica">Lo último subido ★</a>
+                </div>
+            </section>
+
+            <div class="hero-calendar-card">
+                <div class="calendar-header">
+                    <button class="cal-nav-btn" onclick="changeMonth(-1)">&#10094;</button>
+                    <span id="calMonthTitle">Septiembre 2026</span>
+                    <button class="cal-nav-btn" onclick="changeMonth(1)">&#10095;</button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-head">L</div>
+                    <div class="calendar-day-head">M</div>
+                    <div class="calendar-day-head">X</div>
+                    <div class="calendar-day-head">J</div>
+                    <div class="calendar-day-head">V</div>
+                    <div class="calendar-day-head">S</div>
+                    <div class="calendar-day-head">D</div>
+                </div>
+                <div id="calendarDays" class="calendar-grid" style="margin-top: 5px;"></div>
+                
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span class="calendar-legend-dot latest"></span>
+                        <span><b>Naranja:</b> Última publicación</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="calendar-legend-dot past"></span>
+                        <span><b>Azul:</b> Publicaciones anteriores</span>
+                    </div>
+                </div>
+
+                <div class="ambient-widget-box">
+                    <div class="ambient-widget-info">
+                        <span>🎵</span>
+                        <span id="ambientStatusText">Música ambiental</span>
+                    </div>
+                    <button onclick="toggleAmbientMusic()" id="playPauseBtn" class="ambient-play-btn">▶</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="pinned-message-section">
+        <div class="pinned-content">
+            <span class="pinned-badge">★ Mensaje fijado</span>
+            <h2>DEJARME DECIROS ALGO</h2>
+            <p>24 de Septiembre de 2026.</p>
+            <p>Día de la Mercè.</p>
+            <p>Hoy es un buen día para inaugurar mi blog. Tengo día festivo en mi ciudad, Barcelona. Al final, lo que se me pasó por la cabeza hace un mes y pico, he acabado haciéndolo. He creado mi propio blog...</p>
+            <button class="button" style="margin-top: 10px; cursor: pointer;" onclick="openModal('art-mensaje-fijado', this)">Seguir leyendo →</button>
+        </div>
+    </section>
+
+    <section id="archivo-search" class="section">
+        <p class="tag" style="margin:0; color:var(--accent);">HEMEROTECA</p>
+        <h2 style="margin: 5px 0 0 0; font-size:1.5rem;">Buscar en publicaciones anteriores</h2>
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Escribe un título o palabra clave..." onkeyup="filterArticles()">
+        </div>
+    </section>
+
+    <main>
+        <!-- MÚSICA -->
+        <section id="musica" class="section" data-section-id="musica">
+            <p class="tag">SENTIMIENTO+MEMORIA+ENERGIA: LA MÚSICA</p>
+            <h2>Canciones</h2>
+            <div class="grid" id="grid-musica">
+                <article class="post" data-datetime="2026-09-24 10:00" id="post-art-musica-secretos">
+                    <div class="cover musica-new"></div>
+                    <div class="content">
+                        <small>24 SEPTIEMBRE 2026 · RECOMENDACIÓN</small>
+                        <h3>HOY ALGO HA EMPEZADO</h3>
+                        <p>Hoy inauguro todo este tinglado que me he montado. Le he dado bastantes vueltas a qué canción pinchar para empezar...</p>
+                        <button onclick="openModal('art-musica-secretos', this)">Seguir leyendo →</button>
+                        <a href="https://youtu.be/rYNW1IxaFf4?is=9uZjPllnYIbXZdgd" target="_blank" class="original-link">▶ Escuchar enlace original</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="load-more-container">
+                <button class="btn-archive" onclick="toggleArchive('grid-musica', this)">Ver histórico de música (+0)</button>
+            </div>
+        </section>
+
+        <!-- PENSAMIENTOS -->
+        <section id="pensamientos" class="section" data-section-id="pensamientos">
+            <p class="tag">OPINIÓN Y PENSAMIENTOS</p>
+            <h2>En voz baja</h2>
+            <div class="grid" id="grid-pensamientos">
+                <article class="post" data-datetime="2026-09-24 12:00" id="post-art-pensamientos-prueba">
+                    <div class="cover pensamientos-new"></div>
+                    <div class="content">
+                        <small>24 SEPTIEMBRE 2026 · Sobre papel</small>
+                        <h3>EL PENSAR SI OCUPA LUGAR</h3>
+                        <p>En esta sección, me dedicaré a escribir mis pensamientos, ocurrencias y cosas que quiera explicar o comentar...</p>
+                        <button onclick="openModal('art-pensamientos-prueba', this)">Seguir leyendo →</button>
+                    </div>
+                </article>
+            </div>
+            <div class="load-more-container">
+                <button class="btn-archive" onclick="toggleArchive('grid-pensamientos', this)">Ver artículos en histórico (+0)</button>
+            </div>
+        </section>
+
+        <!-- LUGARES -->
+        <section id="lugares" class="section" data-section-id="lugares">
+            <canvas id="poolCanvas"></canvas>
+            <div class="water-content">
+                <p class="tag">BITÁCORA DE MIS HUELLAS</p>
+                <h2>Memoria viva</h2>
+                <div class="grid" id="grid-lugares">
+                    <article class="post" data-datetime="2026-09-24 10:00" id="post-art-lugares-universo">
+                        <div class="cover lugares-new"></div>
+                        <div class="content">
+                            <small>24 SEPTIEMBRE 2026 · VIVENCIAS</small>
+                            <h3>CADA PERSONA ENCIERRA SU PROPIO UNIVERSO</h3>
+                            <p>Es uno de mis pensamientos más recurrentes. Las miles de historias que se pierden por el camino de cada vida...</p>
+                            <button onclick="openModal('art-lugares-universo', this)">Seguir leyendo →</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="load-more-container">
+                    <button class="btn-archive" onclick="toggleArchive('grid-lugares', this)">Ver artículos en histórico (+0)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CIENCIA -->
+        <section id="ciencia" class="section" data-section-id="ciencia">
+            <canvas id="earthCanvas"></canvas>
+            <div class="ciencia-content">
+                <p class="tag">CIENCIA</p>
+                <h2><span style="color: var(--accent);">Sagan</span><span style="color: var(--blue-btn);">eando</span></h2>
+                <div class="grid" id="grid-ciencia">
+                    <article class="post" data-datetime="2026-09-24 10:00" id="post-art-ciencia-blanco-24">
+                        <div class="cover ciencia-new"></div>
+                        <div class="content">
+                            <small>24 SEPTIEMBRE 2026 · CIENCIA</small>
+                            <h3>VA POR TÍ, CARL</h3>
+                            <p>En los años 80 nos deleitaste con una serie, que cuando acababas de...</p>
+                            <button onclick="openModal('art-ciencia-blanco-24', this)">Seguir leyendo →</button>
+                        </div>
+                    </article>
+                </div>
+                <div class="load-more-container" style="position: relative; z-index: 2;">
+                    <button class="btn-archive" onclick="toggleArchive('grid-ciencia', this)">Ver artículos en histórico (+0)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- EL DELANTAL -->
+        <section id="delantal" class="section" data-section-id="delantal">
+            <p class="tag">GASTRONOMÍA</p>
+            <h2>El delantal</h2>
+            <div class="grid" id="grid-delantal">
+                <article class="post" data-datetime="2026-09-24 14:00" id="post-art-delantal-new">
+                    <div class="cover delantal-new"></div>
+                    <div class="content">
+                        <small>24 SEPTIEMBRE 2026 · CON LOS 5 SENTIDOS</small>
+                        <h3>Y TAN RICAMENTE</h3>
+                        <p>Vamos con esta sección. Andiamo!!
+Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con cantidades de cada cosa...</p>
+                        <button onclick="openModal('art-delantal-new', this)">Seguir leyendo →</button>
+                    </div>
+                </article>
+            </div>
+            <div class="load-more-container">
+                <button class="btn-archive" onclick="toggleArchive('grid-delantal', this)">Ver artículos en histórico (+0)</button>
+            </div>
+        </section>
+
+        <!-- ¿SABÍAS ESTO? -->
+        <section id="sabias" class="section" data-section-id="sabias">
+            <p class="tag">CURIOSIDADES</p>
+            <h2>¿Sabías esto?...Yo hace poco</h2>
+            <div class="grid" id="grid-sabias">
+                <article class="post" data-datetime="2026-09-24 14:00" id="post-art-sabias-new">
+                    <div class="cover test-new" style="background-image: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url('https://i.ibb.co/spHFTDqr/Ideas.jpg'); background-position: center top 20%;"></div>
+                    <div class="content">
+                        <small>24 SEPTIEMBRE 2026 · ENSEÑANZA SIN AULA</small>
+                        <h3>LAS IDEAS COMPARTIDAS SABEN MUCHO MEJOR</h3>
+                        <p>Existen ideas o trucos, que cuando te los cuentan, a veces piensas...</p>
+                        <button onclick="openModal('art-sabias-new', this)">Seguir leyendo →</button>
+                    </div>
+                </article>
+            </div>
+            <div class="load-more-container">
+                <button class="btn-archive" onclick="toggleArchive('grid-sabias', this)">Ver artículos en histórico (+0)</button>
+            </div>
+        </section>
+
+        <!-- LO ENCONTRÉ -->
+        <section id="sinpermiso" class="section" data-section-id="sinpermiso">
+            <p class="tag">¿PERO QUIEN ES?</p>
+            <h2>Lo Encontré</h2>
+            <div class="grid" id="grid-sinpermiso">
+                <article class="post" data-datetime="2026-09-24 14:00" id="post-art-sinpermiso-new">
+                    <div class="cover imprescindible-bg"></div>
+                    <div class="content">
+                        <small>24 SEPTIEMBRE 2026 · TECNOLOGIA</small>
+                        <h3>IMPRESCINDIBLE</h3>
+                        <p>Está aplicación me ha salvado de perderme auténticas joyas...</p>
+                        <button onclick="openModal('art-sinpermiso-new', this)">Seguir leyendo →</button>
+                    </div>
+                </article>
+            </div>
+            <div class="load-more-container">
+                <button class="btn-archive" onclick="toggleArchive('grid-sinpermiso', this)">Ver artículos en histórico (+0)</button>
+            </div>
+        </section>
+
+        <!-- ESTRELLAS -->
+        <section id="estrellas" class="section" data-section-id="estrellas">
+            <p class="tag">FÍSICA O ESPIRITUALMENTE SIGUEN ENTRE NOSOTROS</p>
+            <h2>Estrellas</h2>
+            <div class="grid" id="grid-estrellas">
+                <article class="post" data-datetime="2026-09-24 14:00" id="post-art-estrellas-new">
+                    <div class="cover" style="background-image: linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.35)), url('https://i.ibb.co/q3Kb4WfF/Terrenales-Celestiales.png'); background-position: center top 20%;"></div>
+                    <div class="content">
+                        <small>24 SEPTIEMBRE 2026 · OMNIPRESENTES</small>
+                        <h3>No importa dónde están</h3>
+                        <p>Ésta sección es para recordar aquellas personas que han dejado huella en la música...</p>
+                        <button onclick="openModal('art-estrellas-new', this)">Seguir leyendo →</button>
+                    </div>
+                </article>
+            </div>
+            <div class="load-more-container">
+                <button class="btn-archive" onclick="toggleArchive('grid-estrellas', this)">Ver histórico de estrellas (+0)</button>
+            </div>
+        </section>
+
+        <!-- SOBRE EL BLOG -->
+        <section id="sobre" class="about section">
+            <canvas id="cosmosCanvas"></canvas>
+            <div class="about-content">
+                <p class="tag" style="color:#ff826f;">SOBRE EL BLOG</p>
+                <h2>Un lugar con personalidad propia.</h2>
+                <p><strong>Algo + que Música & Radio</strong> es un espacio que nace gracias a personas autodidactas que crean emisoras minoritarias en redes sociales. Ellas me han dado la inspiración que me faltaba para atreverme a compartir mi pequeño mundo. Si te gusta, te invito a visitarlo cuando y donde tú quieras.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- BARRA DE IDIOMAS PROTEGIDA CONTRA TRADUCCIÓN -->
+    <div id="language-section" class="notranslate">
+        <p translate="no">🌐 Selecciona tu idioma / Select your language</p>
+        <div id="language-tabs" translate="no">
+            <button class="notranslate" onclick="changeLanguage('ca')">Català</button>
+            <button class="notranslate" onclick="changeLanguage('es')">Español</button>
+            <button class="notranslate" onclick="changeLanguage('en')">English</button>
+            <button class="notranslate" onclick="changeLanguage('fr')">Français</button>
+            <button class="notranslate" onclick="changeLanguage('de')">Deutsch</button>
+            <button class="notranslate" onclick="changeLanguage('it')">Italiano</button>
+            <button class="notranslate" onclick="changeLanguage('pt')">Português</button>
+            <button class="notranslate" onclick="changeLanguage('hi')">हिन्दी</button>
+            <button class="notranslate" onclick="changeLanguage('zh-CN')">中文</button>
+            <button class="notranslate" onclick="changeLanguage('ja')">日本語</button>
+        </div>
+    </div>
+
+    <!-- MODAL PARA ARTÍCULOS -->
+    <div id="articleModal" class="modal-overlay" onclick="closeModalOnOuter(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <strong>Algo + que Música & Radio</strong><br>
+            <span>© 2026 · Todos los derechos reservados</span>
+        </div>
+        <div class="visit-counter" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#94a3b8;">
+            👁️ Lectores del blog: <span id="counterValue" style="color:#ffffff;">0</span>
+        </div>
+    </footer>
+
+    <audio id="bgAudio" preload="auto" loop>
+        <source src="andriih-france-french-coffee-585919.mp3" type="audio/mpeg">
+        Tu navegador no soporta elementos de audio.
+    </audio>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'ca,es,en,fr,de,it,pt,hi,zh-CN,ja',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function changeLanguage(langCode) {
+            var selectField = document.querySelector(".goog-te-combo");
+            if (selectField) {
+                selectField.value = langCode;
+                selectField.dispatchEvent(new Event('change'));
+            }
+        }
+
+        const audioElement = document.getElementById('bgAudio');
+        let isAmbientPlaying = false;
+
+        function toggleAmbientMusic() {
+            const btn = document.getElementById('playPauseBtn');
+            const statusText = document.getElementById('ambientStatusText');
+            if (isAmbientPlaying) {
+                audioElement.pause();
+                btn.innerText = "▶";
+                statusText.innerText = "Música ambiental";
+                isAmbientPlaying = false;
+            } else {
+                audioElement.play().then(() => {
+                    btn.innerText = "⏸";
+                    statusText.innerText = "Reproduciendo";
+                    isAmbientPlaying = true;
+                }).catch(error => {
+                    console.log("Reproducción bloqueada:", error);
+                });
+            }
+        }
+
+        const triggerFirstInteraction = () => {
+            if (!isAmbientPlaying) {
+                audioElement.play().then(() => {
+                    isAmbientPlaying = true;
+                    document.getElementById('playPauseBtn').innerText = "⏸";
+                    document.getElementById('ambientStatusText').innerText = "Reproduciendo";
+                }).catch(e => {});
+            }
+            window.removeEventListener('click', triggerFirstInteraction);
+            window.removeEventListener('scroll', triggerFirstInteraction);
+        };
+        window.addEventListener('click', triggerFirstInteraction);
+        window.addEventListener('scroll', triggerFirstInteraction);
+
+        function organizarSeccionesYArchivos() {
+            const grids = document.querySelectorAll('.section .grid');
+            
+            grids.forEach(grid => {
+                const posts = Array.from(grid.querySelectorAll('.post'));
+                if (posts.length === 0) return;
+
+                posts.sort((a, b) => {
+                    const dateA = a.getAttribute('data-datetime') || '1970-01-01 00:00';
+                    const dateB = b.getAttribute('data-datetime') || '1970-01-01 00:00';
+                    return dateB.localeCompare(dateA);
+                });
+
+                posts.forEach((post, index) => {
+                    grid.appendChild(post);
+                    if (index === 0) {
+                        post.style.display = 'flex';
+                        post.classList.remove('hidden-archive');
+                    } else {
+                        post.style.display = 'none';
+                        post.classList.add('hidden-archive');
+                    }
+                });
+
+                const container = grid.parentElement;
+                const btn = container.querySelector('.btn-archive');
+                if (btn) {
+                    const hiddenCount = posts.length - 1;
+                    const sectionId = container.getAttribute('data-section-id');
+                    if (hiddenCount > 0) {
+                        btn.style.display = 'inline-block';
+                        if (sectionId === 'musica') {
+                            btn.innerText = `Ver histórico de música (+${hiddenCount})`;
+                        } else if (sectionId === 'estrellas') {
+                            btn.innerText = `Ver histórico de estrellas (+${hiddenCount})`;
+                        } else {
+                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
+                        }
+                    } else {
+                        btn.style.display = 'inline-block';
+                        if (sectionId === 'musica') {
+                            btn.innerText = `Ver histórico de música (+0)`;
+                        } else if (sectionId === 'estrellas') {
+                            btn.innerText = `Ver histórico de estrellas (+0)`;
+                        } else {
+                            btn.innerText = `Ver artículos en histórico (+0)`;
+                        }
+                    }
+                }
+            });
+        }
+
+        const publishedPosts = {
+            '2026-09-24': { id: 'art-pensamientos-prueba', title: 'EL PENSAR SI OCUPA LUGAR' }
+        };
+
+        let currentCalDate = new Date(2026, 8, 1);
+        const monthNames = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        function renderCalendar() {
+            const year = currentCalDate.getFullYear();
+            const month = currentCalDate.getMonth();
+            document.getElementById('calMonthTitle').innerText = `${monthNames[month]} ${year}`;
+            
+            const container = document.getElementById('calendarDays');
+            container.innerHTML = '';
+            
+            let firstDayIndex = new Date(year, month, 1).getDay();
+            firstDayIndex = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
+            
+            const totalDays = new Date(year, month + 1, 0).getDate();
+            const postDates = Object.keys(publishedPosts);
+            const latestDateKey = postDates.length > 0 ? postDates.reduce((latest, current) => current > latest ? current : latest) : null;
+            
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'calendar-day empty';
+                container.appendChild(emptyDiv);
+            }
+            
+            for (let day = 1; day <= totalDays; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                dayDiv.innerText = day;
+                
+                const formattedMonth = String(month + 1).padStart(2, '0');
+                const formattedDay = String(day).padStart(2, '0');
+                const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
+                
+                if (publishedPosts[dateKey]) {
+                    const postInfo = publishedPosts[dateKey];
+                    const isLatest = (dateKey === latestDateKey);
+                    
+                    if (isLatest) {
+                        dayDiv.classList.add('latest-post');
+                        dayDiv.title = 'Ir a la última publicación';
+                    } else {
+                        dayDiv.classList.add('past-post');
+                        dayDiv.title = 'Ir a la publicación';
+                    }
+                    dayDiv.onclick = () => goToArticle(postInfo.id);
+                }
+                container.appendChild(dayDiv);
+            }
+        }
+
+        function goToArticle(articleId) {
+            const articleElement = document.getElementById('post-' + articleId);
+            if (!articleElement) return;
+
+            const parentGrid = articleElement.closest('.grid');
+            if (articleElement.classList.contains('hidden-archive')) {
+                articleElement.style.display = 'flex';
+                articleElement.classList.remove('hidden-archive');
+                const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+                if (btn) {
+                    const hiddenCount = parentGrid.querySelectorAll('.post.hidden-archive').length;
+                    btn.innerText = hiddenCount > 0 ? `Ver artículos en histórico (+${hiddenCount})` : 'Ocultar históricos';
+                }
+            }
+
+            articleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            articleElement.classList.add('highlight-post');
+            setTimeout(() => {
+                articleElement.classList.remove('highlight-post');
+            }, 2000);
+        }
+
+        function changeMonth(delta) {
+            currentCalDate.setMonth(currentCalDate.getMonth() + delta);
+            renderCalendar();
+        }
+
+        function toggleArchive(gridId, btn) {
+            const grid = document.getElementById(gridId);
+            const hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
+            const isCurrentlyExpanded = btn.innerText.includes('Ocultar');
+            
+            if (isCurrentlyExpanded) {
+                hiddenPosts.forEach(post => {
+                    post.style.display = 'none';
+                });
+                const totalHidden = hiddenPosts.length;
+                if (gridId === 'grid-musica') {
+                    btn.innerText = `Ver histórico de música (+${totalHidden})`;
+                } else if (gridId === 'grid-estrellas') {
+                    btn.innerText = `Ver histórico de estrellas (+${totalHidden})`;
+                } else {
+                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+                }
+            } else {
+                if (hiddenPosts.length === 0) return;
+                hiddenPosts.forEach(post => {
+                    post.style.display = 'flex';
+                });
+                if (gridId === 'grid-musica') {
+                    btn.innerText = 'Ocultar histórico de música';
+                } else if (gridId === 'grid-estrellas') {
+                    btn.innerText = 'Ocultar histórico de estrellas';
+                } else {
+                    btn.innerText = 'Ocultar históricos';
+                }
+            }
+        }
+
+        function filterArticles() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const posts = document.querySelectorAll('.post');
+            
+            posts.forEach(post => {
+                const text = post.innerText.toLowerCase();
+                const parentGrid = post.closest('.grid');
+                const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+                const isExpanded = btn && btn.innerText.includes('Ocultar');
+                const isInitiallyHidden = post.classList.contains('hidden-archive');
+                
+                if (query === "") {
+                    if (isInitiallyHidden && !isExpanded) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'flex';
+                    }
+                } else {
+                    if (text.includes(query)) {
+                        post.style.display = 'flex';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        const earthCanvas = document.getElementById('earthCanvas');
+        const earthCtx = earthCanvas.getContext('2d');
+
+        let earthImg = null;
+        let cloudsImg = null;
+        let spaceStars = [];
+        let shootingStars = [];
+        let rotation = 0;
+        let cloudRotation = 0;
+        const ROTATION_SPEED = 0.0012;        
+        const CLOUD_ROTATION_SPEED = 0.00155; 
+        let globeRadius = 0;
+        let globeCenterX = 0;
+        let globeCenterY = 0;
+
+        const EARTH_TEXTURE_URL = 'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg';
+        const CLOUDS_TEXTURE_URL = 'https://threejs.org/examples/textures/planets/earth_clouds_1024.png';
+
+        function initEarthCanvas() {
+            const parent = earthCanvas.parentElement;
+            if (!parent) return;
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const width = parent.offsetWidth;
+            const height = parent.offsetHeight;
+
+            earthCanvas.width = width * dpr;
+            earthCanvas.height = height * dpr;
+            earthCanvas.style.width = width + 'px';
+            earthCanvas.style.height = height + 'px';
+            earthCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const isMobile = width < 700;
+            globeRadius = isMobile ? Math.min(90, width * 0.22) : 110;
+            globeCenterX = width * 0.5;
+            globeCenterY = isMobile ? 105 : 120;
+
+            spaceStars = [];
+            const starCount = Math.floor((width * height) / 1400);
+            for (let i = 0; i < starCount; i++) {
+                spaceStars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.9 + 0.5,
+                    baseAlpha: 0.55 + Math.random() * 0.45,
+                    speed: 0.45 + Math.random() * 0.70,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+
+            shootingStars = [];
+
+            if (!earthImg) {
+                earthImg = new Image();
+                earthImg.crossOrigin = 'anonymous';
+                earthImg.src = EARTH_TEXTURE_URL;
+            }
+            if (!cloudsImg) {
+                cloudsImg = new Image();
+                cloudsImg.crossOrigin = 'anonymous';
+                cloudsImg.src = CLOUDS_TEXTURE_URL;
+            }
+        }
+
+        function spawnShootingStar(width, height) {
+            const startX = Math.random() * width * 0.8;
+            const startY = Math.random() * height * 0.4;
+            const angle = Math.PI * 0.15 + Math.random() * 0.3;
+            const speed = 4 + Math.random() * 5;
+            const length = 40 + Math.random() * 60;
+
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                length: length,
+                life: 1.0,
+                decay: 0.012 + Math.random() * 0.01
+            });
+        }
+
+        function drawEarthCanvas() {
+            if (!earthCanvas || !earthCtx) return;
+
+            const width = earthCanvas.clientWidth;
+            const height = earthCanvas.clientHeight;
+
+            earthCtx.fillStyle = '#000008';
+            earthCtx.fillRect(0, 0, width, height);
+
+            const time = performance.now() * 0.001;
+            spaceStars.forEach(star => {
+                const twinkle = Math.pow(0.5 + 0.5 * Math.sin(time * star.speed + star.phase), 1.8);
+                const alpha = (0.15 + 0.85 * twinkle) * star.baseAlpha;
+
+                earthCtx.beginPath();
+                earthCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                earthCtx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                earthCtx.fill();
+
+                if (alpha > 0.55 && star.radius > 1.2) {
+                    earthCtx.beginPath();
+                    earthCtx.arc(star.x, star.y, star.radius * 2.4, 0, Math.PI * 2);
+                    earthCtx.fillStyle = `rgba(200, 220, 255, ${alpha * 0.18})`;
+                    earthCtx.fill();
+                }
+            });
+
+            if (Math.random() < 0.008 && shootingStars.length < 3) {
+                spawnShootingStar(width, height);
+            }
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const s = shootingStars[i];
+                s.x += s.vx;
+                s.y += s.vy;
+                s.life -= s.decay;
+
+                if (s.life <= 0) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const tailX = s.x - s.vx * (s.length / 8);
+                const tailY = s.y - s.vy * (s.length / 8);
+
+                const grad = earthCtx.createLinearGradient(s.x, s.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(255, 255, 255, ${s.life})`);
+                grad.addColorStop(0.4, `rgba(200, 220, 255, ${s.life * 0.6})`);
+                grad.addColorStop(1, 'rgba(150, 180, 255, 0)');
+
+                earthCtx.beginPath();
+                earthCtx.moveTo(s.x, s.y);
+                earthCtx.lineTo(tailX, tailY);
+                earthCtx.strokeStyle = grad;
+                earthCtx.lineWidth = 1.8;
+                earthCtx.lineCap = 'round';
+                earthCtx.stroke();
+
+                earthCtx.beginPath();
+                earthCtx.arc(s.x, s.y, 1.5, 0, Math.PI * 2);
+                earthCtx.fillStyle = `rgba(255, 255, 255, ${s.life})`;
+                earthCtx.fill();
+            }
+
+            if (earthImg && earthImg.complete && earthImg.naturalWidth > 0) {
+                rotation += ROTATION_SPEED;
+                if (rotation > Math.PI * 2) rotation -= Math.PI * 2;
+
+                cloudRotation += CLOUD_ROTATION_SPEED;
+                if (cloudRotation > Math.PI * 2) cloudRotation -= Math.PI * 2;
+
+                earthCtx.save();
+
+                earthCtx.beginPath();
+                earthCtx.arc(globeCenterX, globeCenterY, globeRadius, 0, Math.PI * 2);
+                earthCtx.closePath();
+                earthCtx.clip();
+
+                const texAspect = earthImg.naturalWidth / earthImg.naturalHeight;
+                const drawHeight = globeRadius * 2.05;
+                const drawWidth = drawHeight * texAspect;
+
+                const offsetX = (rotation / (Math.PI * 2)) * drawWidth;
+                const baseX = globeCenterX - drawWidth / 2 - offsetX;
+                const baseY = globeCenterY - drawHeight / 2;
+
+                earthCtx.drawImage(earthImg, baseX, baseY, drawWidth, drawHeight);
+                earthCtx.drawImage(earthImg, baseX + drawWidth, baseY, drawWidth, drawHeight);
+
+                if (cloudsImg && cloudsImg.complete && cloudsImg.naturalWidth > 0) {
+                    const cloudAspect = cloudsImg.naturalWidth / cloudsImg.naturalHeight;
+                    const cloudHeight = globeRadius * 2.08;
+                    const cloudWidth = cloudHeight * cloudAspect;
+
+                    const cloudOffsetX = (cloudRotation / (Math.PI * 2)) * cloudWidth;
+                    const cloudBaseX = globeCenterX - cloudWidth / 2 - cloudOffsetX;
+                    const cloudBaseY = globeCenterY - cloudHeight / 2;
+
+                    earthCtx.globalAlpha = 0.80;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 0.65;
+                    const offset2 = cloudWidth * 0.15;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset2, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset2 + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 0.50;
+                    const offset3 = cloudWidth * 0.28;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX + offset3, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX + offset3 + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 0.35;
+                    const offset4 = cloudWidth * 0.42;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset4, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset4 + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 1.0;
+                }
+
+                const lightX = globeCenterX - globeRadius * 0.38;
+                const lightY = globeCenterY - globeRadius * 0.32;
+
+                const shade = earthCtx.createRadialGradient(
+                    lightX, lightY, globeRadius * 0.02,
+                    globeCenterX, globeCenterY, globeRadius
+                );
+                shade.addColorStop(0,    'rgba(0,0,0,0)');
+                shade.addColorStop(0.28, 'rgba(0,0,0,0.02)');
+                shade.addColorStop(0.50, 'rgba(0,0,0,0.15)');
+                shade.addColorStop(0.72, 'rgba(0,0,0,0.38)');
+                shade.addColorStop(0.88, 'rgba(0,0,0,0.60)');
+                shade.addColorStop(1,    'rgba(0,0,0,0.80)');
+                earthCtx.fillStyle = shade;
+                earthCtx.fillRect(
+                    globeCenterX - globeRadius,
+                    globeCenterY - globeRadius,
+                    globeRadius * 2,
+                    globeRadius * 2
+                );
+
+                const limb = earthCtx.createRadialGradient(
+                    globeCenterX, globeCenterY, globeRadius * 0.65,
+                    globeCenterX, globeCenterY, globeRadius
+                );
+                limb.addColorStop(0,   'rgba(0,0,0,0)');
+                limb.addColorStop(0.50,'rgba(0,0,0,0.15)');
+                limb.addColorStop(0.80,'rgba(0,0,0,0.40)');
+                limb.addColorStop(1,   'rgba(0,0,0,0.58)');
+                earthCtx.fillStyle = limb;
+                earthCtx.fillRect(
+                    globeCenterX - globeRadius,
+                    globeCenterY - globeRadius,
+                    globeRadius * 2,
+                    globeRadius * 2
+                );
+
+                earthCtx.restore();
+
+                earthCtx.beginPath();
+                earthCtx.arc(globeCenterX, globeCenterY, globeRadius, 0, Math.PI * 2);
+                earthCtx.strokeStyle = 'rgba(140, 190, 255, 0.10)';
+                earthCtx.lineWidth = 4;
+                earthCtx.stroke();
+            }
+
+            requestAnimationFrame(drawEarthCanvas);
+        }
+
+        const poolCanvas = document.getElementById('poolCanvas');
+        const poolCtx = poolCanvas.getContext('2d');
+        let pWidth, pHeight, particles = [];
+
+        function initPoolCanvas() {
+            const parent = poolCanvas.parentElement;
+            if (!parent) return;
+            pWidth = poolCanvas.width = parent.offsetWidth;
+            pHeight = poolCanvas.height = parent.offsetHeight;
+            particles = [];
+            const count = Math.floor((pWidth * pHeight) / 14000);
+            for (let i = 0; i < (count < 35 ? 35 : count); i++) {
+                particles.push({
+                    x: Math.random() * pWidth,
+                    y: Math.random() * pHeight,
+                    vx: (Math.random() - 0.5) * 1.2,
+                    vy: (Math.random() - 0.5) * 1.2,
+                    radius: Math.random() * 2 + 1.2,
+                    hue: Math.random() * 360,
+                    hueSpeed: (Math.random() - 0.5) * 1.5
+                });
+            }
+        }
+
+        function drawPoolCanvas() {
+            if (!poolCanvas || !poolCtx) return;
+            
+            poolCtx.clearRect(0, 0, pWidth, pHeight);
+            
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > pWidth) p.vx *= -1;
+                if (p.y < 0 || p.y > pHeight) p.vy *= -1;
+                p.hue += p.hueSpeed;
+                if (p.hue > 360) p.hue = 0;
+                if (p.hue < 0) p.hue = 360;
+
+                poolCtx.fillStyle = `hsl(${p.hue}, 80%, 70%)`;
+                poolCtx.beginPath();
+                poolCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                poolCtx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 130) {
+                        poolCtx.strokeStyle = `hsla(${p.hue}, 80%, 70%, ${0.3 * (1 - dist / 130)})`;
+                        poolCtx.lineWidth = 1;
+                        poolCtx.beginPath();
+                        poolCtx.moveTo(p.x, p.y);
+                        poolCtx.lineTo(p2.x, p2.y);
+                        poolCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawPoolCanvas);
+        }
+
+        const canvas = document.getElementById('cosmosCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, stars = [], nebulae = [];
+
+        function initCosmos() {
+            const parent = canvas.parentElement;
+            if (!parent) return;
+            width = canvas.width = parent.offsetWidth;
+            height = canvas.height = parent.offsetHeight;
+            stars = [];
+            nebulae = [];
+            
+            for (let i = 0; i < 200; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 1.8,
+                    alpha: Math.random(),
+                    speed: Math.random() * 0.015 + 0.005
+                });
+            }
+
+            const colors = ['rgba(142, 68, 173, ', 'rgba(41, 128, 185, ', 'rgba(231, 76, 60, '];
+            for (let i = 0; i < 4; i++) {
+                nebulae.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 200 + 150,
+                    color: colors[i % colors.length]
+                });
+            }
+        }
+
+        function drawCosmos() {
+            if (!canvas || !ctx) return;
+            ctx.clearRect(0, 0, width, height);
+            let bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+            bgGradient.addColorStop(0, '#0a0813');
+            bgGradient.addColorStop(1, '#020105');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, width, height);
+
+            nebulae.forEach(n => {
+                let gradient = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
+                gradient.addColorStop(0, n.color + '0.2)');
+                gradient.addColorStop(0.5, n.color + '0.08)');
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            stars.forEach(s => {
+                s.alpha += s.speed;
+                if (s.alpha > 1 || s.alpha < 0) s.speed = -s.speed;
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.alpha)})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(drawCosmos);
+        }
+
+        window.addEventListener('resize', () => {
+            initEarthCanvas();
+            initPoolCanvas();
+            initCosmos();
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            organizarSeccionesYArchivos();
+
+            renderCalendar();
+            initEarthCanvas();
+            drawEarthCanvas();
+            initPoolCanvas();
+            drawPoolCanvas();
+            initCosmos();
+            drawCosmos();
+            
+            let visits = localStorage.getItem('blog_visits') || 0;
+            visits = parseInt(visits) + 1;
+            localStorage.setItem('blog_visits', visits);
+            document.getElementById('counterValue').innerText = visits;
+        });
+
+        function openModal(articleKey, buttonElement) {
+            const modal = document.getElementById('articleModal');
+            const modalBody = document.getElementById('modalBody');
+            const data = articlesData[articleKey];
+            
+            if (data) {
+                let imageHtml = '';
+                let imageUrl = '';
+
+                if (data.modalImg) {
+                    imageUrl = data.modalImg;
+                } else if (buttonElement) {
+                    const postCard = buttonElement.closest('.post');
+                    if (postCard) {
+                        const coverDiv = postCard.querySelector('.cover');
+                        if (coverDiv) {
+                            const bgStyle = window.getComputedStyle(coverDiv).backgroundImage;
+                            const match = bgStyle.match(/url\(['"]?([^'"]+)['"]?\)/);
+                            if (match && match[1]) {
+                                imageUrl = match[1];
+                            }
+                        }
+                    }
+                }
+
+                if (imageUrl) {
+                    imageHtml = `<div style="text-align: center; margin-bottom: 20px;"><img src="${imageUrl}" alt="${data.title}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></div>`;
+                }
+
+                modalBody.innerHTML = `
+                    <small style="color:var(--muted); font-size:.72rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;">${data.meta}</small>
+                    <h2 style="font-size:1.8rem; margin:10px 0 20px;">${data.title}</h2>
+                    ${imageHtml}
+                    <div class="article-text">${data.content}</div>
+                `;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('articleModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOuter(event) {
+            if (event.target.id === 'articleModal') {
+                closeModal();
+            }
+        }
+
+        const articlesData = {
+            'art-mensaje-fijado': {
+                title: "DEJARME DECIROS ALGO",
+                meta: "24 SEPTIEMBRE 2026 · PRESENTACIÓN",
+                content: `
+                    <p>24 de Septiembre de 2026.</p>
+                    <p>Día de la Mercè.</p>
+                    <p>Hoy es un buen día para inaugurar mi blog. Tengo día festivo en mi ciudad, Barcelona.</p>
+                    <p>Al final, lo que se me pasó por la cabeza hace un mes y pico, he acabado haciéndolo. He creado mi propio blog...</p>
+                    <p>Es una manera de no estar a expensas de otras plataformas, en las que no puedo decidir lo que puedo o no puedo poner.</p>
+                    <p>Esta la he creado yo, y me da la libertad de poder expresarme, crear, hacer y deshacer según mi propio criterio.</p>
+                    <p>Nunca he programado. No soy informático, pero le he puesto ganas y tiempo, mucho tiempo. Por eso estoy muy contento de poder subirlo a la red, en un día como el de hoy. Que por fin pueda compartirlo con todos vosotr@s.</p>
+                    <p>Si veis algún fallo o error, es posible que la culpa sea mía. Porque soy el único responsable de todo lo que veis aquí.</p>
+                    <p>Intentaré mejorar cualquier cosa que vea que falla, pero no quería posponer más el darlo a conocer.</p>
+                    <p>Llevo muchas horas invertidas en que quede lo mejor posible. Espero que se note algo el trabajo y la dedicación que le he dado al proyecto. Creo que al final no me puedo quejar de cómo ha quedado. Tiene bastante similitud con lo que en un principio tenía en mente.</p>
+                    <p>Este espacio no está pensado para gustar a todo el mundo. Ni lo pretendo, ni me importa. Nace para compartir esas pequeñas huellas que la vida te va dejando. Siempre desde mi punto de vista, vivencias, experiencias y gustos.</p>
+                    <p>Tampoco se trata de aleccionar ni convenceros de nada. Ni siquiera de que compartas lo que me gusta o lo que pienso.</p>
+                    <p>Pero si consigo que por un momento me leas, pienses, o sientas que te transmito algún tipo de emoción, habrá valido la pena el tiempo dedicado.</p>
+                    <p>Mi espacio es integrador, así que no voy a discriminar canciones, escritos, etcétera por razones de idiomas o cualquier otra limitación.</p>
+                    <p>Incluso tengo pensado escribir alguna sección en otros idiomas, lo cual creo que enriquecerá de algún modo el blog.</p>
+                    <p>Como os he comentado, no me dedico a nada relacionado con esto que hoy comienza. Así que no me marco frecuencias de nada. Cuando me plazca, tenga tiempo o pueda, iré añadiendo contenido. Sin ningún tipo de presión.</p>
+                    <p>Es un hobby, (uno de ellos), y cómo tal, me lo voy a tomar.</p>
+                    <p>Cuido mucho la privacidad. Tanto la mía como la de este lugar. Así que, como se dice en las películas:"Todos los personajes de mis vivencias son ficticios y cualquier parecido con la realidad es mera coincidencia".</p>
+                    <p>Los relatos, vivencias y demás escritos son de mi puño y letra, creados por mí. De otra manera, pondré la fuente y/o el enlace oficial.</p>
+                    <p>También quiero dejar claro que el contenido que aquí comparto, quiere agradecer siempre la fuente original y cumplir con los derechos de autor y copyright.</p>
+                    <p>Las publicaciones no tienen por qué llevar un orden. De hecho, no lo van a llevar. Lo mismo tiraré para adelante en el tiempo, como retrocederé sin motivo alguno. Soy así. Desde escribir una anécdota, a otro día hablar de un artista, una canción, o simplemente compartir algo que me ha sido útil.</p>
+                    <p>Intentaré no extenderme mucho en el contenido que comparto. No tiene sentido. Hoy en día, con las redes e internet, puedes informarte del tema tratado, de mil y mil maneras diferentes.</p>
+                    <p>A grandes rasgos, eso es todo lo que os quiero decir para que sepáis de qué va esto. Seguro que dejo algo, (también me pasa cuando voy al súper).</p>
+                    <p>Bueno, no me enrollo +, y os dejo que naveguéis por aquí y por allá vuestro antojo.</p>
+                    <p>Sed tod@s bienvenidos al blog. Me alegro muchísimo de que me acompañéis. Yo también me siento acompañado y valoro mucho que invirtáis una parte de vuestro tiempo en visitar mi espacio.</p>
+                    <p>Gracias.</p>
+                `
+            },
+            'art-pensamientos-prueba': {
+                title: "EL PENSAR SI OCUPA LUGAR",
+                meta: "24 SEPTIEMBRE 2026 · Sobre papel",
+                content: `
+                    <p>En esta sección, me dedicaré a escribir pensamientos, ocurrencias y cosas que quiera explicar o comentar. Algunas veces, será simplemente para eso, un comentario sin más.</p>
+                    <p>Otras veces serán opiniones que tenga de algo que me pasó, o que me acaba de pasar.</p>
+                    <p>Ya veremos cómo irá y respira esta sección.</p>
+                    <p>Es de lo que va a tratar este pequeño apartado. Comentarios sueltos que a veces escribiré por estos lares.</p>
+                    <p>Por supuesto como veis en la foto adjunta con mi mano izquierda. Tengo más desarrollado mi lado derecho del cerebro. Como tod@s los zurdos.</p>
+                `
+            },
+            'art-ciencia-blanco-24': {
+                title: "<span style='color: var(--accent);'>Sagan</span><span style='color: var(--blue-btn);'>eando</span>",
+                meta: "24 SEPTIEMBRE 2026 · CIENCIA",
+                content: `<p>En los años 80 nos deleitaste con una serie, que cuando acababas de ver el capítulo por la televisión, tenías una extraña sensación. La de ser una diminuta mota de polvo en comparación con el infinito COSMOS que nos rodea.</p>
+ </p>Por eso, y por otras razones, no olvidamos los de esa generación la másterclass que nos dabas a través de la pantalla.</p>
+     <p>Así que, aunque hay muchos divulgadores científicos a los que admirar, te dedico a tí el título de esta sección. Siempre he admirado tú forma de transmitir y ver el mundo.</p>
+  <p>Aquí hablaremos de lo que te gustaba: de la ciencia. Esa materia que tanto nos fascina.</p>
+
+  <p>  En la foto del artículo, vemos a la izquierda a Murray. A su derecha Carl Sagan.</p>
+     <p>Ambos observan un mapa de Marte. La fotografía fue tomada en 1976 en la oficina de Murray, mientras Sagan vivía en Pasadena y trabajaba en la misión Viking.</p>
+  <p> Fuente: NASA/JPL.</p>
+   Agradecimientos:Wikimedia Commons.</p>`
+
+
+          },
+            'art-musica-secretos': {
+                title: "Hoy algo ha empezado",
+                meta: "24 SEPTIEMBRE 2026 · RECOMENDACIÓN",
+                content: `<p>Hoy inauguro todo este tinglado que me he montado.</p>
+                          <p>Le he dado bastantes vueltas a qué canción pinchar para empezar.</p>
+                          <p>Y me ha decidido por la del grupo madrileño de Los Secretos.</p>
+                          <p>Hace unos meses la escuché en una emisora muy pequeñita que emite por internet. Era la versión acústica, como la que os pongo hoy. La verdad es que con una orquesta al lado me sonó como nunca. Me caló tan hondo esta combinación, que hoy os la traigo como la primera que pongo por aquí.</p>
+                          <p>Quiero agradecer a esas emisoras que sirven para darnos buena compañía y nos sorprenden con versiones que a veces desconocemos.</p>
+                          <p>El enlace que comparto es el del canal oficial de Los Secretos, que aunque no creo que nunca lean esto, les mando un fuerte abrazo por hacernos sentir tanto con canciones como esta.</p>
+                          <p>Si queréis investigar por vuestra cuenta este grupo o su historia, tenéis mucha información por la red.</p>
+                          <p>Yo, como he dicho en la presentación, me dedicaré a dar una pincelada breve del tema. El resto corre por vuestra cuenta, de las ganas que tengáis de conocer lo que por aquí os iré poniendo.</p>`
+            },
+            'art-lugares-universo': {
+                title: "CADA PERSONA ENCIERRA SU PROPIO UNIVERSO",
+                meta: "24 SEPTIEMBRE 2026 · VIVENCIAS",
+                content: `<p>Es uno de mis pensamientos más recurrentes.</p>
+                          <p>Las miles de historias que se pierden por el camino de cada vida y nunca serán contadas. Quizá porque el que lo vivió no le dio ningún tipo de importancia. O sí, pero nadie le prestó la suficiente atención para que ese recuerdo perdurara en el tiempo.</p>
+                          <p>En esta sección iré comentando vivencias, anécdotas, historias propias, o que me han contado durante mi vida.</p>
+                          <p>Las cosas que todavía están grabadas en la memoria, y de ahí no han salido. Porque simplemente nunca las escribiste, ni quizá lo hagas nunca.</p>
+                          <p>Precisamente eso es lo que quiero que sea esta sección. Memoria viva escrita. Ni más, ni menos.</p>`
+            },
+            'art-delantal-new': {
+                title: "Secretos de cocina y pucheros de antaño",
+                meta: "24 SEPTIEMBRE 2026 · CON LOS 5 SENTIDOS",
+                content: `<p>Vamos con esta sección. Andiamo!!</p>
+                          <p>Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con cantidades de cada cosa. Como norma, no será así. Existirán excepciones.</p>
+                          <p>Pero quiero enfocarlo más en ir variando de tema. De alimentaciones, productos o situaciones concretas que me encuentro en la cocina cuando me pongo al lío.</p>
+                          <p>Alguna anécdota también caerá, no digo que no.</p>
+                          <p>Como decía Mayra Gómez Kemp, en el 1,2,3.... y hasta aquí puedo leer.</p>
+                          <p>¡Buen provecho!</p>`
+            },
+            'art-sabias-new': {
+                title: "LAS IDEAS COMPARTIDAS SABENUCHO MEJOR",
+                meta: "24 SEPTIEMBRE 2026 · ENSEÑANZA SIN AULA",
+                content: `<p> Existen ideas o trucos, que cuando te los cuentan, a veces piensas: ¿Y cómo no se me habría ocurrido a mí?</p>
+  <p> En esta sección hablaremos de las que aparentemente son chorradas, y las que a mí personalmente, a veces me han sorprendido por su eficacia.</p>
+    </p>Tampoco es que tenga una chistera llena de trucos. Para eso ya estaba el gran mago JuanTamaríz, que manejaba la baraja de cartas como ninguno. </p>
+    <p>Pero espero, que aunque sepáis muchos de ellos, en algúno, por pequeño que sea os pueda sorprender.
+</p>`
+            },
+            'art-sinpermiso-new': {
+                title: "IMPRESCINDIBLE",
+                meta: "24 SEPTIEMBRE 2026 · TECNOLOGIA",
+                content: `<p>Está aplicación me ha salvado de perderme auténticas joyas, (siempre hablando desde mi punto de gusto músical)</p>
+     <p>Ya habrá tiempo de hablar en alguna sección de las artimañas que hacíamos para poder guardar algún trozo de canción, que a veces, tardaría años en volver a encontrarla en alguna emisora</p>
+ <p>Con SHAZAM, la verdad es que localizar el título y el artista, suele ser muy sencillo.</p>
+    <p>Otra cosa es que alguien, nos vea en alguna situación, intentando no perder la oportunidad de localizar una canción.</p>
+   <p>En alguna ocasión, he perdido la oportunidad de localizarla, porque la situación era tan cómica, que hasta tuve que disimular y desistir en el intento.Cuando lo pienso, todavía me entra la risa.</p>`
+            },
+            'art-estrellas-new': {
+                title: "No importa dónde están",
+                meta: "24 SEPTIEMBRE 2026 · OMNIPRESENTES",
+                content: `
+                    <p>Ésta sección es para recordar aquellas personas que han dejado huella en la música.</p>
+                    <p>Pero aquí quiero hacer una distinción. No me voy a regir por mencionar a leyendas de la música, únicamente porque sean leyendas.</p>
+                    <p>Me explico. Aquí voy a mencionar las que son para mí mis leyendas, no para el mundo en general. Para eso, te vas a cualquier sitio de música y las encuentras rápido.</p>
+                    <p>Las que me han marcado y dejado huella, ya sean vivas, como que ya estén en otra dimensión.</p>
+                    <p>Porque tod@s tenemos las nuestras. Y aquí homenajearé a las mías.</p>
+                `
+            }
+        };
+    </script>
+</body>
+</html>
