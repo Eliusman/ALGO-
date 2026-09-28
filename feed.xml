@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog de eliusman</title>
+    <link>https://eliusman.github.io/ALGO-/</link>
+    <description>Nuevas publicaciones y actualizaciones de mi blog</description>
+    <language>es</language>
+    <atom:link href="https://eliusman.github.io/ALGO-/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <!-- EJEMPLO DE PUBLICACIÓN (Duplica este bloque <item> hacia arriba cuando hagas un post nuevo) -->
+    <item>
+      <title>¡Bienvenidos a mi blog!</title>
+      <link>https://eliusman.github.io/ALGO-/tu-primer-post.html</link>
+      <guid>https://eliusman.github.io/ALGO-/tu-primer-post.html</guid>
+      <pubDate>Mon, 28 Sep 2026 10:00:00 GMT</pubDate>
+      <description>Este es el resumen o introducción de mi primera entrada en el blog.</description>
+    </item>
+
+  </channel>
+</rss>
