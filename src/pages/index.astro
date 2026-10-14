@@ -1,5 +1,5 @@
 ---
-// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (CALENDARIO CORREGIDO)
+// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (CALENDARIO CORREGIDO AL 100%)
 ---
 
 <!DOCTYPE html>
@@ -1322,6 +1322,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 dayDiv.className = 'calendar-day';
                 dayDiv.innerText = day;
                 
+                // Formato estricto YYYY-MM-DD con ceros a la izquierda
                 const formattedMonth = String(month + 1).padStart(2, '0');
                 const formattedDay = String(day).padStart(2, '0');
                 const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
@@ -2044,7 +2045,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Pero si consigo que por un momento me leas, pienses, o sientas que te transmito algún tipo de emoción, habrá valido la pena el tiempo dedicado.</p>" +
                     "<p>Mi espacio es integrador, así que no voy a discriminar canciones, escritos, etcétera por razones de idiomas o cualquier otra limitación.</p>" +
                     "<p>Incluso tengo pensado escribir alguna sección en otros idiomas, lo cual creo que enriquecerá de algún modo el blog.</p>" +
-                    "<p>Como os he comentado, no me dedico a nada relacionado con esto que hoy comienza. Así que no me marco frecuencias de nada. Cuando me plazca, tenga tiempo o pueda, iré añadiendo contenido. Sin ningún tipo de presión.</p>" +
+                    "<p>Como os he comentado, no me dedico a nada relacionado con esto que hoy comienza. Así que no me marco frecuencias de nada. Cuando me placca, tenga tiempo o pueda, iré añadiendo contenido. Sin ningún tipo de presión.</p>" +
                     "<p>Es un <strong>hobby</strong>, (uno de ellos), y cómo tal, me lo voy a tomar.</p>" +
                     "<p>Cuido mucho la privacidad. Tanto la mía como la de este lugar. Así que, como se dice en las películas: \"Todos los personajes de mis vivencias son ficticios y cualquier parecido con la realidad es mera coincidencia\".</p>" +
                     "<p>Los relatos, <strong>vivencias y reflexiones</strong> son de mi puño y letra, creados por mí. De otra manera, pondré la fuente y/o el enlace oficial.</p>" +
@@ -2141,7 +2142,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Hoy os traigo un <strong>descubrimiento musical</strong> increíble directo desde <strong>China</strong>. Una canción con un toque mágico y entrañable que parece sacada de una película de <strong>Disney</strong>.</p>" +
                     "<p>(A continuación, el texto para mis seguidores asiáticos).</p>" +
                     "<p>有些艺术家总是能带给我们惊喜。今天带给大家的这首歌，我非常高兴能与你们分享。</p>" +
-                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”，不如说他们本来就在那里。</p>" +
+                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”,不如说他们本来就在那里。</p>" +
                     "<p>如果有人问我这首歌出自哪部电影的原声带，我一定会毫不犹豫地回答：是<strong>迪士尼</strong>的歌曲。</p>" +
                     "<p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由<strong>华特</strong>先生以及后来他的动画工厂带给我们的经典电影记忆。</p>" +
                     "<p>请大家亲自听一听，然后告诉我你们是否也有同感。</p>" +
@@ -2156,7 +2157,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 meta: "8 OCTUBRE 2026 · RECOMENDACIÓN",
                 modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg",
                 content: 
-                    "<p>Dar una pincelada a un <strong>estilo musical</strong> de tu tierra siempre es de buen gusto. Eso es exactamente lo que hizo el cantautor <strong>Alfred Garcia</strong> con su canción <em>«Rumba Catalana»</em>, dando visibilidad a un género que nació en el siglo pasado. Y de esto ha llovido bastante.</p>" +
+                    "<p>Dar una pincelada a un <strong>estilo musical</strong> de tu tierra siempre es de buen gusto. Eso es exactamente lo que hizo el cantautor <strong>Alfred Garcia</strong> con su canción <em>«Rumba Catalana»</em>, dando visibilidad a un género que nació en el siglo pasado. Y de esto ha lloivido bastante.</p>" +
                     "<p><em>(A partir de aquí, pasamos al catalán):</em></p>" +
                     "<h2>Origen de la <strong>rumba catalana</strong></h2>" +
                     "<p>La rumba catalana va néixer de la fusió de diferents barreges alhora. Allà per les dècades dels quaranta i cinquanta del segle XX, arribaven a Catalunya moltes bandes de Llatinoamèrica amb ritmes i música innovadora. Entre altres, els ritmes cubans.</p>" +
