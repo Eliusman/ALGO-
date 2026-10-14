@@ -40,6 +40,8 @@ const { Content } = await post.render();
         small{color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
         h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.8rem, 3vw, 2.3rem);margin:10px 0 20px;line-height:1.2;color:var(--ink);}
         img{max-width:100%;height:auto;border-radius:8px;margin:20px 0;}
+        .article-text {font-size: 1.05rem; color: var(--ink); margin-top: 20px;}
+        .article-text p {margin-bottom: 1.2rem;}
         .original-link{display:inline-block;margin-top:20px;color:var(--accent);font-weight:700;text-decoration:none;}
         .original-link:hover{text-decoration:underline;}
     </style>
@@ -50,4 +52,14 @@ const { Content } = await post.render();
         <small>{post.data.pubDate.toLocaleDateString()} · CIENCIA</small>
         <h1>{post.data.title}</h1>
         {post.data.modalImg && <img src={post.data.modalImg} alt={post.data.title} />}
-        <div class="artic
+        
+        <div class="article-text">
+            <Content />
+        </div>
+
+        {post.data.videoUrl && (
+            <p><a href={post.data.videoUrl} target="_blank" rel="noopener noreferrer" class="original-link">▶ Ver vídeo original en YouTube ➔</a></p>
+        )}
+    </main>
+</body>
+</html>
