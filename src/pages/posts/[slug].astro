@@ -12,8 +12,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-// Ruta raíz absoluta de tu GitHub Pages para que el botón de volver funcione siempre
-const homeUrl = "https://eliusman.github.io/ALGO-/";
+// Ruta de vuelta exacta usando ruta relativa robusta para GitHub Pages
+const homeUrl = "../../index.html";
 ---
 
 <!DOCTYPE html>
