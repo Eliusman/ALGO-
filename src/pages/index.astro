@@ -313,7 +313,7 @@
             box-shadow: 0 0 25px var(--accent);
             border: 2px solid var(--accent);
         }
-        .post.hidden-archive { display: none; }
+        .post.hidden-archive { display: none !important; }
         
         .cover{
             height: 180px;
@@ -955,7 +955,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <a href="https://youtu.be/9GfHJgiURxE" target="_blank" rel="noopener noreferrer" class="original-link">▶ Ver vídeo original</a>
                         </div>
                     </article>
-                    <article class="post" data-datetime="2026-09-24 10:00" id="post-art-ciencia-blanco-24">
+                    <article class="post hidden-archive" data-datetime="2026-09-24 10:00" id="post-art-ciencia-blanco-24">
                         <div class="cover ciencia-new"></div>
                         <div class="content">
                             <small>24 SEPTIEMBRE 2026 · CIENCIA</small>
@@ -966,7 +966,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </article>
                 </div>
                 <div class="load-more-container" style="position: relative; z-index: 2;">
-                    <button class="btn-archive" data-grid="grid-ciencia">Ver artículos en histórico (+0)</button>
+                    <button class="btn-archive" data-grid="grid-ciencia">Ver artículos en histórico (+1)</button>
                 </div>
             </div>
         </section>
@@ -1186,7 +1186,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             'art-musica-wangok': {
                 title: "Música de China con alma Disney: La sorpresa del grupo OK",
                 meta: "3 OCTUBRE 2026 · RECOMENDACIÓN",
-                content: "<p>Hoy os traigo un descubrimiento musical increíble directo desde China. Una canción con un toque mágico y entrañable que parece sacada de una película de Disney.</p><p>(A continuación, el texto para mis seguidores asiáticos).</p><p>有些艺术家总是能带给我们惊喜。今天带给大家的这首歌，我非常高兴能与你们分享。</p><p>他们来自中国，嗯，与其说是“来”，不如说他们本来就在那里。</p><p>如果有人问我这首歌出自哪部电影的原声带，我一定会毫不犹豫地回答：是迪士尼的歌曲。</p><p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由华特先生以及后来他的动画工厂带给我们的经典电影记忆。</p><p>请大家亲自听一听，然后告诉我你们是否也有同感。</p><p>向 OK 乐队致以热烈的祝贺。你们把这首作品演绎得太完美了。</p><p>祝你们未来取得更多成功。</p><p>感谢该乐队以及 제프조이 JEFFJOY 频道，今天我在这里分享并链接了 their 这首歌曲。</p><p>Nos vemos en la siguiente publicación. Un fuerte abrazo.</p><p><a href=\"https://youtu.be/orqjiuJWiF8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escuchar enlace original en YouTube ➔</a></p>"
+                content: "<p>Hoy os traigo un descubrimiento musical increíble directo desde China. Una canción con un toque mágico y entrañable que parece sacada de una película de Disney.</p><p>(A continuación, el texto para mis seguidores asiáticos).</p><p>有些艺术家总是能带给我们惊喜。今天带给大家的这首歌， bridge非常高兴能与你们分享。</p><p>他们来自中国，嗯，与其说是“来”，不如说 fishing他们本来就在那里。</p><p>如果有人问我这首歌出自哪部电影的原声带，我一定会毫不犹豫地回答：是迪士尼的歌曲。</p><p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由华特先生以及后来他的动画工厂带给我们的经典电影记忆。</p><p>请大家亲自听一听，然后告诉我你们是否也有同感。</p><p>向 OK 乐队致以热烈的祝贺。你们把这首作品演绎得太完美了。</p><p>祝你们未来取得更多成功。</p><p>感谢该乐队以及 제프조이 JEFFJOY 频道， today我在这里分享并链接了 their 这首歌曲。</p><p>Nos vemos en la siguiente publicación. Un fuerte abrazo.</p><p><a href=\"https://youtu.be/orqjiuJWiF8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escuchar enlace original en YouTube ➔</a></p>"
             },
             'art-musica-rumbacatalana': {
                 title: "Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic",
@@ -1405,7 +1405,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             }
         }
 
-        // Inicialización segura independiente del DOMContentLoaded en Astro
+        // Inicialización segura
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initApp);
         } else {
@@ -1501,7 +1501,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             var counterEl = document.getElementById('counterValue');
             if (counterEl) counterEl.innerText = Math.max(baseMinima, totalVisitas);
 
-            // ========== CANVAS ANIMATIONS ==========
+            // ACTIVACIÓN DE CANVAS
             initPoolCanvas();
             initEarthCanvas();
             initCosmosCanvas();
@@ -1514,7 +1514,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             var ctx = canvas.getContext('2d');
             var width, height;
             var waves = [];
-            var mouse = { x: -999, y: -999 };
 
             function resize() {
                 width = canvas.width = canvas.offsetWidth;
@@ -1523,7 +1522,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             resize();
             window.addEventListener('resize', resize);
 
-            // Create gentle wave lines
             for (var i = 0; i < 6; i++) {
                 waves.push({
                     y: height * (0.3 + i * 0.12),
@@ -1550,14 +1548,12 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             function draw(t) {
                 ctx.clearRect(0, 0, width, height);
 
-                // Soft gradient overlay
                 var grd = ctx.createLinearGradient(0, 0, 0, height);
                 grd.addColorStop(0, 'rgba(10, 30, 60, 0.15)');
                 grd.addColorStop(1, 'rgba(5, 15, 40, 0.35)');
                 ctx.fillStyle = grd;
                 ctx.fillRect(0, 0, width, height);
 
-                // Draw waves
                 waves.forEach(function(w) {
                     ctx.beginPath();
                     ctx.moveTo(0, w.y);
@@ -1572,7 +1568,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     ctx.fill();
                 });
 
-                // Floating particles (bubbles / light)
                 particles.forEach(function(p) {
                     p.x += p.vx;
                     p.y += p.vy;
@@ -1592,7 +1587,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             requestAnimationFrame(draw);
         }
 
-        // --- 2. Earth for #ciencia (Saganeando) ---
+        // --- 2. Earth for #ciencia ---
         function initEarthCanvas() {
             var canvas = document.getElementById('earthCanvas');
             if (!canvas) return;
@@ -1604,7 +1599,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             function resize() {
                 width = canvas.width = canvas.offsetWidth;
                 height = canvas.height = canvas.offsetHeight;
-                // regenerate stars
                 stars = [];
                 for (var i = 0; i < 120; i++) {
                     stars.push({
@@ -1620,7 +1614,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             window.addEventListener('resize', resize);
 
             function drawEarth(cx, cy, radius, rot) {
-                // Atmosphere glow
                 var glow = ctx.createRadialGradient(cx, cy, radius * 0.7, cx, cy, radius * 1.35);
                 glow.addColorStop(0, 'rgba(80, 160, 255, 0)');
                 glow.addColorStop(0.7, 'rgba(60, 140, 255, 0.08)');
@@ -1630,13 +1623,11 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 ctx.fillStyle = glow;
                 ctx.fill();
 
-                // Earth body
                 ctx.save();
                 ctx.beginPath();
                 ctx.arc(cx, cy, radius, 0, Math.PI * 2);
                 ctx.clip();
 
-                // Ocean base
                 var ocean = ctx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, 0, cx, cy, radius);
                 ocean.addColorStop(0, '#3a8fd0');
                 ocean.addColorStop(0.6, '#1a5f9e');
@@ -1644,22 +1635,18 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 ctx.fillStyle = ocean;
                 ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
 
-                // Simple continents (abstract shapes rotating)
                 ctx.translate(cx, cy);
                 ctx.rotate(rot);
                 ctx.fillStyle = 'rgba(60, 140, 70, 0.85)';
 
-                // Africa / Europe-ish
                 ctx.beginPath();
                 ctx.ellipse(-radius * 0.15, -radius * 0.1, radius * 0.28, radius * 0.45, 0.2, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Americas
                 ctx.beginPath();
                 ctx.ellipse(radius * 0.55, 0, radius * 0.18, radius * 0.55, -0.3, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Asia / Australia
                 ctx.beginPath();
                 ctx.ellipse(-radius * 0.55, -radius * 0.25, radius * 0.35, radius * 0.25, 0.4, 0, Math.PI * 2);
                 ctx.fill();
@@ -1667,7 +1654,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 ctx.ellipse(-radius * 0.4, radius * 0.4, radius * 0.18, radius * 0.12, 0, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Clouds (lighter)
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
                 ctx.beginPath();
                 ctx.ellipse(radius * 0.1, -radius * 0.35, radius * 0.4, radius * 0.12, 0.5, 0, Math.PI * 2);
@@ -1678,7 +1664,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
 
                 ctx.restore();
 
-                // Soft terminator / lighting
                 var light = ctx.createRadialGradient(cx - radius * 0.4, cy - radius * 0.35, 0, cx, cy, radius);
                 light.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
                 light.addColorStop(0.5, 'rgba(0, 0, 0, 0)');
@@ -1688,7 +1673,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 ctx.fillStyle = light;
                 ctx.fill();
 
-                // Edge highlight
                 ctx.beginPath();
                 ctx.arc(cx, cy, radius, 0, Math.PI * 2);
                 ctx.strokeStyle = 'rgba(140, 200, 255, 0.35)';
@@ -1699,11 +1683,9 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             function draw(t) {
                 ctx.clearRect(0, 0, width, height);
 
-                // Deep space background
                 ctx.fillStyle = '#000008';
                 ctx.fillRect(0, 0, width, height);
 
-                // Stars
                 stars.forEach(function(s) {
                     var a = s.alpha * (0.5 + 0.5 * Math.sin(t * 0.002 + s.twinkle));
                     ctx.beginPath();
@@ -1765,11 +1747,9 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             }
 
             function draw(t) {
-                // Fade trail for depth
                 ctx.fillStyle = 'rgba(2, 4, 18, 0.25)';
                 ctx.fillRect(0, 0, width, height);
 
-                // Stars
                 stars.forEach(function(s) {
                     s.y += s.speed;
                     if (s.y > height) {
@@ -1783,7 +1763,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     ctx.fill();
                 });
 
-                // Shooting stars
                 spawnShootingStar();
                 for (var i = shootingStars.length - 1; i >= 0; i--) {
                     var ss = shootingStars[i];
@@ -1812,7 +1791,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
 
                 requestAnimationFrame(draw);
             }
-            // Initial fill
+
             ctx.fillStyle = '#020412';
             ctx.fillRect(0, 0, width, height);
             requestAnimationFrame(draw);
