@@ -4,4 +4,3 @@ export default defineConfig({
   site: 'https://eliusman.github.io',
   base: '/ALGO-/',
 });
-
