@@ -1,5 +1,5 @@
 ---
-// Si en tu proyecto de Astro usas un layout principal, puedes importarlo aquí o mantenerlo como página autónoma.
+// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (CALENDARIO CORREGIDO DEFINITIVO)
 ---
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -240,106 +240,166 @@
             margin-bottom: 0;
         }
 
+        /* === CALENDARIO 3D VIBRANTE Y MODERNO === */
         .hero-calendar-card {
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 16px;
+            position: relative;
+            overflow: hidden;
+            perspective: 1100px;
+            transform-style: preserve-3d;
+            background: linear-gradient(135deg, rgba(31,27,72,.98), rgba(54,28,104,.96) 48%, rgba(12,67,111,.96));
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: 0 28px 70px rgba(45,20,95,.34), inset 0 1px 0 rgba(255,255,255,.18);
+            max-width: 320px;
             width: 100%;
-            max-width: 290px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .hero-calendar-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            pointer-events: none;
+            background: radial-gradient(circle at 8% 8%, rgba(255,71,160,.28), transparent 28%), radial-gradient(circle at 92% 12%, rgba(0,229,255,.25), transparent 27%), radial-gradient(circle at 50% 100%, rgba(139,92,246,.28), transparent 34%);
         }
         .calendar-header {
+            position: relative;
+            z-index: 2;
+            padding: 12px 4px 15px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,.8);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
             font-family: "Space Grotesk", sans-serif;
             font-weight: 700;
             font-size: 0.95rem;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,.10);
         }
         .cal-nav-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #ff4fa3, #8b5cf6 55%, #4f46e5);
+            box-shadow: 0 7px 16px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.22);
+            border: 1px solid rgba(255,255,255,.20);
             color: white;
-            border-radius: 6px;
-            width: 28px;
-            height: 28px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            transition: all 0.2s;
+            transition: transform .2s ease, box-shadow .2s ease;
         }
-        .cal-nav-btn:hover { background: rgba(255, 255, 255, 0.35); }
+        .cal-nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 22px rgba(0,0,0,.28), 0 0 18px rgba(96,180,255,.14);
+        }
         .calendar-grid {
+            position: relative;
+            z-index: 1;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+            gap: 7px;
             text-align: center;
             font-size: 0.8rem;
+            padding: 4px 2px 10px;
         }
-        .calendar-day-head { font-weight: 700; color: #ff826f; font-size: 0.7rem; padding-bottom: 4px; }
-        .calendar-day { padding: 5px 0; border-radius: 6px; color: #ffffff; font-size: 0.78rem; background: rgba(0, 0, 0, 0.2); }
-        .calendar-day.empty { background: transparent; }
+        .calendar-day-head {
+            padding-bottom: 7px;
+            color: #ff9b8c;
+            font-weight: 800;
+            font-size: .68rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            opacity: .72;
+            text-shadow: 0 2px 4px rgba(0,0,0,.7);
+        }
+        .calendar-day {
+            position: relative;
+            min-height: 44px;
+            display: grid;
+            place-items: center;
+            padding: 5px 0;
+            border-radius: 13px;
+            background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.055));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.13);
+            box-shadow: 0 7px 13px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.13);
+            text-shadow: 0 2px 3px rgba(0,0,0,.8);
+            color: #fff;
+            font-size: 0.78rem;
+            transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, border-color .22s ease;
+        }
+        .calendar-day:hover:not(.empty) {
+            transform: translateY(-5px) scale(1.035);
+            border-color: rgba(255,255,255,.28);
+            box-shadow: 0 15px 26px rgba(0,0,0,.30), 0 0 20px rgba(96,180,255,.10);
+            z-index: 5;
+        }
+        .calendar-day.empty {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
         .calendar-day.past-post {
             background: linear-gradient(145deg, #00b8d9, #2563eb 55%, #4f46e5) !important;
-            color: #ffffff;
-            font-weight: 700;
-            cursor: pointer;
             border-color: rgba(105,198,255,.38) !important;
-            box-shadow: 0 0 6px rgba(29, 78, 216, 0.8);
-            transition: transform 0.2s;
+            box-shadow: 0 9px 18px rgba(0,62,125,.28), inset 0 1px 0 rgba(255,255,255,.22) !important;
+            cursor: pointer;
+            font-weight: 700;
         }
-        .calendar-day.past-post:hover { transform: scale(1.15); }
         .calendar-day.latest-post {
             background: linear-gradient(145deg, #ff3d81, #ff7a18 52%, #facc15) !important;
-            color: #ffffff;
-            font-weight: 700;
-            cursor: pointer;
-            position: relative;
             border-color: rgba(255,218,190,.62) !important;
-            box-shadow: 0 0 10px rgba(230, 75, 53, 0.8);
-            animation: pulse 2s infinite;
+            box-shadow: 0 10px 24px rgba(180,45,38,.35), 0 0 24px rgba(255,98,67,.18), inset 0 1px 0 rgba(255,255,255,.30) !important;
+            cursor: pointer;
+            font-weight: 700;
         }
         .calendar-day.latest-post::after {
-            content: '★';
+            content: '';
             position: absolute;
-            top: -5px;
-            right: -2px;
-            font-size: 0.55rem;
-            color: #facc15;
+            top: 6px;
+            right: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.92);
+            box-shadow: 0 0 10px rgba(255,255,255,.85);
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-            100% { transform: scale(1); }
+        .calendar-day.today {
+            background: linear-gradient(145deg, #39f27a 0%, #12b957 52%, #087f3d 100%) !important;
+            border-color: rgba(180,255,204,.95) !important;
+            color: #ffffff !important;
+            box-shadow: 5px 6px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.38), 0 0 20px rgba(34,197,94,.75) !important;
+            text-shadow: 0 2px 4px rgba(0,80,35,.75) !important;
         }
         .calendar-legend {
+            position: relative;
+            z-index: 2;
             margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,.10);
+            text-shadow: 0 1px 3px rgba(0,0,0,.8);
             font-size: 0.7rem;
             display: flex;
             flex-direction: column;
             gap: 4px;
             color: #ffffff;
-            border-top: 1px solid rgba(255,255,255,0.15);
-            padding-top: 8px;
         }
         .legend-item { display: flex; align-items: center; gap: 8px; }
-        .calendar-legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-        .calendar-legend-dot.latest { background: var(--accent); }
-        .calendar-legend-dot.past { background: var(--blue-btn); }
+        .calendar-legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-shadow: 0 3px 8px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35); }
+        .calendar-legend-dot.latest { background: linear-gradient(145deg, #ff3d81, #ff7a18); }
+        .calendar-legend-dot.past { background: linear-gradient(145deg, #00b8d9, #2563eb); }
+        .calendar-legend-dot.today { background: linear-gradient(145deg, #39f27a, #12b957); }
 
         .ambient-widget-box {
-            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+            margin-top: 14px;
+            border-radius: 11px;
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
             padding: 8px 12px;
             display: flex;
             align-items: center;
@@ -378,7 +438,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .section::after {
             content: "";
             position: absolute;
@@ -404,6 +463,8 @@
         #lugares {
             background: linear-gradient(rgba(10, 10, 15, 0.65), rgba(15, 15, 20, 0.75)), url("https://i.ibb.co/21N9X8rS/Memoria.jpg") center/cover no-repeat;
             color: #ffffff;
+            position: relative;
+            overflow: hidden;
         }
         #lugares::before { display: none; }
         #poolCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
@@ -444,7 +505,7 @@
             box-shadow: 0 0 25px var(--accent);
             border: 2px solid var(--accent);
         }
-        .post.hidden-archive { display: none; }
+        .post.hidden-archive { display: none !important; }
         
         .cover{
             height: 180px;
@@ -678,152 +739,6 @@
         .cover.jim-croce-cover { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://img.youtube.com/vi/lhjq50RFQek/hqdefault.jpg"); background-position: center center; }
         .cover.annalisa-bellissima { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://img.youtube.com/vi/qz88Dx-_lA4/hqdefault.jpg"); background-position: center center; }
         .cover.eugenio-c-cover { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ibb.co/rRDt3tPC/Eugenio-C.png"); background-position: center center; }
-
-        /* === CALENDARIO 3D === */
-        .hero-calendar-card {
-            position: relative;
-            transform-style: preserve-3d;
-            perspective: 900px;
-            background: linear-gradient(145deg, rgba(35,35,42,.88), rgba(8,8,12,.78));
-            border: 1px solid rgba(255,255,255,.28);
-            border-radius: 18px;
-            padding: 18px;
-            box-shadow: 0 24px 45px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18), inset 0 -12px 24px rgba(0,0,0,.28);
-            overflow: visible;
-        }
-        .hero-calendar-card::before {
-            content: '';
-            position: absolute;
-            inset: 8px;
-            border-radius: 13px;
-            border: 1px solid rgba(255,255,255,.08);
-            pointer-events: none;
-            transform: translateZ(12px);
-        }
-        .calendar-header {
-            position: relative;
-            z-index: 2;
-            padding: 5px 4px 12px;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,.8);
-        }
-        .cal-nav-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            background: linear-gradient(145deg, rgba(255,255,255,.24), rgba(255,255,255,.07));
-            box-shadow: 3px 4px 8px rgba(0,0,0,.35), inset 1px 1px 0 rgba(255,255,255,.2);
-            transform: translateZ(18px);
-        }
-        .cal-nav-btn:hover {
-            background: linear-gradient(145deg, rgba(255,255,255,.38), rgba(255,255,255,.12));
-            transform: translateZ(18px) translateY(-2px);
-        }
-        .calendar-grid {
-            gap: 6px;
-            perspective: 700px;
-        }
-        .calendar-day-head {
-            padding-bottom: 7px;
-            color: #ff9b8c;
-            text-shadow: 0 2px 4px rgba(0,0,0,.7);
-        }
-        .calendar-day {
-            position: relative;
-            min-height: 31px;
-            display: grid;
-            place-items: center;
-            padding: 5px 0;
-            border-radius: 9px;
-            background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(0,0,0,.28));
-            border: 1px solid rgba(255,255,255,.10);
-            box-shadow: 4px 5px 9px rgba(0,0,0,.30), inset 1px 1px 0 rgba(255,255,255,.12);
-            text-shadow: 0 2px 3px rgba(0,0,0,.8);
-            transform: translateZ(5px);
-            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-        }
-        .calendar-day:hover:not(.empty) {
-            transform: translateZ(14px) translateY(-2px);
-            box-shadow: 7px 9px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.18);
-            filter: brightness(1.12);
-        }
-        .calendar-day.empty {
-            background: transparent;
-            border-color: transparent;
-            box-shadow: none;
-        }
-        .calendar-day.past-post {
-            background: linear-gradient(145deg, #00b8d9, #2563eb 55%, #4f46e5) !important;
-            border-color: rgba(105,198,255,.38) !important;
-            box-shadow: 5px 6px 12px rgba(0,0,0,.4), inset 1px 1px 0 rgba(255,255,255,.25), 0 0 10px rgba(29,78,216,.35);
-        }
-        .calendar-day.latest-post {
-            background: linear-gradient(145deg, #ff3d81, #ff7a18 52%, #facc15) !important;
-            border-color: rgba(255,218,190,.62) !important;
-            box-shadow: 5px 6px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.3), 0 0 18px rgba(230,75,53,.6);
-        }
-        .calendar-day.latest-post:hover, .calendar-day.past-post:hover {
-            transform: translateZ(18px) translateY(-3px) scale(1.03);
-        }
-        .calendar-legend {
-            position: relative;
-            z-index: 2;
-            margin-top: 14px;
-            padding-top: 11px;
-            border-top: 1px solid rgba(255,255,255,.18);
-            text-shadow: 0 1px 3px rgba(0,0,0,.8);
-        }
-        .calendar-legend-dot {
-            width: 10px;
-            height: 10px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,.45), inset 1px 1px 2px rgba(255,255,255,.35);
-        }
-        .ambient-widget-box {
-            position: relative;
-            z-index: 2;
-            margin-top: 14px;
-            border-radius: 11px;
-            background: linear-gradient(145deg, rgba(255,255,255,.13), rgba(0,0,0,.32));
-            box-shadow: 4px 5px 10px rgba(0,0,0,.32), inset 1px 1px 0 rgba(255,255,255,.12);
-        }
-        .ambient-play-btn {
-            box-shadow: 3px 4px 7px rgba(0,0,0,.4), inset 1px 1px 0 rgba(255,255,255,.25);
-        }
-        @media (max-width: 600px) {
-            .hero-calendar-card { max-width: 320px; }
-            .calendar-day { min-height: 29px; }
-        }
-
-        .calendar-day.today {
-            background: linear-gradient(145deg, #39f27a 0%, #12b957 52%, #087f3d 100%) !important;
-            border-color: rgba(180,255,204,.95) !important;
-            color: #ffffff !important;
-            box-shadow: 5px 6px 14px rgba(0,0,0,.42),
-                        inset 1px 1px 0 rgba(255,255,255,.38),
-                        0 0 20px rgba(34,197,94,.75) !important;
-            text-shadow: 0 2px 4px rgba(0,80,35,.75) !important;
-        }
-        .calendar-day.today::before {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            border-radius: 7px;
-            border: 1px solid rgba(255,255,255,.22);
-            pointer-events: none;
-        }
-        .calendar-day.today:hover {
-            transform: translateZ(20px) translateY(-3px) scale(1.04) !important;
-            box-shadow: 7px 9px 16px rgba(0,0,0,.45),
-                        inset 1px 1px 0 rgba(255,255,255,.42),
-                        0 0 26px rgba(34,197,94,.9) !important;
-        }
-        .calendar-legend-dot.today {
-            background: linear-gradient(145deg, #39f27a, #12b957 55%, #087f3d) !important;
-            border: 1px solid rgba(190,255,210,.75);
-            box-shadow: 2px 2px 5px rgba(0,0,0,.45),
-                        inset 1px 1px 2px rgba(255,255,255,.4),
-                        0 0 9px rgba(34,197,94,.7);
-        }
     </style>
 </head>
 <body>
@@ -1065,7 +980,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <a href="https://youtu.be/9GfHJgiURxE" target="_blank" rel="noopener noreferrer" class="original-link">▶ Ver vídeo original</a>
                         </div>
                     </article>
-                    <article class="post" data-datetime="2026-09-24 10:00" id="post-art-ciencia-blanco-24">
+                    <article class="post hidden-archive" data-datetime="2026-09-24 10:00" id="post-art-ciencia-blanco-24">
                         <div class="cover ciencia-new"></div>
                         <div class="content">
                             <small>24 SEPTIEMBRE 2026 · CIENCIA</small>
@@ -1076,7 +991,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </article>
                 </div>
                 <div class="load-more-container" style="position: relative; z-index: 2;">
-                    <button class="btn-archive" onclick="toggleArchive('grid-ciencia', this)">Ver artículos en histórico (+0)</button>
+                    <button class="btn-archive" onclick="toggleArchive('grid-ciencia', this)">Ver artículos en histórico (+1)</button>
                 </div>
             </div>
         </section>
@@ -1173,8 +1088,8 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                         <small>26 SEPTIEMBRE 2026 · LEYENDA DEL FOLK</small>
                         <h3><span translate="no" class="notranslate">JIM CROCE</span></h3>
                         <p>Quiero comenzar esta sección, recordando la figura del cantautor norteamericano&nbsp;<span translate="no" class="notranslate">Jim Croce</span>&nbsp;. Únicamente publicó 4 álbumes entre los años 1966 y 1973... </p>
-                        <button onclick="openModal('art-estrellas-jim-croce', this)">seguir leyendo</button>
-                        <a href="https://youtu.be/lhjq50RFQek" target="_blank" rel="noopener noreferrer" class="original-link">escuchar enlace original</a>
+                        <button onclick="openModal('art-estrellas-jim-croce', this)">Seguir leyendo →</button>
+                        <a href="https://youtu.be/lhjq50RFQek" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
                     </div>
                 </article>
 
@@ -1199,7 +1114,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             <div class="about-content">
                 <p class="tag" style="color:#ff826f;">SOBRE EL BLOG</p>
                 <h2>Un lugar con personalidad propia.</h2>
-                <p><strong>Algo + que Música & Radio</strong></p>
+                <p><strong>Algo + que Música &amp; Radio</strong></p>
                 <p>Este lugar que he creado, nace gracias a personas autodidactas que transmiten en emisoras minoritarias de redes sociales. Ellas me han dado la inspiración que me faltaba para atreverme a compartir mi pequeño mundo. Si te gusta, te invito a visitarlo cuando y donde tú quieras.</p>
             </div>
         </section>
@@ -1230,7 +1145,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
 
     <footer>
         <div>
-            <strong>Algo + que Música & Radio</strong><br>
+            <strong>Algo + que Música &amp; Radio</strong><br>
             <span>© 2026 · Todos los derechos reservados</span>
         </div>
         <div class="visit-counter" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#94a3b8;">
@@ -1239,14 +1154,14 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
     </footer>
 
     <audio id="bgAudio" preload="auto" loop>
-        <source src="andriih-france-french-coffee-585919.mp3" type="audio/mpeg">
+        <source src="/ALGO-/andriih-france-french-coffee-585919.mp3" type="audio/mpeg">
         Tu navegador no soporta elementos de audio.
     </audio>
 
     <div id="google_translate_element"></div>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script is:inline src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <script>
+    <script is:inline>
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',
@@ -1260,8 +1175,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             if (selectField) {
                 selectField.value = langCode;
                 selectField.dispatchEvent(new Event('change'));
-            } else {
-                console.warn("El widget de traducción aún no está listo.");
             }
         }
 
@@ -1364,19 +1277,25 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             });
         }
 
-        const publishedPosts = {
-            '2026-09-24': { id: 'art-pensamientos-prueba', title: 'EL PENSAR SI OCUPA LUGAR' },
-            '2026-09-26': { id: 'art-estrellas-jim-croce', title: 'JIM CROCE' },
-            '2026-09-28': { id: 'art-encontré-bellissima', title: 'ANNALISA - BELLISSIMA' },
-            '2026-10-01': { id: 'art-lugares-eugenio-c', title: 'DE SANTOS A BARCELONA' },
-            '2026-10-03': { id: 'art-musica-wangok', title: 'Música de China con alma Disney: La sorpresa del grupo OK' },
-            '2026-10-06': { id: 'art-ciencia-theia', title: 'THEIA, o el origen de la LUNA: ¿Y si te dijera que nació de un choque colosal?' },
-            '2026-10-08': { id: 'art-musica-rumbacatalana', title: 'Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic' },
-            '2026-10-10': { id: 'art-pensamientos-acordeon', title: 'Música en el blog, agradecimientos y el arte del acordeón' },
-            '2026-10-13': { id: 'art-delantal-recuerdos', title: 'La magia de los recuerdos gastronómicos' }
-        };
+        // --- MAPA DINÁMICO DE PUBLICACIONES EXTRAÍDO DE LOS ARTÍCULOS ---
+        const publishedPosts = {};
 
-        let currentCalDate = new Date(2026, 9, 1);
+        function cargarFechasPublicadas() {
+            const posts = document.querySelectorAll('.post');
+            posts.forEach(post => {
+                const datetimeAttr = post.getAttribute('data-datetime'); // Ej: "2026-10-08 10:00"
+                const postId = post.id.replace('post-', ''); // Ej: "art-musica-rumbacatalana"
+                const titleElem = post.querySelector('h3');
+                const title = titleElem ? titleElem.innerText : '';
+
+                if (datetimeAttr) {
+                    const dateKey = datetimeAttr.split(' ')[0]; // Extrae solo "2026-10-08"
+                    publishedPosts[dateKey] = { id: postId, title: title };
+                }
+            });
+        }
+
+        let currentCalDate = new Date(2026, 9, 1); // Octubre 2026 (mes 9 en JS)
         const monthNames = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
@@ -1385,9 +1304,13 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
         function renderCalendar() {
             const year = currentCalDate.getFullYear();
             const month = currentCalDate.getMonth();
-            document.getElementById('calMonthTitle').innerText = `${monthNames[month]} ${year}`;
+            const titleElem = document.getElementById('calMonthTitle');
+            if (titleElem) {
+                titleElem.innerText = `${monthNames[month]} ${year}`;
+            }
             
             const container = document.getElementById('calendarDays');
+            if (!container) return;
             container.innerHTML = '';
             
             let firstDayIndex = new Date(year, month, 1).getDay();
@@ -1462,7 +1385,6 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     } else if (sectionId === 'pensamientos') {
                         btn.innerText = hiddenCount > 0 ? `Ver artículos en histórico (+${hiddenCount})` : 'Ocultar históricos';
                     }
-                    btn.setAttribute('data-expanded', 'true');
                 }
             }
 
@@ -1501,30 +1423,43 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
         function toggleArchive(gridId, btn) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
-            
             const hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
-            const isExpanded = btn.getAttribute('data-expanded') === 'true';
-            const totalHidden = hiddenPosts.length;
+            const isCurrentlyExpanded = btn.innerText.includes('Ocultar');
             
-            const sectionId = grid.parentElement.getAttribute('data-section-id');
-            let baseText = "Ver artículos en histórico";
-            if (sectionId === 'musica') baseText = "Ver histórico de música";
-            else if (sectionId === 'estrellas') baseText = "Ver histórico de estrellas";
-            else if (sectionId === 'sinpermiso') baseText = "Ver histórico de lo encontré";
-
-            if (isExpanded) {
+            if (isCurrentlyExpanded) {
                 hiddenPosts.forEach(post => {
                     post.style.display = 'none';
+                    post.classList.add('hidden-archive');
                 });
-                btn.setAttribute('data-expanded', 'false');
-                btn.innerText = `${baseText} (+${totalHidden})`;
+                const totalHidden = hiddenPosts.length;
+                if (gridId === 'grid-musica') {
+                    btn.innerText = `Ver histórico de música (+${totalHidden})`;
+                } else if (gridId === 'grid-estrellas') {
+                    btn.innerText = `Ver histórico de estrellas (+${totalHidden})`;
+                } else if (gridId === 'grid-sinpermiso') {
+                    btn.innerText = `Ver histórico de lo encontré (+${totalHidden})`;
+                } else if (gridId === 'grid-lugares') {
+                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+                } else {
+                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+                }
             } else {
-                if (totalHidden === 0) return;
+                if (hiddenPosts.length === 0) return;
                 hiddenPosts.forEach(post => {
                     post.style.display = 'flex';
+                    post.classList.remove('hidden-archive');
                 });
-                btn.setAttribute('data-expanded', 'true');
-                btn.innerText = "Ocultar histórico";
+                if (gridId === 'grid-musica') {
+                    btn.innerText = 'Ocultar histórico de música';
+                } else if (gridId === 'grid-estrellas') {
+                    btn.innerText = 'Ocultar histórico de estrellas';
+                } else if (gridId === 'grid-sinpermiso') {
+                    btn.innerText = 'Ocultar histórico de lo encontré';
+                } else if (gridId === 'grid-lugares') {
+                    btn.innerText = 'Ocultar históricos';
+                } else {
+                    btn.innerText = 'Ocultar históricos';
+                }
             }
         }
 
@@ -1536,7 +1471,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 const text = post.innerText.toLowerCase();
                 const parentGrid = post.closest('.grid');
                 const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
-                const isExpanded = btn && btn.getAttribute('data-expanded') === 'true';
+                const isExpanded = btn && btn.innerText.includes('Ocultar');
                 const isInitiallyHidden = post.classList.contains('hidden-archive');
                 
                 if (query === "") {
@@ -1555,9 +1490,8 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             });
         }
 
-        const earthCanvas = document.getElementById('earthCanvas');
-        const earthCtx = earthCanvas.getContext('2d');
-
+        // --- ANIMACIÓN REALISTA DE LA TIERRA, LUNA Y ESTRELLAS FUGACES (#ciencia) ---
+        let earthCanvas, earthCtx;
         let earthImg = null;
         let cloudsImg = null;
         let moonImg = null;
@@ -1580,6 +1514,9 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
         const MOON_TEXTURE_URL = 'https://threejs.org/examples/textures/planets/moon_1024.jpg';
 
         function initEarthCanvas() {
+            earthCanvas = document.getElementById('earthCanvas');
+            if (!earthCanvas) return;
+            earthCtx = earthCanvas.getContext('2d');
             const parent = earthCanvas.parentElement;
             if (!parent) return;
 
@@ -1880,11 +1817,14 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             requestAnimationFrame(drawEarthCanvas);
         }
 
-        const poolCanvas = document.getElementById('poolCanvas');
-        const poolCtx = poolCanvas.getContext('2d');
+        // --- PARTÍCULAS DE AGUA / COLORES (#lugares) ---
+        let poolCanvas, poolCtx;
         let pWidth, pHeight, particles = [];
 
         function initPoolCanvas() {
+            poolCanvas = document.getElementById('poolCanvas');
+            if (!poolCanvas) return;
+            poolCtx = poolCanvas.getContext('2d');
             const parent = poolCanvas.parentElement;
             if (!parent) return;
             pWidth = poolCanvas.width = parent.offsetWidth;
@@ -1940,15 +1880,18 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             requestAnimationFrame(drawPoolCanvas);
         }
 
-        const canvas = document.getElementById('cosmosCanvas');
-        const ctx = canvas.getContext('2d');
+        // --- COSMOS (#sobre) ---
+        let cosmosCanvas, cosmosCtx;
         let width, height, stars = [], nebulae = [];
 
         function initCosmos() {
-            const parent = canvas.parentElement;
+            cosmosCanvas = document.getElementById('cosmosCanvas');
+            if (!cosmosCanvas) return;
+            cosmosCtx = cosmosCanvas.getContext('2d');
+            const parent = cosmosCanvas.parentElement;
             if (!parent) return;
-            width = canvas.width = parent.offsetWidth;
-            height = canvas.height = parent.offsetHeight;
+            width = cosmosCanvas.width = parent.offsetWidth;
+            height = cosmosCanvas.height = parent.offsetHeight;
             stars = [];
             nebulae = [];
             
@@ -1974,32 +1917,32 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
         }
 
         function drawCosmos() {
-            if (!canvas || !ctx) return;
-            ctx.clearRect(0, 0, width, height);
-            let bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+            if (!cosmosCanvas || !cosmosCtx) return;
+            cosmosCtx.clearRect(0, 0, width, height);
+            let bgGradient = cosmosCtx.createLinearGradient(0, 0, 0, height);
             bgGradient.addColorStop(0, '#0a0813');
             bgGradient.addColorStop(1, '#020105');
-            ctx.fillStyle = bgGradient;
-            ctx.fillRect(0, 0, width, height);
+            cosmosCtx.fillStyle = bgGradient;
+            cosmosCtx.fillRect(0, 0, width, height);
 
             nebulae.forEach(n => {
-                let gradient = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
+                let gradient = cosmosCtx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
                 gradient.addColorStop(0, n.color + '0.2)');
                 gradient.addColorStop(0.5, n.color + '0.08)');
                 gradient.addColorStop(1, 'transparent');
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-                ctx.fill();
+                cosmosCtx.fillStyle = gradient;
+                cosmosCtx.beginPath();
+                cosmosCtx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                cosmosCtx.fill();
             });
 
             stars.forEach(s => {
                 s.alpha += s.speed;
                 if (s.alpha > 1 || s.alpha < 0) s.speed = -s.speed;
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.alpha)})`;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                ctx.fill();
+                cosmosCtx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.alpha)})`;
+                cosmosCtx.beginPath();
+                cosmosCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                cosmosCtx.fill();
             });
             requestAnimationFrame(drawCosmos);
         }
@@ -2012,6 +1955,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
 
         window.addEventListener('DOMContentLoaded', () => {
             organizarSeccionesYArchivos();
+            cargarFechasPublicadas();
 
             renderCalendar();
             initEarthCanvas();
@@ -2078,8 +2022,10 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
 
         function closeModal() {
             const modal = document.getElementById('articleModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function closeModalOnOuter(event) {
@@ -2134,7 +2080,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 title: "Música en el blog, agradecimientos y el arte del acordeón",
                 meta: "10 OCTUBRE 2026 · REFLEXIÓN",
                 content: 
-                    "<p>En este primeiro artículo de esta sección, solamente quiero agradecer a todos los que alguna vez, o siempre, entráis aquí para leerme y ver qué comparto con todos vosotros.</p>" +
+                    "<p>En este primer artículo de esta sección, solamente quiero agradecer a todos los que alguna vez, o siempre, entráis aquí para leerme y ver qué comparto con todos vosotros.</p>" +
                     "<p>También quiero aprovechar para agradecer al compositor del trozo de canción que he puesto para que suene cuando interactuáis en el blog. Se trata del compositor <strong>Andrii Hroza (andriih)</strong>.</p>" +
                     "<h2>El acordeón: un instrumento lleno de sentimiento</h2>" +
                     "<p>Si os fijáis bien y afináis el oído, el instrumento principal de esa canción es el acordeón. Me gusta mucho el sonido que genera. Cuando se entremezcla con otros instrumentos, suelen salir canciones verdaderamente con mucho sentimiento y mensaje.</p>" +
@@ -2230,7 +2176,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>M’agrada molt el treball que has fet en aquesta cançó, Alfred.<br>Gràcies per sumar-te a grups que han posat de nou la rumba catalana a la primera línia de la graella.</p>" +
                     "<p>Us deixo l'enllaç directe a la cançó:</p>" +
                     "<p><a href=\"https://youtu.be/PUSSbuGhNnQ\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escolta «Rumba Catalana» d'Alfred Garcia a YouTube ➔</a></p>" +
-                    "<p>I un altre enllaç amb una entrevista força interessant que li van fer al canal <strong>El Sentido de la Birra</strong>:</p>" +
+                    "<p>I un autre enllaç amb una entrevista força interessant que li van fer al canal <strong>El Sentido de la Birra</strong>:</p>" +
                     "<p><a href=\"https://youtu.be/5jpniQRrMUQ?=PCKSe2WREm6ugQJP\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Veure entrevista a Alfred Garcia a El Sentido de la Birra ➔</a></p>" +
                     "<p>Desde aquí també li llanço una salutació a aquest canal.</p>"
             },
@@ -2281,7 +2227,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Hoy quiero hablarte de la relación que existe entre ese plato, o ese alimento que tanto te gusta, y los <strong>recuerdos</strong> que te trae.</p>" +
                     "<p>Puede ser de varias formas o maneras.<br>Quizá sea cuando recuerdas ese <strong>olor saliendo de la cocina</strong>. Cuando seguramente tu madre lo estaba preparando y tú corrías hacia ella a preguntar si hoy había “eso” de comer.</p>" +
                     "<p>Tal vez era ese sitio que entraste sin ninguna expectativa o pretensión y te metiste entre pecho y espalda un <strong>manjar</strong> que difícilmente esperabas, pero quedó grabado en tus sentidos. Como ese algo digno de ser repetido otro día.</p>" +
-                    "<p>Es curioso que cuando llega a ocurrir, ese <strong>sabor</strong>, ese <strong>olor</strong>, siempre lo acabas relacionando con un día, en un lugar y en una época muy concreta de tu vida.</p>" +
+                    "<p>Es curioso que cuando llega a ocurrir, ese <strong>sabor</strong>, ese <strong>olor</strong>, siempre o casi siempre lo acabas relacionando con un día, en un lugar y en una época muy concreta de tu vida.</p>" +
                     "<p>Y creo que las veces que más nos transportamos mentalmente a épocas pasadas es precisamente con todo lo relacionado con nuestros <strong>recuerdos gastronómicos</strong>.</p>" +
                     "<p>Mediante el gusto y el olfato mandamos señales directas a nuestra <strong>amígdala</strong> y al <strong>hipocampo</strong> de nuestro cerebro. Y es en ese preciso momento en que queda grabado en la memoria de cada persona.</p>" +
                     "<p>Acordaros de la escena de la película <em>Ratatouille</em>, cuando el crítico gastronómico Antón Ego se le cae literalmente la cuchara de la mano al probar el plato que le sirven.<br>Eso ocurre involuntariamente.<br><strong>FLASH!!!</strong><br><strong>Sentidos → Cerebro → Recuerdos.</strong></p>" +
@@ -2303,7 +2249,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 title: "IMPRESCINDIBLE",
                 meta: "24 SEPTIEMBRE 2026 · TECNOLOGIA",
                 content: 
-                    "<p>Está <strong>aplicación móvil</strong> me ha salvado de perderme auténticas joyas musicales, (siempre hablando desde mi punto de gusto personal).</p>" +
+                    "<p>Está <strong>aplicación móvil</strong> me ha salvado de perderme auténticas joyas musicales, (siempre hablando desde mi primer círculo de gusto personal).</p>" +
                     "<p>Ya habrá tiempo de hablar en alguna sección de las artimañas que hacíamos para poder guardar algún trozo de canción, que a veces, tardaría años en volver a encontrarla en alguna emisora.</p>" +
                     "<p>Con&nbsp;<strong><span translate=\"no\" class=\"notranslate\">SHAZAM</span></strong>&nbsp;, la verdad es que localizar el título y el artista, suele ser muy sencillo.</p>" +
                     "<p>Otra cosa es que alguien, nos vea en alguna situación, intentando no perder la oportunidad de localizar una canción.</p>" +
@@ -2316,7 +2262,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p><strong>Navegando y buscando joyas musicales por la red, me topé con este temazo que atrapa desde el primer segundo... (Versión en italiano a continuación):</strong></p>" +
                     "<p>Navigando e cercando gemme in rete, mi sono imbattuto in questo pezzo fantastico che cattura fin dal primo secondo...</p>" +
                     "<p>Si tratta di&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Bellissima</span></strong>&nbsp;, interpretata dalla grande cantautrice italiana&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Annalisa</span></strong>&nbsp;.</p>" +
-                    "<p>Anche se a un primo ascolto può sembrare un brano puramente energico e ballabile, il testo nasconde una grande intensità emotiva, affrontando gli alti e bassi dell'amore, la vulnerabilità e la necessità di riscoprire se stessi.</p>" +
+                    "<p>Anche se a un primo ascolto può sembrare un brano puramente energico e ballabile, il testo nasconde una grande intensità emotiva, affrontando gli alti e bassi dell'amore, la vulnerabilità e la necesidad de riscoprire se stessi.</p>" +
                     "<p>È di quelle canzoni che ti catturano fin dai primi accordi e che dimostrano l'incredibile forza vocale ed espressiva presente nell'attuale <strong>panorama pop italiano</strong>.</p>" +
                     "<p>Me la sono trovata davanti quest'estate, mentre ero in vacanza. E anche se non è una novità, è stata comunque degna di aprire la mia applicazione e scoprire chi fosse.</p>" +
                     "<p>Ringraziamenti al canale ufficiale, di cui abbiamo messo il link.</p>"
@@ -2340,7 +2286,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Esta canción que os recomiendo, no es la más conocida de él, pero, sin embargo, para mí, es la que más me gusta.</p>" +
                     "<p>Marchó de su pueblo a la gran ciudad, pero nunca terminó de adaptarse, y a raíz de esa experiencia compuso esta canción:</p>" +
                     "<p>\"<strong><span translate=\"no\" class=\"notranslate\">New York's Not My Home</span></strong>\".</p>" +
-                    "<p>Canción de su álbum del año 1972. In essa esprime perfettamente quella quella necessità di ritornare alle nostre radici quando il rumore e la voragine di una grande città come&nbsp;<span translate=\"no\" class=\"notranslate\">New York</span>&nbsp;diventano insopportabili.</p>" +
+                    "<p>Canción de su álbum del año 1972. In essa esprime perfettamente quella necessità di ritornare alle nostre radici quando il rumore e la voragine di una grande città come&nbsp;<span translate=\"no\" class=\"notranslate\">New York</span>&nbsp;diventano insopportabili.</p>" +
                     "<p>Un día antes de lanzar el single titulado:</p>" +
                     "<p>\"<strong><span translate=\"no\" class=\"notranslate\">I Got A Name</span></strong>\", desgraciadamente falleció en un accidente aéreo. Fue un 20 de septiembre del año 1973.</p>" +
                     "<p>La avioneta que cogió para proseguir su gira musical, al despegar, se estrelló contra un árbol. Paradójicamente, era el único árbol que se encontraba cerca del aeropuerto.</p>" +
@@ -2352,6 +2298,5 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             }
         };
     </script>
-
 </body>
 </html>
