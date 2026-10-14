@@ -1,5 +1,5 @@
 ---
-// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO
+// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (VERSIÓN REALISTA ORIGINAL)
 ---
 
 <!DOCTYPE html>
@@ -240,6 +240,196 @@
             margin-bottom: 0;
         }
 
+        /* === CALENDARIO 3D VIBRANTE Y MODERNO === */
+        .hero-calendar-card {
+            position: relative;
+            overflow: hidden;
+            perspective: 1100px;
+            transform-style: preserve-3d;
+            background: linear-gradient(135deg, rgba(31,27,72,.98), rgba(54,28,104,.96) 48%, rgba(12,67,111,.96));
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: 0 28px 70px rgba(45,20,95,.34), inset 0 1px 0 rgba(255,255,255,.18);
+            max-width: 320px;
+            width: 100%;
+        }
+        .hero-calendar-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            pointer-events: none;
+            background: radial-gradient(circle at 8% 8%, rgba(255,71,160,.28), transparent 28%), radial-gradient(circle at 92% 12%, rgba(0,229,255,.25), transparent 27%), radial-gradient(circle at 50% 100%, rgba(139,92,246,.28), transparent 34%);
+        }
+        .calendar-header {
+            position: relative;
+            z-index: 2;
+            padding: 12px 4px 15px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,.10);
+        }
+        .cal-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #ff4fa3, #8b5cf6 55%, #4f46e5);
+            box-shadow: 0 7px 16px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.22);
+            border: 1px solid rgba(255,255,255,.20);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .cal-nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 22px rgba(0,0,0,.28), 0 0 18px rgba(96,180,255,.14);
+        }
+        .calendar-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 7px;
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 4px 2px 10px;
+        }
+        .calendar-day-head {
+            padding-bottom: 7px;
+            color: #ff9b8c;
+            font-weight: 800;
+            font-size: .68rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            opacity: .72;
+            text-shadow: 0 2px 4px rgba(0,0,0,.7);
+        }
+        .calendar-day {
+            position: relative;
+            min-height: 44px;
+            display: grid;
+            place-items: center;
+            padding: 5px 0;
+            border-radius: 13px;
+            background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.055));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.13);
+            box-shadow: 0 7px 13px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.13);
+            text-shadow: 0 2px 3px rgba(0,0,0,.8);
+            color: #fff;
+            font-size: 0.78rem;
+            transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, border-color .22s ease;
+        }
+        .calendar-day:hover:not(.empty) {
+            transform: translateY(-5px) scale(1.035);
+            border-color: rgba(255,255,255,.28);
+            box-shadow: 0 15px 26px rgba(0,0,0,.30), 0 0 20px rgba(96,180,255,.10);
+            z-index: 5;
+        }
+        .calendar-day.empty {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+        .calendar-day.past-post {
+            background: linear-gradient(145deg, #00b8d9, #2563eb 55%, #4f46e5) !important;
+            border-color: rgba(105,198,255,.38) !important;
+            box-shadow: 0 9px 18px rgba(0,62,125,.28), inset 0 1px 0 rgba(255,255,255,.22) !important;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .calendar-day.latest-post {
+            background: linear-gradient(145deg, #ff3d81, #ff7a18 52%, #facc15) !important;
+            border-color: rgba(255,218,190,.62) !important;
+            box-shadow: 0 10px 24px rgba(180,45,38,.35), 0 0 24px rgba(255,98,67,.18), inset 0 1px 0 rgba(255,255,255,.30) !important;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .calendar-day.latest-post::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            right: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.92);
+            box-shadow: 0 0 10px rgba(255,255,255,.85);
+        }
+        .calendar-day.today {
+            background: linear-gradient(145deg, #39f27a 0%, #12b957 52%, #087f3d 100%) !important;
+            border-color: rgba(180,255,204,.95) !important;
+            color: #ffffff !important;
+            box-shadow: 5px 6px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.38), 0 0 20px rgba(34,197,94,.75) !important;
+            text-shadow: 0 2px 4px rgba(0,80,35,.75) !important;
+        }
+        .calendar-legend {
+            position: relative;
+            z-index: 2;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,.10);
+            text-shadow: 0 1px 3px rgba(0,0,0,.8);
+            font-size: 0.7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: #ffffff;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .calendar-legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-shadow: 0 3px 8px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35); }
+        .calendar-legend-dot.latest { background: linear-gradient(145deg, #ff3d81, #ff7a18); }
+        .calendar-legend-dot.past { background: linear-gradient(145deg, #00b8d9, #2563eb); }
+        .calendar-legend-dot.today { background: linear-gradient(145deg, #39f27a, #12b957); }
+
+        .ambient-widget-box {
+            position: relative;
+            z-index: 2;
+            margin-top: 14px;
+            border-radius: 11px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ambient-widget-info {
+            font-size: 0.73rem;
+            color: #fff;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ambient-play-btn {
+            background: var(--accent);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .ambient-play-btn:hover { transform: scale(1.1); }
+
         .section {
             display: block;
             padding: 70px 7vw;
@@ -335,6 +525,19 @@
             font-size:.9rem;
             line-height:1.4;
             margin:0 0 14px;
+        }
+        .content a, .content button{
+            color:var(--accent);
+            font-weight:700;
+            margin-top:auto;
+            display:inline-block;
+            background:none;
+            border:none;
+            padding:0;
+            font-size:.9rem;
+            font-family:inherit;
+            cursor:pointer;
+            text-align:left;
         }
         
         .content .original-link, 
@@ -536,186 +739,6 @@
         .cover.jim-croce-cover { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://img.youtube.com/vi/lhjq50RFQek/hqdefault.jpg"); background-position: center center; }
         .cover.annalisa-bellissima { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://img.youtube.com/vi/qz88Dx-_lA4/hqdefault.jpg"); background-position: center center; }
         .cover.eugenio-c-cover { background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url("https://i.ibb.co/rRDt3tPC/Eugenio-C.png"); background-position: center center; }
-
-        /* === CALENDARIO 3D === */
-        .hero-calendar-card {
-            position: relative;
-            transform-style: preserve-3d;
-            perspective: 900px;
-            background: linear-gradient(145deg, rgba(35,35,42,.88), rgba(8,8,12,.78));
-            border: 1px solid rgba(255,255,255,.28);
-            border-radius: 18px;
-            padding: 18px;
-            box-shadow: 0 24px 45px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18), inset 0 -12px 24px rgba(0,0,0,.28);
-            overflow: visible;
-            max-width: 320px;
-            width: 100%;
-        }
-        .hero-calendar-card::before {
-            content: '';
-            position: absolute;
-            inset: 8px;
-            border-radius: 13px;
-            border: 1px solid rgba(255,255,255,.08);
-            pointer-events: none;
-            transform: translateZ(12px);
-        }
-        .calendar-header {
-            position: relative;
-            z-index: 2;
-            padding: 5px 4px 12px;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,.8);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-        .cal-nav-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            background: linear-gradient(145deg, rgba(255,255,255,.24), rgba(255,255,255,.07));
-            box-shadow: 3px 4px 8px rgba(0,0,0,.35), inset 1px 1px 0 rgba(255,255,255,.2);
-            transform: translateZ(18px);
-            border: 1px solid rgba(255,255,255,.25);
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .cal-nav-btn:hover {
-            background: linear-gradient(145deg, rgba(255,255,255,.38), rgba(255,255,255,.12));
-            transform: translateZ(18px) translateY(-2px);
-        }
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-        .calendar-day-head {
-            padding-bottom: 7px;
-            color: #ff9b8c;
-            font-weight: 700;
-            font-size: 0.7rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,.7);
-        }
-        .calendar-day {
-            position: relative;
-            min-height: 34px;
-            display: grid;
-            place-items: center;
-            padding: 5px 0;
-            border-radius: 9px;
-            background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(0,0,0,.28));
-            border: 1px solid rgba(255,255,255,.10);
-            box-shadow: 4px 5px 9px rgba(0,0,0,.30), inset 1px 1px 0 rgba(255,255,255,.12);
-            text-shadow: 0 2px 3px rgba(0,0,0,.8);
-            color: #fff;
-            font-size: 0.78rem;
-            transform: translateZ(5px);
-            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-        }
-        .calendar-day:hover:not(.empty) {
-            transform: translateZ(14px) translateY(-2px);
-            box-shadow: 7px 9px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.18);
-            filter: brightness(1.12);
-        }
-        .calendar-day.empty {
-            background: transparent;
-            border-color: transparent;
-            box-shadow: none;
-        }
-        .calendar-day.past-post {
-            background: linear-gradient(145deg, #3b72f0, #163b9d) !important;
-            border-color: rgba(125,170,255,.55) !important;
-            box-shadow: 5px 6px 12px rgba(0,0,0,.4), inset 1px 1px 0 rgba(255,255,255,.25), 0 0 10px rgba(29,78,216,.35) !important;
-            cursor: pointer;
-            font-weight: 700;
-        }
-        .calendar-day.latest-post {
-            background: linear-gradient(145deg, #ff765f, #bd2f20) !important;
-            border-color: rgba(255,185,170,.7) !important;
-            box-shadow: 5px 6px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.3), 0 0 18px rgba(230,75,53,.6) !important;
-            cursor: pointer;
-            font-weight: 700;
-        }
-        .calendar-day.latest-post::after {
-            content: '★';
-            position: absolute;
-            top: -5px;
-            right: -2px;
-            font-size: 0.55rem;
-            color: #facc15;
-        }
-        .calendar-day.today {
-            background: linear-gradient(145deg, #39f27a 0%, #12b957 52%, #087f3d 100%) !important;
-            border-color: rgba(180,255,204,.95) !important;
-            color: #ffffff !important;
-            box-shadow: 5px 6px 14px rgba(0,0,0,.42), inset 1px 1px 0 rgba(255,255,255,.38), 0 0 20px rgba(34,197,94,.75) !important;
-            text-shadow: 0 2px 4px rgba(0,80,35,.75) !important;
-        }
-        .calendar-legend {
-            position: relative;
-            z-index: 2;
-            margin-top: 14px;
-            padding-top: 11px;
-            border-top: 1px solid rgba(255,255,255,.18);
-            text-shadow: 0 1px 3px rgba(0,0,0,.8);
-            font-size: 0.7rem;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            color: #ffffff;
-        }
-        .legend-item { display: flex; align-items: center; gap: 8px; }
-        .calendar-legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; box-shadow: 2px 2px 5px rgba(0,0,0,.45), inset 1px 1px 2px rgba(255,255,255,.35); }
-        .calendar-legend-dot.latest { background: var(--accent); }
-        .calendar-legend-dot.past { background: var(--blue-btn); }
-        .calendar-legend-dot.today { background: #12b957; }
-
-        .ambient-widget-box {
-            position: relative;
-            z-index: 2;
-            margin-top: 14px;
-            border-radius: 11px;
-            background: linear-gradient(145deg, rgba(255,255,255,.13), rgba(0,0,0,.32));
-            box-shadow: 4px 5px 10px rgba(0,0,0,.32), inset 1px 1px 0 rgba(255,255,255,.12);
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .ambient-widget-info {
-            font-size: 0.73rem;
-            color: #fff;
-            font-family: sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .ambient-play-btn {
-            background: var(--accent);
-            border: none;
-            color: white;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.75rem;
-            box-shadow: 3px 4px 7px rgba(0,0,0,.4), inset 1px 1px 0 rgba(255,255,255,.25);
-            transition: transform 0.2s;
-        }
-        .ambient-play-btn:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
@@ -751,15 +774,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p>Cuando era pequeño, mi padre me regaló un transistor de la marca&nbsp;<span translate="no" class="notranslate">LAVIS</span>&nbsp;. Era el modelo 500. Encendido debajo de mi almohada me acompañaba noche tras noche en mis sueños de niño. Y esa música y esos locutores fueron luz y guia hacia mi mundo exterior.</p>
                 <div class="hero-buttons">
                     <a class="button blue" href="#sobre">Algo sobre mí ↓</a>
-                    <a class="button" id="btnLatestPost">Lo último subido ★</a>
+                    <a class="button" onclick="goToLatestPost()">Lo último subido ★</a>
                 </div>
             </section>
 
             <div class="hero-calendar-card">
                 <div class="calendar-header">
-                    <button class="cal-nav-btn" id="calPrevBtn">&#10094;</button>
+                    <button class="cal-nav-btn" onclick="changeMonth(-1)">&#10094;</button>
                     <span id="calMonthTitle">Octubre 2026</span>
-                    <button class="cal-nav-btn" id="calNextBtn">&#10095;</button>
+                    <button class="cal-nav-btn" onclick="changeMonth(1)">&#10095;</button>
                 </div>
                 <div class="calendar-grid">
                     <div class="calendar-day-head">L</div>
@@ -792,7 +815,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span>🎵</span>
                         <span id="ambientStatusText">Música ambiental</span>
                     </div>
-                    <button id="playPauseBtn" class="ambient-play-btn">▶</button>
+                    <button onclick="toggleAmbientMusic()" id="playPauseBtn" class="ambient-play-btn">▶</button>
                 </div>
             </div>
         </div>
@@ -820,7 +843,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>24 de Septiembre de 2026.</p>
             <p>Día de la Mercè.</p>
             <p>Hoy es un buen día para inaugurar mi blog. Tengo día festivo en mi ciudad,&nbsp;<span translate="no" class="notranslate">Barcelona</span>&nbsp;. Al final, lo que se me pasó por la cabeza hace un mes y pico, he acabado haciéndolo. He creado mi propio blog...</p>
-            <button class="button btn-open-modal" data-key="art-mensaje-fijado" style="margin-top: 10px; cursor: pointer;">Seguir leyendo →</button>
+            <button class="button" style="margin-top: 10px; cursor: pointer;" onclick="openModal('art-mensaje-fijado', this)">Seguir leyendo →</button>
         </div>
     </section>
 
@@ -828,7 +851,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="tag" style="margin:0; color:var(--accent);">HEMEROTECA</p>
         <h2 style="margin: 5px 0 0 0; font-size:1.5rem;">Buscar en publicaciones anteriores</h2>
         <div class="search-box">
-            <input type="text" id="searchInput" class="search-input" placeholder="Escribe un título o palabra clave...">
+            <input type="text" id="searchInput" class="search-input" placeholder="Escribe un título o palabra clave..." onkeyup="filterArticles()">
         </div>
     </section>
 
@@ -844,7 +867,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <small>8 OCTUBRE 2026 · RECOMENDACIÓN</small>
                         <h3>Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic</h3>
                         <p>Dar una pincelada a un estilo musical de tu tierra siempre es de buen gusto. Eso es exactamente lo que hizo el cantautor...</p>
-                        <button class="button btn-open-modal" data-key="art-musica-rumbacatalana" style="margin-top:auto;">Seguir leyendo →</button>
+                        <button onclick="openModal('art-musica-rumbacatalana', this)">Seguir leyendo →</button>
                         <a href="https://youtu.be/PUSSbuGhNnQ" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
                     </div>
                 </article>
@@ -855,7 +878,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <small>3 OCTUBRE 2026 · RECOMENDACIÓN</small>
                         <h3>Música de China con alma Disney: La sorpresa del grupo OK</h3>
                         <p>Hoy os traigo un descubrimiento musical increíble directo desde China. Una canción con un toque mágico y entrañable...</p>
-                        <button class="button btn-open-modal" data-key="art-musica-wangok" style="margin-top:auto;">Seguir leyendo →</button>
+                        <button onclick="openModal('art-musica-wangok', this)">Seguir leyendo →</button>
                         <a href="https://youtu.be/orqjiuJWiF8" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
                     </div>
                 </article>
@@ -866,14 +889,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <small>24 SEPTIEMBRE 2026 · RECOMENDACIÓN</small>
                         <h3>HOY ALGO HA EMPEZADO</h3>
                         <p>Hoy inauguro todo este tinglado que me he montado. Le he dado bastantes vueltas a qué canción pinchar para empezar...</p>
-                        <button class="button btn-open-modal" data-key="art-musica-secretos" style="margin-top:auto;">Seguir leyendo →</button>
+                        <button onclick="openModal('art-musica-secretos', this)">Seguir leyendo →</button>
                         <a href="https://youtu.be/rYNW1IxaFf4" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
                     </div>
                 </article>
             </div>
 
             <div class="load-more-container">
-                <button class="btn-archive" data-grid="grid-musica">Ver histórico de música (+2)</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-musica', this)">Ver histórico de música (+2)</button>
             </div>
         </section>
 
@@ -887,8 +910,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>10 OCTUBRE 2026 · REFLEXIÓN</small>
                         <h3>Música en el blog, agradecimientos y el arte del acordeón</h3>
-                        <p>En este primer artículo de esta sección, solamente quiero agradecer todes los que alguna vez entran aquí...</p>
-                        <button class="button btn-open-modal" data-key="art-pensamientos-acordeon" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>En este primer artículo de esta sección, solamente quiero agradecer a todos los que alguna vez, o siempre, entráis aquí para leerme...</p>
+                        <button onclick="openModal('art-pensamientos-acordeon', this)">Seguir leyendo →</button>
                     </div>
                 </article>
 
@@ -898,12 +921,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <small>24 SEPTIEMBRE 2026 · Sobre papel</small>
                         <h3>EL PENSAR SI OCUPA LUGAR</h3>
                         <p>En esta sección, me dedicaré a escribir mis pensamientos, ocurrencias y cosas que quiera explicar o comentar...</p>
-                        <button class="button btn-open-modal" data-key="art-pensamientos-prueba" style="margin-top:auto;">Seguir leyendo →</button>
+                        <button onclick="openModal('art-pensamientos-prueba', this)">Seguir leyendo →</button>
                     </div>
                 </article>
             </div>
             <div class="load-more-container">
-                <button class="btn-archive" data-grid="grid-pensamientos">Ver artículos en histórico (+1)</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-pensamientos', this)">Ver artículos en histórico (+1)</button>
             </div>
         </section>
 
@@ -920,7 +943,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <small>1 OCTUBRE 2026 · MEMORIA VIVA</small>
                             <h3 class="notranslate" translate="no">DE SANTOS A BARCELONA</h3>
                             <p>Soy fruto de la combinación extraña de dos continentes. Entre el ritmo de Brasil y el abrazo cosmopolita de Barcelona...</p>
-                            <button class="button btn-open-modal" data-key="art-lugares-eugenio-c" style="margin-top:auto;">Seguir leyendo →</button>
+                            <button onclick="openModal('art-lugares-eugenio-c', this)">Seguir leyendo →</button>
                         </div>
                     </article>
 
@@ -930,12 +953,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <small>24 SEPTIEMBRE 2026 · VIVENCIAS</small>
                             <h3>CADA PERSONA ENCIERRA SU PROPIO UNIVERSO</h3>
                             <p>Es uno de mis pensamientos más recurrentes. Las miles de historias que se pierden por el camino de cada vida...</p>
-                            <button class="button btn-open-modal" data-key="art-lugares-universo" style="margin-top:auto;">Seguir leyendo →</button>
+                            <button onclick="openModal('art-lugares-universo', this)">Seguir leyendo →</button>
                         </div>
                     </article>
                 </div>
                 <div class="load-more-container">
-                    <button class="btn-archive" data-grid="grid-lugares">Ver artículos en histórico (+1)</button>
+                    <button class="btn-archive" onclick="toggleArchive('grid-lugares', this)">Ver artículos en histórico (+1)</button>
                 </div>
             </div>
         </section>
@@ -952,8 +975,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="content">
                             <small>6 OCTUBRE 2026 · CIENCIA</small>
                             <h3><strong>THEIA</strong>, o el origen de la <strong>LUNA</strong>: ¿Y si te dijera que nació de un choque colosal?</h3>
-                            <p>Hace millones de años, la historia de nuestro hogar pudo haber terminado antes de empezar...</p>
-                            <a href="./posts/theia-luna/" class="button" style="display:inline-block; background:var(--accent); color:white; padding:8px 14px; border-radius:4px; font-weight:700; text-decoration:none; margin-top:auto;">Seguir leyendo →</a>
+                            <p>Hace millones de años, la historia de nuestro hogar pudo haber terminado antes de empezar. O al menos, eso dice la teoría más aceptada sobre el <strong>origen de la Luna</strong>...</p>
+                            <button onclick="openModal('art-ciencia-theia', this)">Seguir leyendo →</button>
                             <a href="https://youtu.be/9GfHJgiURxE" target="_blank" rel="noopener noreferrer" class="original-link">▶ Ver vídeo original</a>
                         </div>
                     </article>
@@ -962,13 +985,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="content">
                             <small>24 SEPTIEMBRE 2026 · CIENCIA</small>
                             <h3>VA POR TÍ,&nbsp;<span translate="no" class="notranslate">CARL</span>&nbsp;</h3>
-                            <p>En los años 80 nos deleitaste con una serie...</p>
-                            <button class="button btn-open-modal" data-key="art-ciencia-blanco-24" style="margin-top:auto;">Seguir leyendo →</button>
+                            <p>En los años 80 nos deleitaste con una serie, que cuando acababas de...</p>
+                            <button onclick="openModal('art-ciencia-blanco-24', this)">Seguir leyendo →</button>
                         </div>
                     </article>
                 </div>
                 <div class="load-more-container" style="position: relative; z-index: 2;">
-                    <button class="btn-archive" data-grid="grid-ciencia">Ver artículos en histórico (+1)</button>
+                    <button class="btn-archive" onclick="toggleArchive('grid-ciencia', this)">Ver artículos en histórico (+1)</button>
                 </div>
             </div>
         </section>
@@ -983,8 +1006,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>13 OCTUBRE 2026 · CON LOS 5 SENTIDOS</small>
                         <h3>La magia de los recuerdos gastronómicos</h3>
-                        <p>No cojas la báscula de cocina. No te voy a dar cantidades...</p>
-                        <button class="button btn-open-modal" data-key="art-delantal-recuerdos" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>No cojas la báscula de cocina. No te voy a dar cantidades. Hoy no. Tampoco te voy a dar ninguna receta. Hoy tampoco toca...</p>
+                        <button onclick="openModal('art-delantal-recuerdos', this)">Seguir leyendo →</button>
                     </div>
                 </article>
                 <article class="post hidden-archive" data-datetime="2026-09-24 14:00" id="post-art-delantal-new">
@@ -992,13 +1015,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>24 SEPTIEMBRE 2026 · CON LOS 5 SENTIDOS</small>
                         <h3>Y TAN RICAMENTE</h3>
-                        <p>Vamos con esta sección. Andiamo!!...</p>
-                        <button class="button btn-open-modal" data-key="art-delantal-new" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>Vamos con esta sección. Andiamo!!
+Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con cantidades de cada cosa...</p>
+                        <button onclick="openModal('art-delantal-new', this)">Seguir leyendo →</button>
                     </div>
                 </article>
             </div>
             <div class="load-more-container">
-                <button class="btn-archive" data-grid="grid-delantal">Ver artículos en histórico (+1)</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-delantal', this)">Ver artículos en histórico (+1)</button>
             </div>
         </section>
 
@@ -1012,13 +1036,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>24 SEPTIEMBRE 2026 · ENSEÑANZA SIN AULA</small>
                         <h3>LAS IDEAS COMPARTIDAS SABEN MUCHO MEJOR</h3>
-                        <p>Existen ideas o trucos, que cuando te los cuentan...</p>
-                        <button class="button btn-open-modal" data-key="art-sabias-new" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>Existen ideas o trucos, que cuando te los cuentan, a veces piensas...</p>
+                        <button onclick="openModal('art-sabias-new', this)">Seguir leyendo →</button>
                     </div>
                 </article>
             </div>
             <div class="load-more-container">
-                <button class="btn-archive" data-grid="grid-sabias">Ver artículos en histórico (+0)</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-sabias', this)">Ver artículos en histórico (+0)</button>
             </div>
         </section>
 
@@ -1032,8 +1056,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>28 SEPTIEMBRE 2026 · DESCUBRIMIENTO</small>
                         <h3><span translate="no" class="notranslate">ANNALISA</span>&nbsp;-&nbsp;<span translate="no" class="notranslate">BELLISSIMA</span></h3>
-                        <p>Navegando y buscando joyas por la red...</p>
-                        <button class="button btn-open-modal" data-key="art-encontré-bellissima" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>Navegando y buscando joyas por la red, me topé con este temazo que atrapa desde el primer segundo...</p>
+                        <button onclick="openModal('art-encontré-bellissima', this)">Seguir leyendo →</button>
                         <a href="https://youtu.be/qz88Dx-_lA4" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
                     </div>
                 </article>
@@ -1044,12 +1068,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <small>24 SEPTIEMBRE 2026 · TECNOLOGIA</small>
                         <h3>IMPRESCINDIBLE</h3>
                         <p>Está aplicación me ha salvado de perderme auténticas joyas...</p>
-                        <button class="button btn-open-modal" data-key="art-sinpermiso-new" style="margin-top:auto;">Seguir leyendo →</button>
+                        <button onclick="openModal('art-sinpermiso-new', this)">Seguir leyendo →</button>
                     </div>
                 </article>
             </div>
             <div class="load-more-container">
-                <button class="btn-archive" data-grid="grid-sinpermiso">Ver histórico de lo encontré (+1)</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-sinpermiso', this)">Ver histórico de lo encontré (+1)</button>
             </div>
         </section>
 
@@ -1063,8 +1087,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>26 SEPTIEMBRE 2026 · LEYENDA DEL FOLK</small>
                         <h3><span translate="no" class="notranslate">JIM CROCE</span></h3>
-                        <p>Quiero comenzar esta sección, recordando la figura del cantautor norteamericano...</p>
-                        <button class="button btn-open-modal" data-key="art-estrellas-jim-croce" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>Quiero comenzar esta sección, recordando la figura del cantautor norteamericano&nbsp;<span translate="no" class="notranslate">Jim Croce</span>&nbsp;. Únicamente publicó 4 álbumes entre los años 1966 y 1973... </p>
+                        <button onclick="openModal('art-estrellas-jim-croce', this)">Seguir leyendo →</button>
                         <a href="https://youtu.be/lhjq50RFQek" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
                     </div>
                 </article>
@@ -1074,13 +1098,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="content">
                         <small>24 SEPTIEMBRE 2026 · OMNIPRESENTES</small>
                         <h3>No importa dónde están</h3>
-                        <p>Ésta sección es para recordar aquellas personas...</p>
-                        <button class="button btn-open-modal" data-key="art-estrellas-new" style="margin-top:auto;">Seguir leyendo →</button>
+                        <p>Ésta sección es para recordar aquellas personas que han dejado huella en la música...</p>
+                        <button onclick="openModal('art-estrellas-new', this)">Seguir leyendo →</button>
                     </div>
                 </article>
             </div>
             <div class="load-more-container">
-                <button class="btn-archive" data-grid="grid-estrellas">Ver histórico de estrellas (+1)</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-estrellas', this)">Ver histórico de estrellas (+1)</button>
             </div>
         </section>
 
@@ -1091,7 +1115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="tag" style="color:#ff826f;">SOBRE EL BLOG</p>
                 <h2>Un lugar con personalidad propia.</h2>
                 <p><strong>Algo + que Música &amp; Radio</strong></p>
-                <p>Este lugar que he creado, nace gracias a personas autodidactas que transmiten en emisoras minoritarias...</p>
+                <p>Este lugar que he creado, nace gracias a personas autodidactas que transmiten en emisoras minoritarias de redes sociales. Ellas me han dado la inspiración que me faltaba para atreverme a compartir mi pequeño mundo. Si te gusta, te invito a visitarlo cuando y donde tú quieras.</p>
             </div>
         </section>
     </main>
@@ -1099,22 +1123,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="language-section" class="notranslate">
         <p translate="no">🌐 Selecciona tu idioma / Select your language</p>
         <div id="language-tabs" translate="no">
-            <button class="notranslate btn-lang" data-lang="ca">Català</button>
-            <button class="notranslate btn-lang" data-lang="es">Español</button>
-            <button class="notranslate btn-lang" data-lang="en">English</button>
-            <button class="notranslate btn-lang" data-lang="fr">Français</button>
-            <button class="notranslate btn-lang" data-lang="de">Deutsch</button>
-            <button class="notranslate btn-lang" data-lang="it">Italiano</button>
-            <button class="notranslate btn-lang" data-lang="pt">Português</button>
-            <button class="notranslate btn-lang" data-lang="hi">हिन्दी</button>
-            <button class="notranslate btn-lang" data-lang="zh-CN">中文</button>
-            <button class="notranslate btn-lang" data-lang="ja">日本語</button>
+            <button class="notranslate" onclick="changeLanguage('ca')">Català</button>
+            <button class="notranslate" onclick="changeLanguage('es')">Español</button>
+            <button class="notranslate" onclick="changeLanguage('en')">English</button>
+            <button class="notranslate" onclick="changeLanguage('fr')">Français</button>
+            <button class="notranslate" onclick="changeLanguage('de')">Deutsch</button>
+            <button class="notranslate" onclick="changeLanguage('it')">Italiano</button>
+            <button class="notranslate" onclick="changeLanguage('pt')">Português</button>
+            <button class="notranslate" onclick="changeLanguage('hi')">हिन्दी</button>
+            <button class="notranslate" onclick="changeLanguage('zh-CN')">中文</button>
+            <button class="notranslate" onclick="changeLanguage('ja')">日本語</button>
         </div>
     </div>
 
-    <div id="articleModal" class="modal-overlay">
+    <div id="articleModal" class="modal-overlay" onclick="closeModalOnOuter(event)">
         <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
             <div id="modalBody"></div>
         </div>
     </div>
@@ -1138,213 +1162,238 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script is:inline src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script is:inline>
-        window.googleTranslateElementInit = function() {
+        function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',
                 includedLanguages: 'ca,es,en,fr,de,it,pt,hi,zh-CN,ja',
                 autoDisplay: false
             }, 'google_translate_element');
-        };
+        }
 
-        var publishedPosts = {
-            '2026-09-24': { id: 'art-pensamientos-prueba' },
-            '2026-09-26': { id: 'art-estrellas-jim-croce' },
-            '2026-09-28': { id: 'art-encontré-bellissima' },
-            '2026-10-01': { id: 'art-lugares-eugenio-c' },
-            '2026-10-03': { id: 'art-musica-wangok' },
-            '2026-10-06': { id: 'art-ciencia-theia' },
-            '2026-10-08': { id: 'art-musica-rumbacatalana' },
-            '2026-10-10': { id: 'art-pensamientos-acordeon' },
-            '2026-10-13': { id: 'art-delantal-recuerdos' }
-        };
-
-        var articlesData = {
-            'art-mensaje-fijado': {
-                title: "DEJADME DECIROS ALGO",
-                meta: "24 SEPTIEMBRE 2026 · PRESENTACIÓN",
-                content: "<p>24 de Septiembre de 2026.</p><p>Día de la Mercè.</p><p>Hoy es un buen día para inaugurar mi blog personal. Tengo día festivo en mi ciudad, Barcelona.</p>"
-            },
-            'art-pensamientos-prueba': {
-                title: "EL PENSAR SI OCUPA LUGAR",
-                meta: "24 SEPTIEMBRE 2026 · Sobre papel",
-                content: "<p>En esta sección, me dedicaré a escribir pensamientos, ocurrencias y reflexiones íntimas...</p>"
-            },
-            'art-pensamientos-acordeon': {
-                title: "Música en el blog, agradecimientos y el arte del acordeón",
-                meta: "10 OCTUBRE 2026 · REFLEXIÓN",
-                content: "<p>En este primer artículo de esta sección, solamente quiero agradecer a todos los que alguna vez...</p>"
-            },
-            'art-ciencia-blanco-24': {
-                title: "Saganeando",
-                meta: "24 SEPTIEMBRE 2026 · CIENCIA",
-                content: "<p>En los años 80 nos deleitaste con una serie...</p>"
-            },
-            'art-musica-secretos': {
-                title: "Hoy algo ha empezado",
-                meta: "24 SEPTIEMBRE 2026 · RECOMENDACIÓN",
-                content: "<p>Hoy inauguro todo este tinglado que me he montado...</p>"
-            },
-            'art-musica-wangok': {
-                title: "Música de China con alma Disney: La sorpresa del grupo OK",
-                meta: "3 OCTUBRE 2026 · RECOMENDACIÓN",
-                content: "<p>Hoy os traigo un descubrimiento musical increíble directo desde China...</p>"
-            },
-            'art-musica-rumbacatalana': {
-                title: "Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic",
-                meta: "8 OCTUBRE 2026 · RECOMENDACIÓN",
-                modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg",
-                content: "<p>Dar una pincelada a un estilo musical de tu tierra siempre es de buen gusto...</p>"
-            },
-            'art-lugares-universo': {
-                title: "CADA PERSONA ENCIERRA SU PROPIO UNIVERSO",
-                meta: "24 SEPTIEMBRE 2026 · VIVENCIAS",
-                content: "<p>Es uno de mis pensamientos recurrentes...</p>"
-            },
-            'art-lugares-eugenio-c': {
-                title: "DE SANTOS A BARCELONA",
-                meta: "1 OCTUBRE 2026 · MEMORIA VIVA",
-                content: "<p>Soy fruto de la combinación extraña de dos continentes...</p>"
-            },
-            'art-delantal-new': {
-                title: "Y TAN RICAMENTE",
-                meta: "24 SEPTIEMBRE 2026 · CON LOS 5 SENTIDOS",
-                content: "<p>Vamos con esta sección. Andiamo!!...</p>"
-            },
-            'art-delantal-recuerdos': {
-                title: "La magia de los recuerdos gastronómicos: cuando un sabor te transporta al pasado",
-                meta: "13 OCTUBRE 2026 · CON LOS 5 SENTIDOS",
-                modalImg: "https://i.ibb.co/BHVZny80/Ratatouille.jpg",
-                content: "<p>No cojas la báscula de cocina. No te voy a dar cantidades...</p>"
-            },
-            'art-sabias-new': {
-                title: "LAS IDEAS COMPARTIDAS SABEN MUCHO MEJOR",
-                meta: "24 SEPTIEMBRE 2026 · ENSEÑANZA SIN AULA",
-                content: "<p>Existen ideas o trucos útiles, que cuando te los cuentan...</p>"
-            },
-            'art-sinpermiso-new': {
-                title: "IMPRESCINDIBLE",
-                meta: "24 SEPTIEMBRE 2026 · TECNOLOGIA",
-                content: "<p>Está aplicación móvil me ha salvado de perderme auténticas joyas musicales...</p>"
-            },
-            'art-encontré-bellissima': {
-                title: "ANNALISA - BELLISSIMA",
-                meta: "28 SEPTIEMBRE 2026 · DESCUBRIMIENTO",
-                content: "<p>Navegando y buscando joyas musicales por la red...</p>"
-            },
-            'art-estrellas-new': {
-                title: "No importa dónde están",
-                meta: "24 SEPTIEMBRE 2026 · OMNIPRESENTES",
-                content: "<p>Ésta sección es para recordar aquellas personas...</p>"
-            },
-            'art-estrellas-jim-croce': {
-                title: "JIM CROCE",
-                meta: "26 SEPTIEMBRE 2026 · LEYENDA DEL FOLK",
-                content: "<p>Quiero comenzar esta sección recordando la figura del cantautor...</p>"
+        function changeLanguage(langCode) {
+            var selectField = document.querySelector(".goog-te-combo");
+            if (selectField) {
+                selectField.value = langCode;
+                selectField.dispatchEvent(new Event('change'));
             }
+        }
+
+        let isAmbientPlaying = false;
+
+        function toggleAmbientMusic() {
+            const audioElement = document.getElementById('bgAudio');
+            const btn = document.getElementById('playPauseBtn');
+            const statusText = document.getElementById('ambientStatusText');
+            
+            if (!audioElement) return;
+
+            if (isAmbientPlaying) {
+                audioElement.pause();
+                btn.innerText = "▶";
+                statusText.innerText = "Música ambiental";
+                isAmbientPlaying = false;
+            } else {
+                audioElement.play().then(() => {
+                    btn.innerText = "⏸";
+                    statusText.innerText = "Reproduciendo";
+                    isAmbientPlaying = true;
+                }).catch(error => {
+                    console.log("Reproducción bloqueada:", error);
+                });
+            }
+        }
+
+        document.addEventListener('click', function initAudioOnClick() {
+            const audioElement = document.getElementById('bgAudio');
+            if (audioElement && !isAmbientPlaying) {
+                audioElement.play().then(() => {
+                    isAmbientPlaying = true;
+                    const btn = document.getElementById('playPauseBtn');
+                    const statusText = document.getElementById('ambientStatusText');
+                    if (btn) btn.innerText = "⏸";
+                    if (statusText) statusText.innerText = "Reproduciendo";
+                }).catch(e => {});
+            }
+            document.removeEventListener('click', initAudioOnClick);
+        }, { once: true });
+
+        function organizarSeccionesYArchivos() {
+            const grids = document.querySelectorAll('.section .grid');
+            
+            grids.forEach(grid => {
+                const posts = Array.from(grid.querySelectorAll('.post'));
+                if (posts.length === 0) return;
+
+                posts.sort((a, b) => {
+                    const dateA = a.getAttribute('data-datetime') || '1970-01-01 00:00';
+                    const dateB = b.getAttribute('data-datetime') || '1970-01-01 00:00';
+                    return dateB.localeCompare(dateA);
+                });
+
+                posts.forEach((post, index) => {
+                    grid.appendChild(post);
+                    if (index === 0) {
+                        post.style.display = 'flex';
+                        post.classList.remove('hidden-archive');
+                    } else {
+                        post.style.display = 'none';
+                        post.classList.add('hidden-archive');
+                    }
+                });
+
+                const container = grid.parentElement;
+                const btn = container.querySelector('.btn-archive');
+                if (btn) {
+                    const hiddenCount = posts.length - 1;
+                    const sectionId = container.getAttribute('data-section-id');
+                    if (hiddenCount > 0) {
+                        btn.style.display = 'inline-block';
+                        if (sectionId === 'musica') {
+                            btn.innerText = `Ver histórico de música (+${hiddenCount})`;
+                        } else if (sectionId === 'estrellas') {
+                            btn.innerText = `Ver histórico de estrellas (+${hiddenCount})`;
+                        } else if (sectionId === 'sinpermiso') {
+                            btn.innerText = `Ver histórico de lo encontré (+${hiddenCount})`;
+                        } else if (sectionId === 'lugares') {
+                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
+                        } else {
+                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
+                        }
+                    } else {
+                        btn.style.display = 'inline-block';
+                        if (sectionId === 'musica') {
+                            btn.innerText = `Ver histórico de música (+0)`;
+                        } else if (sectionId === 'estrellas') {
+                            btn.innerText = `Ver histórico de estrellas (+0)`;
+                        } else if (sectionId === 'sinpermiso') {
+                            btn.innerText = `Ver histórico de lo encontré (+0)`;
+                        } else if (sectionId === 'lugares') {
+                            btn.innerText = `Ver artículos en histórico (+0)`;
+                        } else {
+                            btn.innerText = `Ver artículos en histórico (+0)`;
+                        }
+                    }
+                }
+            });
+        }
+
+        const publishedPosts = {
+            '2026-09-24': { id: 'art-pensamientos-prueba', title: 'EL PENSAR SI OCUPA LUGAR' },
+            '2026-09-26': { id: 'art-estrellas-jim-croce', title: 'JIM CROCE' },
+            '2026-09-28': { id: 'art-encontré-bellissima', title: 'ANNALISA - BELLISSIMA' },
+            '2026-10-01': { id: 'art-lugares-eugenio-c', title: 'DE SANTOS A BARCELONA' },
+            '2026-10-03': { id: 'art-musica-wangok', title: 'Música de China con alma Disney: La sorpresa del grupo OK' },
+            '2026-10-06': { id: 'art-ciencia-theia', title: 'THEIA, o el origen de la LUNA: ¿Y si te dijera que nació de un choque colosal?' },
+            '2026-10-08': { id: 'art-musica-rumbacatalana', title: 'Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic' },
+            '2026-10-10': { id: 'art-pensamientos-acordeon', title: 'Música en el blog, agradecimientos y el arte del acordeón' },
+            '2026-10-13': { id: 'art-delantal-recuerdos', title: 'La magia de los recuerdos gastronómicos' }
         };
 
-        var currentCalDate = new Date(2026, 9, 1);
-        var monthNames = [
+        let currentCalDate = new Date(2026, 9, 1);
+        const monthNames = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
         ];
 
         function renderCalendar() {
-            var year = currentCalDate.getFullYear();
-            var month = currentCalDate.getMonth();
-            var calTitle = document.getElementById('calMonthTitle');
-            if (calTitle) calTitle.innerText = monthNames[month] + " " + year;
+            const year = currentCalDate.getFullYear();
+            const month = currentCalDate.getMonth();
+            document.getElementById('calMonthTitle').innerText = `${monthNames[month]} ${year}`;
             
-            var container = document.getElementById('calendarDays');
+            const container = document.getElementById('calendarDays');
             if (!container) return;
             container.innerHTML = '';
             
-            var firstDayIndex = new Date(year, month, 1).getDay();
+            let firstDayIndex = new Date(year, month, 1).getDay();
             firstDayIndex = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
             
-            var totalDays = new Date(year, month + 1, 0).getDate();
-            var postDates = Object.keys(publishedPosts);
-            var latestDateKey = postDates.length > 0 ? postDates.reduce(function(latest, current) { return current > latest ? current : latest; }) : null;
+            const totalDays = new Date(year, month + 1, 0).getDate();
+            const postDates = Object.keys(publishedPosts);
+            const latestDateKey = postDates.length > 0 ? postDates.reduce((latest, current) => current > latest ? current : latest) : null;
             
-            for (var i = 0; i < firstDayIndex; i++) {
-                var emptyDiv = document.createElement('div');
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyDiv = document.createElement('div');
                 emptyDiv.className = 'calendar-day empty';
                 container.appendChild(emptyDiv);
             }
             
-            for (var day = 1; day <= totalDays; day++) {
-                (function(d) {
-                    var dayDiv = document.createElement('div');
-                    dayDiv.className = 'calendar-day';
-                    dayDiv.innerText = d;
+            for (let day = 1; day <= totalDays; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                dayDiv.innerText = day;
+                
+                const formattedMonth = String(month + 1).padStart(2, '0');
+                const formattedDay = String(day).padStart(2, '0');
+                const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
+                
+                let hasPost = false;
+                if (publishedPosts[dateKey]) {
+                    hasPost = true;
+                    const postInfo = publishedPosts[dateKey];
+                    const isLatest = (dateKey === latestDateKey);
                     
-                    var formattedMonth = String(month + 1).padStart(2, '0');
-                    var formattedDay = String(d).padStart(2, '0');
-                    var dateKey = year + '-' + formattedMonth + '-' + formattedDay;
-                    
-                    var hasPost = false;
-                    if (publishedPosts[dateKey]) {
-                        hasPost = true;
-                        var postInfo = publishedPosts[dateKey];
-                        var isLatest = (dateKey === latestDateKey);
-                        
-                        if (isLatest) {
-                            dayDiv.classList.add('latest-post');
-                            dayDiv.title = 'Ir a la última publicación';
-                        } else {
-                            dayDiv.classList.add('past-post');
-                            dayDiv.title = 'Ir a la publicación';
-                        }
-                        dayDiv.onclick = function() { goToArticle(postInfo.id); };
+                    if (isLatest) {
+                        dayDiv.classList.add('latest-post');
+                        dayDiv.title = 'Ir a la última publicación';
+                    } else {
+                        dayDiv.classList.add('past-post');
+                        dayDiv.title = 'Ir a la publicación';
                     }
+                    dayDiv.onclick = () => goToArticle(postInfo.id);
+                }
 
-                    var today = new Date();
-                    var todayKey = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-                    if (dateKey === todayKey && !hasPost) {
-                        dayDiv.classList.add('today');
-                        dayDiv.title = 'Hoy';
-                    }
+                const today = new Date();
+                const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+                if (dateKey === todayKey && !hasPost) {
+                    dayDiv.classList.add('today');
+                    dayDiv.title = 'Hoy';
+                }
 
-                    container.appendChild(dayDiv);
-                })(day);
+                container.appendChild(dayDiv);
             }
         }
 
         function goToArticle(articleId) {
-            var articleElement = document.getElementById('post-' + articleId);
+            const articleElement = document.getElementById('post-' + articleId);
             if (!articleElement) return;
 
+            const parentGrid = articleElement.closest('.grid');
             if (articleElement.classList.contains('hidden-archive')) {
-                articleElement.classList.remove('hidden-archive');
                 articleElement.style.display = 'flex';
-                // Buscar el botón de ver histórico de su sección para sincronizar su texto si está abierto
-                var grid = articleElement.closest('.grid');
-                if (grid) {
-                    var section = grid.closest('section');
-                    if (section) {
-                        var btn = section.querySelector('.btn-archive');
-                        if (btn) {
-                            btn.setAttribute('data-expanded', 'true');
-                            btn.innerText = 'Ocultar histórico';
-                        }
+                articleElement.classList.remove('hidden-archive');
+                const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+                if (btn) {
+                    const hiddenCount = parentGrid.querySelectorAll('.post.hidden-archive').length;
+                    const sectionId = parentGrid.parentElement.getAttribute('data-section-id');
+                    if (sectionId === 'musica') {
+                        btn.innerText = hiddenCount > 0 ? `Ver histórico de música (+${hiddenCount})` : 'Ocultar histórico de música';
+                    } else if (sectionId === 'estrellas') {
+                        btn.innerText = hiddenCount > 0 ? `Ver histórico de estrellas (+${hiddenCount})` : 'Ocultar histórico de estrellas';
+                    } else if (sectionId === 'sinpermiso') {
+                        btn.innerText = hiddenCount > 0 ? `Ver histórico de lo encontré (+${hiddenCount})` : 'Ocultar histórico de lo encontré';
+                    } else if (sectionId === 'lugares') {
+                        btn.innerText = hiddenCount > 0 ? `Ver artículos en histórico (+${hiddenCount})` : 'Ocultar históricos';
+                    } else if (sectionId === 'pensamientos') {
+                        btn.innerText = hiddenCount > 0 ? `Ver artículos en histórico (+${hiddenCount})` : 'Ocultar históricos';
                     }
                 }
             }
 
             articleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
             articleElement.classList.add('highlight-post');
-            setTimeout(function() {
+            setTimeout(() => {
                 articleElement.classList.remove('highlight-post');
             }, 2000);
         }
 
         function goToLatestPost() {
-            var allPosts = document.querySelectorAll('.post');
-            var latestPost = null;
-            var latestDate = '';
+            const allPosts = document.querySelectorAll('.post');
+            let latestPost = null;
+            let latestDate = '';
 
-            allPosts.forEach(function(post) {
-                var postDate = post.getAttribute('data-datetime') || '';
+            allPosts.forEach(post => {
+                const postDate = post.getAttribute('data-datetime') || '';
                 if (postDate > latestDate) {
                     latestDate = postDate;
                     latestPost = post;
@@ -1352,489 +1401,892 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
 
             if (latestPost && latestPost.id) {
-                var articleId = latestPost.id.replace('post-', '');
+                const articleId = latestPost.id.replace('post-', '');
                 goToArticle(articleId);
             }
         }
 
+        function changeMonth(delta) {
+            currentCalDate.setMonth(currentCalDate.getMonth() + delta);
+            renderCalendar();
+        }
+
         function toggleArchive(gridId, btn) {
-            var grid = document.getElementById(gridId);
+            const grid = document.getElementById(gridId);
             if (!grid) return;
-            var hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
-            var isExpanded = btn.getAttribute('data-expanded') === 'true';
+            const hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
+            const isCurrentlyExpanded = btn.innerText.includes('Ocultar');
             
-            if (isExpanded) {
-                hiddenPosts.forEach(function(post) { post.style.display = 'none'; });
-                btn.setAttribute('data-expanded', 'false');
-                btn.innerText = 'Ver artículos en histórico (+' + hiddenPosts.length + ')';
+            if (isCurrentlyExpanded) {
+                hiddenPosts.forEach(post => {
+                    post.style.display = 'none';
+                    post.classList.add('hidden-archive');
+                });
+                const totalHidden = hiddenPosts.length;
+                if (gridId === 'grid-musica') {
+                    btn.innerText = `Ver histórico de música (+${totalHidden})`;
+                } else if (gridId === 'grid-estrellas') {
+                    btn.innerText = `Ver histórico de estrellas (+${totalHidden})`;
+                } else if (gridId === 'grid-sinpermiso') {
+                    btn.innerText = `Ver histórico de lo encontré (+${totalHidden})`;
+                } else if (gridId === 'grid-lugares') {
+                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+                } else {
+                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+                }
             } else {
-                hiddenPosts.forEach(function(post) { post.style.display = 'flex'; });
-                btn.setAttribute('data-expanded', 'true');
-                btn.innerText = 'Ocultar histórico';
+                if (hiddenPosts.length === 0) return;
+                hiddenPosts.forEach(post => {
+                    post.style.display = 'flex';
+                    post.classList.remove('hidden-archive');
+                });
+                if (gridId === 'grid-musica') {
+                    btn.innerText = 'Ocultar histórico de música';
+                } else if (gridId === 'grid-estrellas') {
+                    btn.innerText = 'Ocultar histórico de estrellas';
+                } else if (gridId === 'grid-sinpermiso') {
+                    btn.innerText = 'Ocultar histórico de lo encontré';
+                } else if (gridId === 'grid-lugares') {
+                    btn.innerText = 'Ocultar históricos';
+                } else {
+                    btn.innerText = 'Ocultar históricos';
+                }
             }
         }
 
-        function openModal(articleKey, buttonElement) {
-            var modal = document.getElementById('articleModal');
-            var modalBody = document.getElementById('modalBody');
-            var data = articlesData[articleKey];
+        function filterArticles() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const posts = document.querySelectorAll('.post');
             
-            if (data && modal && modalBody) {
-                var imageHtml = '';
-                var imageUrl = data.modalImg || '';
+            posts.forEach(post => {
+                const text = post.innerText.toLowerCase();
+                const parentGrid = post.closest('.grid');
+                const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+                const isExpanded = btn && btn.innerText.includes('Ocultar');
+                const isInitiallyHidden = post.classList.contains('hidden-archive');
+                
+                if (query === "") {
+                    if (isInitiallyHidden && !isExpanded) {
+                        post.style.display = 'none';
+                    } else {
+                        post.style.display = 'flex';
+                    }
+                } else {
+                    if (text.includes(query)) {
+                        post.style.display = 'flex';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                }
+            });
+        }
 
-                if (!imageUrl && buttonElement) {
-                    var postCard = buttonElement.closest('.post');
+        // --- ANIMACIÓN REALISTA DE LA TIERRA, LUNA Y ESTRELLAS FUGACES (#ciencia) ---
+        let earthCanvas, earthCtx;
+        let earthImg = null;
+        let cloudsImg = null;
+        let moonImg = null;
+        let spaceStars = [];
+        let shootingStars = [];
+        let rotation = 0;
+        let cloudRotation = 0;
+        let moonOrbitAngle = 0;
+        const ROTATION_SPEED = 0.0012;        
+        const CLOUD_ROTATION_SPEED = 0.00155;
+        const MOON_ORBIT_SPEED = 0.0003;
+        let globeRadius = 0;
+        let moonRadius = 0;
+        let orbitRadius = 0;
+        let globeCenterX = 0;
+        let globeCenterY = 0;
+
+        const EARTH_TEXTURE_URL = 'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg';
+        const CLOUDS_TEXTURE_URL = 'https://threejs.org/examples/textures/planets/earth_clouds_1024.png';
+        const MOON_TEXTURE_URL = 'https://threejs.org/examples/textures/planets/moon_1024.jpg';
+
+        function initEarthCanvas() {
+            earthCanvas = document.getElementById('earthCanvas');
+            if (!earthCanvas) return;
+            earthCtx = earthCanvas.getContext('2d');
+            const parent = earthCanvas.parentElement;
+            if (!parent) return;
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const width = parent.offsetWidth;
+            const height = parent.offsetHeight;
+
+            earthCanvas.width = width * dpr;
+            earthCanvas.height = height * dpr;
+            earthCanvas.style.width = width + 'px';
+            earthCanvas.style.height = height + 'px';
+            earthCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const isMobile = width < 700;
+            globeRadius = isMobile ? Math.min(78, width * 0.19) : 95;
+            moonRadius = globeRadius * 0.27;
+            orbitRadius = globeRadius * 5.7;
+            globeCenterX = width * 0.5;
+            globeCenterY = isMobile ? 115 : 130;
+
+            spaceStars = [];
+            const starCount = Math.floor((width * height) / 1400);
+            for (let i = 0; i < starCount; i++) {
+                spaceStars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.9 + 0.5,
+                    baseAlpha: 0.55 + Math.random() * 0.45,
+                    speed: 0.45 + Math.random() * 0.70,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+
+            shootingStars = [];
+
+            if (!earthImg) {
+                earthImg = new Image();
+                earthImg.crossOrigin = 'anonymous';
+                earthImg.src = EARTH_TEXTURE_URL;
+            }
+            if (!cloudsImg) {
+                cloudsImg = new Image();
+                cloudsImg.crossOrigin = 'anonymous';
+                cloudsImg.src = CLOUDS_TEXTURE_URL;
+            }
+            if (!moonImg) {
+                moonImg = new Image();
+                moonImg.crossOrigin = 'anonymous';
+                moonImg.src = MOON_TEXTURE_URL;
+            }
+        }
+
+        function spawnShootingStar(width, height) {
+            const startX = Math.random() * width * 0.8;
+            const startY = Math.random() * height * 0.4;
+            const angle = Math.PI * 0.15 + Math.random() * 0.3;
+            const speed = 4 + Math.random() * 5;
+            const length = 40 + Math.random() * 60;
+
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                length: length,
+                life: 1.0,
+                decay: 0.012 + Math.random() * 0.01
+            });
+        }
+
+        function drawEarthCanvas() {
+            if (!earthCanvas || !earthCtx) return;
+
+            const width = earthCanvas.clientWidth;
+            const height = earthCanvas.clientHeight;
+
+            earthCtx.fillStyle = '#000008';
+            earthCtx.fillRect(0, 0, width, height);
+
+            const time = performance.now() * 0.001;
+            spaceStars.forEach(star => {
+                const twinkle = Math.pow(0.5 + 0.5 * Math.sin(time * star.speed + star.phase), 1.8);
+                const alpha = (0.15 + 0.85 * twinkle) * star.baseAlpha;
+
+                earthCtx.beginPath();
+                earthCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                earthCtx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                earthCtx.fill();
+
+                if (alpha > 0.55 && star.radius > 1.2) {
+                    earthCtx.beginPath();
+                    earthCtx.arc(star.x, star.y, star.radius * 2.4, 0, Math.PI * 2);
+                    earthCtx.fillStyle = `rgba(200, 220, 255, ${alpha * 0.18})`;
+                    earthCtx.fill();
+                }
+            });
+
+            if (Math.random() < 0.008 && shootingStars.length < 3) {
+                spawnShootingStar(width, height);
+            }
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const s = shootingStars[i];
+                s.x += s.vx;
+                s.y += s.vy;
+                s.life -= s.decay;
+
+                if (s.life <= 0) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const tailX = s.x - s.vx * (s.length / 8);
+                const tailY = s.y - s.vy * (s.length / 8);
+
+                const grad = earthCtx.createLinearGradient(s.x, s.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(255, 255, 255, ${s.life})`);
+                grad.addColorStop(0.4, `rgba(200, 220, 255, ${s.life * 0.6})`);
+                grad.addColorStop(1, 'rgba(150, 180, 255, 0)');
+
+                earthCtx.beginPath();
+                earthCtx.moveTo(s.x, s.y);
+                earthCtx.lineTo(tailX, tailY);
+                earthCtx.strokeStyle = grad;
+                earthCtx.lineWidth = 1.8;
+                earthCtx.lineCap = 'round';
+                earthCtx.stroke();
+
+                earthCtx.beginPath();
+                earthCtx.arc(s.x, s.y, 1.5, 0, Math.PI * 2);
+                earthCtx.fillStyle = `rgba(255, 255, 255, ${s.life})`;
+                earthCtx.fill();
+            }
+
+            moonOrbitAngle += MOON_ORBIT_SPEED;
+            if (moonOrbitAngle > Math.PI * 2) moonOrbitAngle -= Math.PI * 2;
+            const moonIsBehind = Math.sin(moonOrbitAngle) < 0;
+
+            function drawMoon() {
+                if (!moonImg || !moonImg.complete || moonImg.naturalWidth === 0) return;
+
+                const moonX = globeCenterX + Math.cos(moonOrbitAngle) * orbitRadius;
+                const moonY = globeCenterY + Math.sin(moonOrbitAngle) * orbitRadius * 0.58;
+                const depthFactor = (Math.sin(moonOrbitAngle) + 1) / 2;
+                const currentMoonRadius = moonRadius * (0.78 + depthFactor * 0.28);
+                const moonAlpha = 0.94 + depthFactor * 0.06;
+
+                earthCtx.save();
+                earthCtx.globalAlpha = moonAlpha;
+
+                earthCtx.beginPath();
+                earthCtx.arc(moonX, moonY, currentMoonRadius, 0, Math.PI * 2);
+                earthCtx.closePath();
+                earthCtx.clip();
+
+                const moonTexAspect = moonImg.naturalWidth / moonImg.naturalHeight;
+                const mDrawH = currentMoonRadius * 2.08;
+                const mDrawW = mDrawH * moonTexAspect;
+                const moonTexOffset = (moonOrbitAngle * 0.4) % mDrawW;
+
+                earthCtx.drawImage(moonImg, moonX - mDrawW / 2 - moonTexOffset, moonY - mDrawH / 2, mDrawW, mDrawH);
+                earthCtx.drawImage(moonImg, moonX - mDrawW / 2 - moonTexOffset + mDrawW, moonY - mDrawH / 2, mDrawW, mDrawH);
+
+                const moonLightX = moonX - currentMoonRadius * 0.36;
+                const moonLightY = moonY - currentMoonRadius * 0.24;
+                const moonShade = earthCtx.createRadialGradient(moonLightX, moonLightY, currentMoonRadius * 0.02, moonX, moonY, currentMoonRadius);
+                moonShade.addColorStop(0,    'rgba(0,0,0,0)');
+                moonShade.addColorStop(0.30, 'rgba(0,0,0,0.015)');
+                moonShade.addColorStop(0.55, 'rgba(0,0,0,0.07)');
+                moonShade.addColorStop(0.75, 'rgba(0,0,0,0.18)');
+                moonShade.addColorStop(0.90, 'rgba(0,0,0,0.32)');
+                moonShade.addColorStop(1,    'rgba(0,0,0,0.45)');
+                earthCtx.fillStyle = moonShade;
+                earthCtx.fillRect(moonX - currentMoonRadius, moonY - currentMoonRadius, currentMoonRadius * 2, currentMoonRadius * 2);
+
+                const moonLimb = earthCtx.createRadialGradient(moonX, moonY, currentMoonRadius * 0.65, moonX, moonY, currentMoonRadius);
+                moonLimb.addColorStop(0,   'rgba(0,0,0,0)');
+                moonLimb.addColorStop(0.60,'rgba(0,0,0,0.05)');
+                moonLimb.addColorStop(1,   'rgba(0,0,0,0.25)');
+                earthCtx.fillStyle = moonLimb;
+                earthCtx.fillRect(moonX - currentMoonRadius, moonY - currentMoonRadius, currentMoonRadius * 2, currentMoonRadius * 2);
+
+                earthCtx.restore();
+
+                earthCtx.beginPath();
+                earthCtx.arc(moonX, moonY, currentMoonRadius + 1.8, 0, Math.PI * 2);
+                earthCtx.strokeStyle = `rgba(230, 235, 245, ${0.15 + depthFactor * 0.14})`;
+                earthCtx.lineWidth = 3;
+                earthCtx.stroke();
+            }
+
+            if (moonIsBehind) drawMoon();
+
+            if (earthImg && earthImg.complete && earthImg.naturalWidth > 0) {
+                rotation += ROTATION_SPEED;
+                if (rotation > Math.PI * 2) rotation -= Math.PI * 2;
+
+                cloudRotation += CLOUD_ROTATION_SPEED;
+                if (cloudRotation > Math.PI * 2) cloudRotation -= Math.PI * 2;
+
+                earthCtx.save();
+
+                earthCtx.beginPath();
+                earthCtx.arc(globeCenterX, globeCenterY, globeRadius, 0, Math.PI * 2);
+                earthCtx.closePath();
+                earthCtx.clip();
+
+                const texAspect = earthImg.naturalWidth / earthImg.naturalHeight;
+                const drawHeight = globeRadius * 2.05;
+                const drawWidth = drawHeight * texAspect;
+
+                const offsetX = (rotation / (Math.PI * 2)) * drawWidth;
+                const baseX = globeCenterX - drawWidth / 2 - offsetX;
+                const baseY = globeCenterY - drawHeight / 2;
+
+                earthCtx.drawImage(earthImg, baseX, baseY, drawWidth, drawHeight);
+                earthCtx.drawImage(earthImg, baseX + drawWidth, baseY, drawWidth, drawHeight);
+
+                if (cloudsImg && cloudsImg.complete && cloudsImg.naturalWidth > 0) {
+                    const cloudAspect = cloudsImg.naturalWidth / cloudsImg.naturalHeight;
+                    const cloudHeight = globeRadius * 2.08;
+                    const cloudWidth = cloudHeight * cloudAspect;
+
+                    const cloudOffsetX = (cloudRotation / (Math.PI * 2)) * cloudWidth;
+                    const cloudBaseX = globeCenterX - cloudWidth / 2 - cloudOffsetX;
+                    const cloudBaseY = globeCenterY - cloudHeight / 2;
+
+                    earthCtx.globalAlpha = 0.80;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 0.65;
+                    const offset2 = cloudWidth * 0.15;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset2, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset2 + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 0.50;
+                    const offset3 = cloudWidth * 0.28;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX + offset3, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX + offset3 + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 0.35;
+                    const offset4 = cloudWidth * 0.42;
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset4, cloudBaseY, cloudWidth, cloudHeight);
+                    earthCtx.drawImage(cloudsImg, cloudBaseX - offset4 + cloudWidth, cloudBaseY, cloudWidth, cloudHeight);
+
+                    earthCtx.globalAlpha = 1.0;
+                }
+
+                const lightX = globeCenterX - globeRadius * 0.38;
+                const lightY = globeCenterY - globeRadius * 0.32;
+
+                const shade = earthCtx.createRadialGradient(
+                    lightX, lightY, globeRadius * 0.02,
+                    globeCenterX, globeCenterY, globeRadius
+                );
+                shade.addColorStop(0,    'rgba(0,0,0,0)');
+                shade.addColorStop(0.28, 'rgba(0,0,0,0.02)');
+                shade.addColorStop(0.50, 'rgba(0,0,0,0.15)');
+                shade.addColorStop(0.72, 'rgba(0,0,0,0.38)');
+                shade.addColorStop(0.88, 'rgba(0,0,0,0.60)');
+                shade.addColorStop(1,    'rgba(0,0,0,0.80)');
+                earthCtx.fillStyle = shade;
+                earthCtx.fillRect(
+                    globeCenterX - globeRadius,
+                    globeCenterY - globeRadius,
+                    globeRadius * 2,
+                    globeRadius * 2
+                );
+
+                const limb = earthCtx.createRadialGradient(
+                    globeCenterX, globeCenterY, globeRadius * 0.65,
+                    globeCenterX, globeCenterY, globeRadius
+                );
+                limb.addColorStop(0,   'rgba(0,0,0,0)');
+                limb.addColorStop(0.50,'rgba(0,0,0,0.15)');
+                limb.addColorStop(0.80,'rgba(0,0,0,0.40)');
+                limb.addColorStop(1,   'rgba(0,0,0,0.58)');
+                earthCtx.fillStyle = limb;
+                earthCtx.fillRect(
+                    globeCenterX - globeRadius,
+                    globeCenterY - globeRadius,
+                    globeRadius * 2,
+                    globeRadius * 2
+                );
+
+                earthCtx.restore();
+
+                earthCtx.beginPath();
+                earthCtx.arc(globeCenterX, globeCenterY, globeRadius, 0, Math.PI * 2);
+                earthCtx.strokeStyle = 'rgba(140, 190, 255, 0.10)';
+                earthCtx.lineWidth = 4;
+                earthCtx.stroke();
+            }
+
+            if (!moonIsBehind) drawMoon();
+
+            requestAnimationFrame(drawEarthCanvas);
+        }
+
+        // --- PARTÍCULAS DE AGUA / COLORES (#lugares) ---
+        let poolCanvas, poolCtx;
+        let pWidth, pHeight, particles = [];
+
+        function initPoolCanvas() {
+            poolCanvas = document.getElementById('poolCanvas');
+            if (!poolCanvas) return;
+            poolCtx = poolCanvas.getContext('2d');
+            const parent = poolCanvas.parentElement;
+            if (!parent) return;
+            pWidth = poolCanvas.width = parent.offsetWidth;
+            pHeight = poolCanvas.height = parent.offsetHeight;
+            particles = [];
+            const count = Math.floor((pWidth * pHeight) / 14000);
+            for (let i = 0; i < (count < 35 ? 35 : count); i++) {
+                particles.push({
+                    x: Math.random() * pWidth,
+                    y: Math.random() * pHeight,
+                    vx: (Math.random() - 0.5) * 1.2,
+                    vy: (Math.random() - 0.5) * 1.2,
+                    radius: Math.random() * 2 + 1.2,
+                    hue: Math.random() * 360,
+                    hueSpeed: (Math.random() - 0.5) * 1.5
+                });
+            }
+        }
+
+        function drawPoolCanvas() {
+            if (!poolCanvas || !poolCtx) return;
+            
+            poolCtx.clearRect(0, 0, pWidth, pHeight);
+            
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > pWidth) p.vx *= -1;
+                if (p.y < 0 || p.y > pHeight) p.vy *= -1;
+                p.hue += p.hueSpeed;
+                if (p.hue > 360) p.hue = 0;
+                if (p.hue < 0) p.hue = 360;
+
+                poolCtx.fillStyle = `hsl(${p.hue}, 80%, 70%)`;
+                poolCtx.beginPath();
+                poolCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                poolCtx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 130) {
+                        poolCtx.strokeStyle = `hsla(${p.hue}, 80%, 70%, ${0.3 * (1 - dist / 130)})`;
+                        poolCtx.lineWidth = 1;
+                        poolCtx.beginPath();
+                        poolCtx.moveTo(p.x, p.y);
+                        poolCtx.lineTo(p2.x, p2.y);
+                        poolCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawPoolCanvas);
+        }
+
+        // --- COSMOS (#sobre) ---
+        let cosmosCanvas, cosmosCtx;
+        let width, height, stars = [], nebulae = [];
+
+        function initCosmos() {
+            cosmosCanvas = document.getElementById('cosmosCanvas');
+            if (!cosmosCanvas) return;
+            cosmosCtx = cosmosCanvas.getContext('2d');
+            const parent = cosmosCanvas.parentElement;
+            if (!parent) return;
+            width = cosmosCanvas.width = parent.offsetWidth;
+            height = cosmosCanvas.height = parent.offsetHeight;
+            stars = [];
+            nebulae = [];
+            
+            for (let i = 0; i < 200; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 1.8,
+                    alpha: Math.random(),
+                    speed: Math.random() * 0.015 + 0.005
+                });
+            }
+
+            const colors = ['rgba(142, 68, 173, ', 'rgba(41, 128, 185, ', 'rgba(231, 76, 60, '];
+            for (let i = 0; i < 4; i++) {
+                nebulae.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 200 + 150,
+                    color: colors[i % colors.length]
+                });
+            }
+        }
+
+        function drawCosmos() {
+            if (!cosmosCanvas || !cosmosCtx) return;
+            cosmosCtx.clearRect(0, 0, width, height);
+            let bgGradient = cosmosCtx.createLinearGradient(0, 0, 0, height);
+            bgGradient.addColorStop(0, '#0a0813');
+            bgGradient.addColorStop(1, '#020105');
+            cosmosCtx.fillStyle = bgGradient;
+            cosmosCtx.fillRect(0, 0, width, height);
+
+            nebulae.forEach(n => {
+                let gradient = cosmosCtx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
+                gradient.addColorStop(0, n.color + '0.2)');
+                gradient.addColorStop(0.5, n.color + '0.08)');
+                gradient.addColorStop(1, 'transparent');
+                cosmosCtx.fillStyle = gradient;
+                cosmosCtx.beginPath();
+                cosmosCtx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                cosmosCtx.fill();
+            });
+
+            stars.forEach(s => {
+                s.alpha += s.speed;
+                if (s.alpha > 1 || s.alpha < 0) s.speed = -s.speed;
+                cosmosCtx.fillStyle = `rgba(255, 255, 255, ${Math.abs(s.alpha)})`;
+                cosmosCtx.beginPath();
+                cosmosCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                cosmosCtx.fill();
+            });
+            requestAnimationFrame(drawCosmos);
+        }
+
+        window.addEventListener('resize', () => {
+            initEarthCanvas();
+            initPoolCanvas();
+            initCosmos();
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            organizarSeccionesYArchivos();
+
+            renderCalendar();
+            initEarthCanvas();
+            drawEarthCanvas();
+            initPoolCanvas();
+            drawPoolCanvas();
+            initCosmos();
+            drawCosmos();
+
+            let baseMinima = 288;
+            let visitasAlmacenadas = localStorage.getItem('blog_visitas_totales');
+            let totalVisitas = visitasAlmacenadas ? parseInt(visitasAlmacenadas, 10) : baseMinima;
+
+            if (!sessionStorage.getItem('visita_registrada')) {
+                totalVisitas += 1;
+                localStorage.setItem('blog_visitas_totales', totalVisitas);
+                sessionStorage.setItem('visita_registrada', 'true');
+            }
+
+            let valorFinal = Math.max(baseMinima, totalVisitas);
+            document.getElementById('counterValue').innerText = valorFinal;
+        });
+
+        function openModal(articleKey, buttonElement) {
+            const modal = document.getElementById('articleModal');
+            const modalBody = document.getElementById('modalBody');
+            const data = articlesData[articleKey];
+            
+            if (data) {
+                let imageHtml = '';
+                let imageUrl = '';
+
+                if (data.modalImg) {
+                    imageUrl = data.modalImg;
+                } else if (buttonElement) {
+                    const postCard = buttonElement.closest('.post');
                     if (postCard) {
-                        var coverDiv = postCard.querySelector('.cover');
+                        const coverDiv = postCard.querySelector('.cover');
                         if (coverDiv) {
-                            var bgStyle = window.getComputedStyle(coverDiv).backgroundImage;
-                            var match = bgStyle.match(/url\(['"]?([^'"]+)['"]?\)/);
-                            if (match && match[1]) imageUrl = match[1];
+                            const bgStyle = window.getComputedStyle(coverDiv).backgroundImage;
+                            const match = bgStyle.match(/url\(['"]?([^'"]+)['"]?\)/);
+                            if (match && match[1]) {
+                                imageUrl = match[1];
+                            }
                         }
                     }
                 }
 
                 if (imageUrl) {
-                    var cleanTitle = data.title.replace(/<\/?[^>]+(>|$)/g, "");
-                    imageHtml = '<div style="text-align: center; margin-bottom: 20px;"><img src="' + imageUrl + '" alt="' + cleanTitle + '" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></div>';
+                    const cleanTitle = data.title.replace(/<\/?[^>]+(>|$)/g, "");
+                    imageHtml = `<div style="text-align: center; margin-bottom: 20px;"><img src="${imageUrl}" alt="${cleanTitle}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"></div>`;
                 }
 
-                modalBody.innerHTML = 
-                    '<small style="color:var(--muted); font-size:.72rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;">' + data.meta + '</small>' +
-                    '<h2 style="font-size:1.8rem; margin:10px 0 20px;">' + data.title + '</h2>' +
-                    imageHtml +
-                    '<div class="article-text">' + data.content + '</div>';
+                modalBody.innerHTML = `
+                    <small style="color:var(--muted); font-size:.72rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;">${data.meta}</small>
+                    <h2 style="font-size:1.8rem; margin:10px 0 20px;">${data.title}</h2>
+                    ${imageHtml}
+                    <div class="article-text">${data.content}</div>
+                `;
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             }
         }
 
         function closeModal() {
-            var modal = document.getElementById('articleModal');
+            const modal = document.getElementById('articleModal');
             if (modal) {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initApp);
-        } else {
-            initApp();
+        function closeModalOnOuter(event) {
+            if (event.target.id === 'articleModal') {
+                closeModal();
+            }
         }
 
-        function initApp() {
-            renderCalendar();
-
-            var prevBtn = document.getElementById('calPrevBtn');
-            var nextBtn = document.getElementById('calNextBtn');
-            if (prevBtn) prevBtn.onclick = function() { currentCalDate.setMonth(currentCalDate.getMonth() - 1); renderCalendar(); };
-            if (nextBtn) nextBtn.onclick = function() { currentCalDate.setMonth(currentCalDate.getMonth() + 1); renderCalendar(); };
-
-            var btnLatest = document.getElementById('btnLatestPost');
-            if (btnLatest) btnLatest.onclick = goToLatestPost;
-
-            document.querySelectorAll('.btn-lang').forEach(function(btn) {
-                btn.onclick = function() {
-                    var lang = btn.getAttribute('data-lang');
-                    var select = document.querySelector(".goog-te-combo");
-                    if (select) {
-                        select.value = lang;
-                        select.dispatchEvent(new Event('change'));
-                    }
-                };
-            });
-
-            document.querySelectorAll('.btn-open-modal').forEach(function(btn) {
-                btn.onclick = function() {
-                    var key = btn.getAttribute('data-key');
-                    openModal(key, btn);
-                };
-            });
-
-            document.querySelectorAll('.btn-archive').forEach(function(btn) {
-                btn.onclick = function() {
-                    var gridId = btn.getAttribute('data-grid');
-                    toggleArchive(gridId, btn);
-                };
-            });
-
-            var closeBtn = document.getElementById('modalCloseBtn');
-            if (closeBtn) closeBtn.onclick = closeModal;
-            var modal = document.getElementById('articleModal');
-            if (modal) modal.onclick = function(e) { if (e.target === modal) closeModal(); };
-
-            var isAmbientPlaying = false;
-            var audioEl = document.getElementById('bgAudio');
-            var playBtn = document.getElementById('playPauseBtn');
-            var statusTxt = document.getElementById('ambientStatusText');
-
-            if (playBtn && audioEl) {
-                playBtn.onclick = function() {
-                    if (isAmbientPlaying) {
-                        audioEl.pause();
-                        playBtn.innerText = "▶";
-                        if (statusTxt) statusTxt.innerText = "Música ambiental";
-                        isAmbientPlaying = false;
-                    } else {
-                        audioEl.play().then(function() {
-                            playBtn.innerText = "⏸";
-                            if (statusTxt) statusTxt.innerText = "Reproduciendo";
-                            isAmbientPlaying = true;
-                        }).catch(function(e) { console.log("Error de audio:", e); });
-                    }
-                };
+        const articlesData = {
+            'art-mensaje-fijado': {
+                title: "DEJADME DECIROS ALGO",
+                meta: "24 SEPTIEMBRE 2026 · PRESENTACIÓN",
+                content: 
+                    "<p>24 de Septiembre de 2026.</p>" +
+                    "<p>Día de la Mercè.</p>" +
+                    "<p>Hoy es un buen día para inaugurar mi <strong>blog personal</strong>. Tengo día festivo en mi ciudad,&nbsp;<span translate=\"no\" class=\"notranslate\">Barcelona</span>&nbsp;.</p>" +
+                    "<p>Al final, lo que se me pasó por la cabeza hace un mes y pico, he acabado haciéndolo. He creado mi propio <strong>sitio web de música y vivencias</strong>...</p>" +
+                    "<p>Es una manera de no estar a expensas de otras plataformas, en las que no puedo decidir lo que puedo o no puedo poner.</p>" +
+                    "<p>Esta la he creado yo, y me da la libertad de poder expresarme, crear, hacer y deshacer según mi propio criterio.</p>" +
+                    "<p>Nunca he programado. No soy informático, pero le he puesto ganas y tiempo, mucho tiempo. Por eso estoy muy contento de poder subirlo a la red, en un día como el de hoy. Que por fin pueda compartirlo con todos vosotr@s.</p>" +
+                    "<p>Si veis algún fallo o error, es posible que la culpa sea mía. Porque soy el único responsable de todo lo que veis aquí.</p>" +
+                    "<p>Intentaré mejorar cualquier cosa que vea que falla, pero no quería posponer más el darlo a conocer.</p>" +
+                    "<p>Llevo muchas horas invertidas en que quede lo mejor posible. Espero que se note algo el trabajo y la dedicación que le he dado al proyecto. Creo que al final no me puedo quejar de cómo ha quedado. Tiene bastante similitud con lo que en un principio tenía en mente.</p>" +
+                    "<p>Este espacio no está pensado para gustar a todo el mundo. Ni lo pretendo, ni me importa. Nace para compartir esas pequeñas huellas que la vida te va dejando. Siempre desde mi punto de vista, <strong>vivencias, experiencias y recuerdos</strong>.</p>" +
+                    "<p>Tampoco se trata de aleccionar ni convenceros de nada. Ni siquiera de que compartas lo que me gusta o lo que pienso.</p>" +
+                    "<p>Pero si consigo que por un momento me leas, pienses, o sientas que te transmito algún tipo de emoción, habrá valido la pena el tiempo dedicado.</p>" +
+                    "<p>Mi espacio es integrador, así que no voy a discriminar canciones, escritos, etcétera por razones de idiomas o cualquier otra limitación.</p>" +
+                    "<p>Incluso tengo pensado escribir alguna sección en otros idiomas, lo cual creo que enriquecerá de algún modo el blog.</p>" +
+                    "<p>Como os he comentado, no me dedico a nada relacionado con esto que hoy comienza. Así que no me marco frecuencias de nada. Cuando me plazca, tenga tiempo o pueda, iré añadiendo contenido. Sin ningún tipo de presión.</p>" +
+                    "<p>Es un <strong>hobby</strong>, (uno de ellos), y cómo tal, me lo voy a tomar.</p>" +
+                    "<p>Cuido mucho la privacidad. Tanto la mía como la de este lugar. Así que, como se dice en las películas: \"Todos los personajes de mis vivencias son ficticios y cualquier parecido con la realidad es mera coincidencia\".</p>" +
+                    "<p>Los relatos, <strong>vivencias y reflexiones</strong> son de mi puño y letra, creados por mí. De otra manera, pondré la fuente y/o el enlace oficial.</p>" +
+                    "<p>También quiero dejar claro que el contenido que aquí comparto, quiere agradecer siempre la fuente original y cumplir con los derechos de autor y copyright.</p>" +
+                    "<p>Las publicaciones no tienen por qué llevar un orden. De hecho, no lo van a llevar. Lo mismo tiraré para adelante en el tiempo, como retrocederé sin motivo alguno. Soy así. Desde escribir una anécdota, a otro día hablar de un artista, una canción, o simplemente compartir algo que me ha sido útil.</p>" +
+                    "<p>Intentaré no extenderme mucho en el contenido que comparto. No tiene sentido. Hoy en día, con las redes e internet, puedes informarte del tema tratado, de mil y una maneras diferentes.</p>" +
+                    "<p>A grandes rasgos, eso es todo lo que os quiero decir para que sepáis de qué va esto. Seguro que me dejo algo, (también me pasa cuando voy al súper).</p>" +
+                    "<p>Bueno, no me enrollo +, y os dejo que naveguéis por aquí y por allá a vuestro antojo.</p>" +
+                    "<p>Sed tod@s bienvenidos al blog. Me alegro muchísimo de que me acompañéis. Yo también me siento acompañado y valoro mucho que invirtáis una parte de vuestro tiempo en visitar mi espacio.</p>" +
+                    "<p>Gracias.</p>"
+            },
+            'art-pensamientos-prueba': {
+                title: "EL PENSAR SI OCUPA LUGAR",
+                meta: "24 SEPTIEMBRE 2026 · Sobre papel",
+                content: 
+                    "<p>En esta sección, me dedicaré a escribir <strong>pensamientos, ocurrencias y reflexiones íntimas</strong> que quiera explicar o comentar. Algunas veces, será simplemente para eso, un comentario sin más.</p>" +
+                    "<p>Otras veces serán <strong>opiniones personales</strong> que tenga de algo que me pasó, o que me acaba de pasar.</p>" +
+                    "<p>Ya veremos cómo irá y respira esta sección.</p>" +
+                    "<p>Es de lo que va a tratar este pequeño apartado. Comentarios sueltos que a veces escribiré por estos lares.</p>" +
+                    "<p>Por supuesto como veis en la foto adjunta con mi mano izquierda. Tengo más desarrollado mi lado derecho del cerebro. Como tod@s los zurdos.</p>"
+            },
+            'art-pensamientos-acordeon': {
+                title: "Música en el blog, agradecimientos y el arte del acordeón",
+                meta: "10 OCTUBRE 2026 · REFLEXIÓN",
+                content: 
+                    "<p>En este primer artículo de esta sección, solamente quiero agradecer a todos los que alguna vez, o siempre, entráis aquí para leerme y ver qué comparto con todos vosotros.</p>" +
+                    "<p>También quiero aprovechar para agradecer al compositor del trozo de canción que he puesto para que suene cuando interactuáis en el blog. Se trata del compositor <strong>Andrii Hroza (andriih)</strong>.</p>" +
+                    "<h2>El acordeón: un instrumento lleno de sentimiento</h2>" +
+                    "<p>Si os fijáis bien y afináis el oído, el instrumento principal de esa canción es el acordeón. Me gusta mucho el sonido que genera. Cuando se entremezcla con otros instrumentos, suelen salir canciones verdaderamente con mucho sentimiento y mensaje.</p>" +
+                    "<p>Las personas que lo tocan tienen una gran coordinación y habilidad para hacerse con este instrumento. Aparentemente parece sencillo, pero los entendidos en música aseguran lo complicado que es. Sacarle todo el potencial y transmitir a través de él no parece tarea fácil.</p>" +
+                    "<p>Mi admiración a tod@s los que sabéis tocar un instrumento como este. A mí me hubiera gustado tocar alguno, pero por ahora no he tenido la oportunidad. No descarto algún día poder hacerlo. Es complicado, pero nunca se puede decir que algo improbable no vaya a ocurrir. Cosas más extrañas han sucedido, así que no lo descarto.</p>" +
+                    "<h2>Detalles de la pista de audio</h2>" +
+                    "<p>Por último, os dejo la información técnica y los créditos del tema que suena en el blog:</p>" +
+                    "<ul>" +
+                    "  <li><strong>Archivo:</strong> <code>andriih-france-french-coffee-585919.mp3</code></li>" +
+                    "  <li><strong>Título de la obra:</strong> \"France French Coffee\" (música libre de derechos)</li>" +
+                    "  <li><strong>Compositor:</strong> Andrii Hroza (registrado en BMI con el número IPI 1336772239)</li>" +
+                    "  <li><strong>Género / Estilo:</strong> Jazz suave (música típica de ambiente para cafetería francesa)</li>" +
+                    "  <li><strong>Plataforma de descarga:</strong> Pixabay Music</li>" +
+                    "</ul>" +
+                    "<p>En esa página podréis descubrir más música libre de copyright de autores tan talentosos como el que hoy comparto con vosotros.</p>" +
+                    "<p>Saludos y hasta otra. ¡Gracias por estar ahí!</p>"
+            },
+            'art-ciencia-blanco-24': {
+                title: "<span translate=\"no\" class=\"notranslate\" style=\"color: var(--accent);\">Sagan</span><span translate=\"no\" class=\"notranslate\" style=\"color: var(--blue-btn);\">eando</span>",
+                meta: "24 SEPTIEMBRE 2026 · CIENCIA",
+                content: 
+                    "<p>En los años 80 nos deleitaste con una serie, que cuando acababas de ver el capítulo por la televisión, tenías una extraña sensación. La de ser una diminuta mota de polvo en comparación con el infinito&nbsp;<strong><span translate=\"no\" class=\"notranslate\">COSMOS</span></strong>&nbsp;que nos rodea.</p>" +
+                    "<p>Por eso, y por otras razones, no olvidamos los de esa generación la másterclass que nos dabas a través de la pantalla.</p>" +
+                    "<p>Así que, aunque hay muchos <strong>divulgadores científicos</strong> a los que admirar, te dedico a tí el título de esta sección. Siempre he admirado tú forma de transmitir y ver el mundo.</p>" +
+                    "<p>Aquí hablaremos de lo que te gustaba: de la <strong>ciencia</strong>. Esa materia que tanto nos fascina.</p>" +
+                    "<p>En la foto del artículo, vemos a la izquierda a&nbsp;<span translate=\"no\" class=\"notranslate\">Murray</span>&nbsp;. A su derecha&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Carl Sagan</span></strong>&nbsp;.</p>" +
+                    "<p>Ambos observan un mapa de&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Marte</span></strong>&nbsp;. La fotografía fue tomada en 1976 en la oficina de&nbsp;<span translate=\"no\" class=\"notranslate\">Murray</span>&nbsp;, mientras&nbsp;<span translate=\"no\" class=\"notranslate\">Sagan</span>&nbsp;vivía en&nbsp;<span translate=\"no\" class=\"notranslate\">Pasadena</span>&nbsp;y trabajaba en la misión&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Viking</span></strong>&nbsp;.</p>" +
+                    "<p>Fuente:&nbsp;<span translate=\"no\" class=\"notranslate\">NASA/JPL</span>&nbsp;.</p>" +
+                    "<p>Agradecimientos:&nbsp;<span translate=\"no\" class=\"notranslate\">Wikimedia Commons</span>&nbsp;.</p>"
+            },
+            'art-ciencia-theia': {
+                title: "<strong>THEIA</strong>, o el origen de la <strong>LUNA</strong>: ¿Y si te dijera que nació de un choque colosal?",
+                meta: "6 OCTUBRE 2026 · CIENCIA",
+                modalImg: "https://i.ibb.co/vGWrLfC/Origen-Lunar.jpg",
+                content: 
+                    "<p>Hace millones de años, la historia de nuestro hogar pudo haber terminado antes de empezar. O al menos, eso dice la <strong>teoría científica</strong> más aceptada por la comunidad actual sobre el <strong>origen de la Luna</strong>.</p>" +
+                    "<p>Imagina la <strong>Tierra</strong> en sus primeros tiempos: un planeta todavía en formación, sin atmósfera, candente y vulnerable. En ese escenario, un <strong>protoplaneta</strong> (un cuerpo celeste formado por la acumulación de polvo, hielo y materiales espaciales) se cruzó en su camino.</p>" +
+                    "<p>El <strong>impacto</strong> fue descomunal.</p>" +
+                    "<p>La <strong>colisión</strong> fue tan brutal que los materiales de ambos cuerpos celestes se fusionaron parcialmente, y un trozo gigantesco salió despedido hacia el espacio exterior.</p>" +
+                    "<p>Aquel inmenso fragmento atrapado por la gravedad consiguió estabilizar su órbita alrededor de la <strong>Tierra</strong>, convirtiéndose en nuestro <strong>satélite natural</strong>: la <strong>Luna</strong>.<br>Consiguió tener una mezcla muy peculiar:<br>Materia de <strong>Theia</strong> y materia de nuestro planeta.</p>" +
+                    "<p>Pero este choque no solo nos regaló compañía nocturna. Aquella catástrofe cósmica también provocó la <strong>inclinación del eje terrestre</strong> de 23.5 grados, la auténtica responsable de que disfrutemos de los <strong>cambios estacionales</strong> a lo largo del año. Sin ese impacto, la <strong>Tierra</strong> sería un lugar completamente diferente en todos los sentidos. Si nos estresa la vida con 24 h, ¿os imagináis vivir en un día de 6 horas? Yo no.</p>" +
+                    "<p>Alzar la vista de vez en cuando hacia el cielo y contemplar la <strong>Luna</strong> es muchas veces un acto de romanticismo; es la luz que nos guía cuando todo alrededor es frío y oscuro. Nuestro faro natural. La luz reflejada del Sol.<br>Pero su papel como “escudo” y <strong>estabilizador orbital</strong> ha sido vital para la existencia misma de la vida tal como la conocemos.</p>" +
+                    "<p>¿Te has llegado a preguntar alguna vez cómo sería nuestro planeta si un día la <strong>Luna</strong> desapareciera por completo?</p>" +
+                    "<p>En el siguiente vídeo tienes la respuesta detallada, y no serían buenas noticias.</p>" +
+                    "<p>Este enlace de vídeo es cortesía del canal de YouTube de elopezch27.</p>" +
+                    "<p><a href=\"https://youtu.be/9GfHJgiURxE\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Ver vídeo en YouTube ➔</a></p>" +
+                    "<p>Nos vemos en el siguiente capítulo.</p>" +
+                    "<p>¡Ah, por cierto! He incorporado nuestro <strong>satélite</strong> en el fondo de pantalla. Ahora ya está orbitando alrededor de la <strong>Tierra</strong>.<br>Qué mejor momento de incorporarlo que hoy, ya que hablamos de él.</p>" +
+                    "<p>Hasta pronto. En ésta o en otra sección. Ya veremos.</p>"
+            },
+            'art-musica-secretos': {
+                title: "Hoy algo ha empezado",
+                meta: "24 SEPTIEMBRE 2026 · RECOMENDACIÓN",
+                content: 
+                    "<p>Hoy inauguro todo este tinglado que me he montado.</p>" +
+                    "<p>Le he dado bastantes vueltas a qué canción pinchar para empezar.</p>" +
+                    "<p>Y me ha decidido por el grupo madrileño de&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Los Secretos</span></strong>&nbsp;.</p>" +
+                    "<p>Hace unos meses la escuché en una emisora muy pequeñita que emite por internet. Era la <strong>versión acústica</strong>, como la que os pongo hoy. La verdad es que con una orquesta al lado me sonó como nunca. Me caló tan hondo esta combinación, que hoy os la traigo como la primera que pongo por aquí.</p>" +
+                    "<p>Quiero agradecer a esas emisoras de <strong>radio online</strong> que sirven para darnos buena compañía y nos sorprenden con versiones que a veces desconocemos.</p>" +
+                    "<p>El enlace que comparto es el del canal oficial de&nbsp;<span translate=\"no\" class=\"notranslate\">Los Secretos</span>&nbsp;, que aunque no creo que nunca lean esto, les mando un fuerte abrazo por hacernos sentir tanto con canciones como esta.</p>" +
+                    "<p>Si queréis investigar por vuestra cuenta este grupo o su historia, tenéis mucha información por la red.</p>" +
+                    "<p>Yo, como he dicho en la presentación, me dedicaré a dar una pincelada breve del tema. El resto corre por vuestra cuenta, de las ganas que tengáis de conocer lo que por aquí os iré poniendo.</p>"
+            },
+            'art-musica-wangok': {
+                title: "Música de <strong>China</strong> con alma <strong>Disney</strong>: La sorpresa del <strong>grupo OK</strong>",
+                meta: "3 OCTUBRE 2026 · RECOMENDACIÓN",
+                content: 
+                    "<p>Hoy os traigo un <strong>descubrimiento musical</strong> increíble directo desde <strong>China</strong>. Una canción con un toque mágico y entrañable que parece sacada de una película de <strong>Disney</strong>.</p>" +
+                    "<p>(A continuación, el texto para mis seguidores asiáticos).</p>" +
+                    "<p>有些艺术家总是能带给我们惊喜。今天带给大家的这首歌，我非常高兴能与你们分享。</p>" +
+                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”，不如说他们本来就在那里。</p>" +
+                    "<p>如果有人问我这首歌出自哪部电影的原声带，我一定会毫不犹豫地回答：是<strong>迪士尼</strong>的歌曲。</p>" +
+                    "<p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由<strong>华特</strong>先生以及后来他的动画工厂带给我们的经典电影记忆。</p>" +
+                    "<p>请大家亲自听一听，然后告诉我你们是否也有同感。</p>" +
+                    "<p>向 <strong>OK 乐队</strong>致以热烈的祝贺。你们把这首作品演绎得太完美了。</p>" +
+                    "<p>祝你们未来取得更多成功。</p>" +
+                    "<p>感谢该乐队以及 <strong>제프조이 JEFFJOY</strong> 频道，今天我在这里分享并链接了他们的这首歌曲。</p>" +
+                    "<p>Nos vemos en la siguiente publicación. Un fuerte abrazo.</p>" +
+                    "<p><a href=\"https://youtu.be/orqjiuJWiF8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escuchar enlace original en YouTube ➔</a></p>"
+            },
+            'art-musica-rumbacatalana': {
+                title: "Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic",
+                meta: "8 OCTUBRE 2026 · RECOMENDACIÓN",
+                modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg",
+                content: 
+                    "<p>Dar una pincelada a un <strong>estilo musical</strong> de tu tierra siempre es de buen gusto. Eso es exactamente lo que hizo el cantautor <strong>Alfred Garcia</strong> con su canción <em>«Rumba Catalana»</em>, dando visibilidad a un género que nació en el siglo pasado. Y de esto ha llovido bastante.</p>" +
+                    "<p><em>(A partir de aquí, pasamos al catalán):</em></p>" +
+                    "<h2>Origen de la <strong>rumba catalana</strong></h2>" +
+                    "<p>La rumba catalana va néixer de la fusió de diferents barreges alhora. Allà per les dècades dels quaranta i cinquanta del segle XX, arribaven a Catalunya moltes bandes de Llatinoamèrica amb ritmes i música innovadora. Entre altres, els ritmes cubans.</p>" +
+                    "<p>Els artistes gitanos d’aquella època van agafar tots aquests ritmes per donar-los un estil propi. Una barreja única al món que va permetre crear aquest nou estil musical: la <strong>rumba catalana</strong>.</p>" +
+                    "<h2>Alfred Garcia i les seves arrels</h2>" +
+                    "<p>Alfred García té arrels familiars i amics dins d'aquest gènere i estil musical. Es nota que ha volgut i ha aconseguit plasmar totalment la força de la rumba amb aquesta cançó.</p>" +
+                    "<p>M’agrada molt el treball que has fet en aquesta cançó, Alfred.<br>Gràcies per sumar-te a grups que han posat de nou la rumba catalana a la primera línia de la graella.</p>" +
+                    "<p>Us deixo l'enllaç directe a la cançó:</p>" +
+                    "<p><a href=\"https://youtu.be/PUSSbuGhNnQ\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escolta «Rumba Catalana» d'Alfred Garcia a YouTube ➔</a></p>" +
+                    "<p>I un altre enllaç amb una entrevista força interessant que li van fer al canal <strong>El Sentido de la Birra</strong>:</p>" +
+                    "<p><a href=\"https://youtu.be/5jpniQRrMUQ?=PCKSe2WREm6ugQJP\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Veure entrevista a Alfred Garcia a El Sentido de la Birra ➔</a></p>" +
+                    "<p>Desde aquí també li llanço una salutació a aquest canal.</p>"
+            },
+            'art-lugares-universo': {
+                title: "CADA PERSONA ENCIERRA SU PROPIO UNIVERSO",
+                meta: "24 SEPTIEMBRE 2026 · VIVENCIAS",
+                content: 
+                    "<p>Es uno de mis <strong>pensamientos recurrentes</strong>.</p>" +
+                    "<p>Las miles de historias que se pierden por el camino de cada vida y nunca serán contadas. Quizá porque el que lo vivió no le dio ningún tipo de importancia. O sí, pero nadie le prestó la suficiente atención para que ese recuerdo perdurara en el tiempo.</p>" +
+                    "<p>En esta sección iré comentando <strong>vivencias, anécdotas e historias propias</strong>, o que me han contado durante mi vida.</p>" +
+                    "<p>Las cosas que todavía están grabadas en la memoria, y de ahí no han salido. Porque simplemente nunca las escribiste, ni quizá lo hagas nunca.</p>" +
+                    "<p>Precisamente eso es lo que quiero que sea esta sección. <strong>Memoria viva escrita</strong>. Ni más, ni menos.</p>"
+            },
+            'art-lugares-eugenio-c': {
+                title: '<span translate="no" class="notranslate">DE SANTOS A BARCELONA</span>',
+                meta: "1 OCTUBRE 2026 · MEMORIA VIVA",
+                content: 
+                    "<p>Soy fruto de la combinación extraña de <strong>dos continentes</strong>.</p>" +
+                    "<p>Entre el ritmo de <strong>Brasil</strong> y el abrazo cosmopolita de <strong>Barcelona</strong>.</p>" +
+                    "<p>Hay biografías que no caben en un solo mapa. La mía comenzó mucho antes de que yo abriera los ojos; empezó bajo el latido cálido, el ritmo y la luz vibrante de <strong>Brasil</strong>. Allí fui concebido: donde se plantó la primera semilla de mi existencia.</p>" +
+                    "<p>En un país de tierra roja, de aire espeso y mestizaje de culturas.</p>" +
+                    "<p>Sin embargo, mi llegada al mundo estaba destinada a otro escenario.</p>" +
+                    "<p>Mis padres, a través de un largo viaje, partiendo desde el puerto de la ciudad de <strong>Santos</strong> (allá por 1968), embarcaron con mi hermano y mi hermana en el transatlántico de nombre: <strong>Eugenio C</strong>.</p>" +
+                    "<p>Y en el año lunático por excelencia: <strong>1969</strong>, nací en <strong>Barcelona</strong>, entre el mar y la montaña. Entre el Mediterráneo y la cordillera de Collserola.</p>" +
+                    "<p>Llevar este <strong>origen doble</strong> es, en el fondo, una forma de ser puente entre dos mundos. Llevo la calidez y el pulso tropical en la memoria invisible de mis orígenes, y el carácter innato que impregna nacer donde nací.</p>" +
+                    "<p>No pertenezco a un solo lugar; soy el resultado de un viaje que comenzó a miles de kilómetros de distancia.</p>" +
+                    "<p>Dos mundos que no se contradicen, sino que se abrazan en mi propio ser.</p>" +
+                    "<p>Y a principios de ese 1969, en vez de nacer en un Enero tropical y caluroso, nací en un invierno frío y lluvioso.</p>" +
+                    "<p>Quizá por esa mezcla extraña, siento que esos dos continentes son mi casa por igual. Y por eso, posiblemente, lo que llamamos destino es un misterio que difícilmente lleguemos nunca a descifrar...</p>"
+            },
+            'art-delantal-new': {
+                title: "Y TAN RICAMENTE",
+                meta: "24 SEPTIEMBRE 2026 · CON LOS 5 SENTIDOS",
+                content: 
+                    "<p>Vamos con esta sección. Andiamo!!</p>" +
+                    "<p>Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con cantidades de cada cosa. Como norma, no será así. Existirán excepciones.</p>" +
+                    "<p>Pero quiero enfocarlo más en ir variando de tema. De <strong>alimentación, productos gastronómicos</strong> o situaciones concretas que me encuentro en la cocina cuando me pongo al lío.</p>" +
+                    "<p>Alguna anécdota también caerá, no digo que no.</p>" +
+                    "<p>Como decía&nbsp;<span translate=\"no\" class=\"notranslate\">Mayra Gómez Kemp</span>&nbsp;, en el 1,2,3.... y hasta puedo leer.</p>" +
+                    "<p>¡Buen provecho!</p>"
+            },
+            'art-delantal-recuerdos': {
+                title: "La magia de los recuerdos gastronómicos: cuando un sabor te transporta al pasado",
+                meta: "13 OCTUBRE 2026 · CON LOS 5 SENTIDOS",
+                modalImg: "https://i.ibb.co/BHVZny80/Ratatouille.jpg",
+                content: 
+                    "<p>No cojas la báscula de cocina. No te voy a dar cantidades. Hoy no.<br>Tampoco te voy a dar ninguna receta. Hoy tampoco toca. Eso será otro día.</p>" +
+                    "<p>Hoy quiero hablarte de la relación que existe entre ese plato, o ese alimento que tanto te gusta, y los <strong>recuerdos</strong> que te trae.</p>" +
+                    "<p>Puede ser de varias formas o maneras.<br>Quizá sea cuando recuerdas ese <strong>olor saliendo de la cocina</strong>. Cuando seguramente tu madre lo estaba preparando y tú corrías hacia ella a preguntar si hoy había “eso” de comer.</p>" +
+                    "<p>Tal vez era ese sitio que entraste sin ninguna expectativa o pretensión y te metiste entre pecho y espalda un <strong>manjar</strong> que difícilmente esperabas, pero quedó grabado en tus sentidos. Como ese algo digno de ser repetido otro día.</p>" +
+                    "<p>Es curioso que cuando llega a ocurrir, ese <strong>sabor</strong>, ese <strong>olor</strong>, siempre lo acabas relacionando con un día, en un lugar y en una época muy concreta de tu vida.</p>" +
+                    "<p>Y creo que las veces que más nos transportamos mentalmente a épocas pasadas es precisamente con todo lo relacionado con nuestros <strong>recuerdos gastronómicos</strong>.</p>" +
+                    "<p>Mediante el gusto y el olfato mandamos señales directas a nuestra <strong>amígdala</strong> y al <strong>hipocampo</strong> de nuestro cerebro. Y es en ese preciso momento en que queda grabado en la memoria de cada persona.</p>" +
+                    "<p>Acordaros de la escena de la película <em>Ratatouille</em>, cuando el crítico gastronómico Antón Ego se le cae literalmente la cuchara de la mano al probar el plato que le sirven.<br>Eso ocurre involuntariamente.<br><strong>FLASH!!!</strong><br><strong>Sentidos → Cerebro → Recuerdos.</strong></p>" +
+                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Aunque tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
+                    "<p><strong>Sáltatelo</strong> al menos una sola vez al año.<br>Tus recuerdos y tu paladar te lo agradecerán infinitamente.</p>" +
+                    "<p>Ah, asegúrate de coger bien la cuchara o el tenedor, no sea que te pase como a Antón Ego.</p>" +
+                    "<p>¿Y a ti, cuál es ese plato que te transporta inmediatamente a otro momento de tu vida?</p>"
+            },
+            'art-sabias-new': {
+                title: "LAS IDEAS COMPARTIDAS SABEN MUCHO MEJOR",
+                meta: "24 SEPTIEMBRE 2026 · ENSEÑANZA SIN AULA",
+                content: 
+                    "<p>Existen <strong>ideas o trucos útiles</strong>, que cuando te los cuentan, a veces piensas: ¿Y cómo no se me habría ocurrido a mí?</p>" +
+                    "<p>En esta sección hablaremos de las que aparentemente son chorradas, y las que a mí personalmente, a veces me han sorprendido por su eficacia.</p>" +
+                    "<p>Tampoco es que tenga una chistera llena de trucos. Para eso ya estaba el gran mago&nbsp;<span translate=\"no\" class=\"notranslate\">Juan Tamaríz</span>&nbsp;, que manejaba la baraja de cartas como ninguno.</p>" +
+                    "<p>Buscaré compartir cosas que os sirvan en el día a día.</p>"
+            },
+            'art-sinpermiso-new': {
+                title: "IMPRESCINDIBLE",
+                meta: "24 SEPTIEMBRE 2026 · TECNOLOGIA",
+                content: 
+                    "<p>Está <strong>aplicación móvil</strong> me ha salvado de perderme auténticas joyas musicales, (siempre hablando desde mi punto de gusto personal).</p>" +
+                    "<p>Ya habrá tiempo de hablar en alguna sección de las artimañas que hacíamos para poder guardar algún trozo de canción, que a veces, tardaría años en volver a encontrarla en alguna emisora.</p>" +
+                    "<p>Con&nbsp;<strong><span translate=\"no\" class=\"notranslate\">SHAZAM</span></strong>&nbsp;, la verdad es que localizar el título y el artista, suele ser muy sencillo.</p>" +
+                    "<p>Otra cosa es que alguien, nos vea en alguna situación, intentando no perder la oportunidad de localizar una canción.</p>" +
+                    "<p>En alguna ocasión, he perdido la oportunidad de localizarla, porque la situación era tan cómica, que hasta tuve que disimular y desistir en el intento. Cuando lo pienso, todavía me entra la risa.</p>"
+            },
+            'art-encontré-bellissima': {
+                title: "<span translate=\"no\" class=\"notranslate\">ANNALISA</span>&nbsp;-&nbsp;<span translate=\"no\" class=\"notranslate\">BELLISSIMA</span>",
+                meta: "28 SEPTIEMBRE 2026 · DESCUBRIMIENTO",
+                content: 
+                    "<p><strong>Navegando y buscando joyas musicales por la red, me topé con este temazo que atrapa desde el primer segundo... (Versión en italiano a continuación):</strong></p>" +
+                    "<p>Navigando e cercando gemme in rete, mi sono imbattuto in questo pezzo fantastico che cattura fin dal primo secondo...</p>" +
+                    "<p>Si tratta di&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Bellissima</span></strong>&nbsp;, interpretata dalla grande cantautrice italiana&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Annalisa</span></strong>&nbsp;.</p>" +
+                    "<p>Anche se a un primo ascolto può sembrare un brano puramente energico e ballabile, il testo nasconde una grande intensità emotiva, affrontando gli alti e bassi dell'amore, la vulnerabilità e la necessità di riscoprire se stessi.</p>" +
+                    "<p>È di quelle canzoni che ti catturano fin dai primi accordi e che dimostrano l'incredibile forza vocale ed espressiva presente nell'attuale <strong>panorama pop italiano</strong>.</p>" +
+                    "<p>Me la sono trovata davanti quest'estate, mentre ero in vacanza. E anche se non è una novità, è stata comunque degna di aprire la mia applicazione e scoprire chi fosse.</p>" +
+                    "<p>Ringraziamenti al canale ufficiale, di cui abbiamo messo il link.</p>"
+            },
+            'art-estrellas-new': {
+                title: "No importa dónde están",
+                meta: "24 SEPTIEMBRE 2026 · OMNIPRESENTES",
+                content: 
+                    "<p>Ésta sección es para recordar aquellas personas que han dejado una profunda <strong>huella en la música</strong>.</p>" +
+                    "<p>Pero aquí quiero hacer una distinción. No me voy a regir por mencionar a leyendas de la música, únicamente porque sean leyendas.</p>" +
+                    "<p>Me explico. Aquí voy a mencionar las que son para mí mis leyendas, no para el mundo en general. Para eso, te vas a cualquier sitio de música y las encuentras rápido.</p>" +
+                    "<p>Las que me han marcado y dejado huella, ya sean vivas, como que ya estén en otra dimensión.</p>" +
+                    "<p>Porque tod@s tenemos las nuestras. Y aquí homenajearé a las mías.</p>"
+            },
+            'art-estrellas-jim-croce': {
+                title: "<span translate=\"no\" class=\"notranslate\">JIM CROCE</span>",
+                meta: "26 SEPTIEMBRE 2026 · LEYENDA DEL FOLK",
+                content: 
+                    "<p>Quiero comenzar esta sección recordando la figura del cantautor norteamericano de <strong>música folk</strong>&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Jim Croce</span></strong>&nbsp;. Referente absoluto del género.</p>" +
+                    "<p>Tan sólo publicó 4 álbumes entre los años 1966 y 1973. Precisamente, entre esos años, nací yo. Era único en plasmar en sus canciones situaciones cotidianas.</p>" +
+                    "<p>Esta canción que os recomiendo, no es la más conocida de él, pero, sin embargo, para mí, es la que más me gusta.</p>" +
+                    "<p>Marchó de su pueblo a la gran ciudad, pero nunca terminó de adaptarse, y a raíz de esa experiencia compuso esta canción:</p>" +
+                    "<p>\"<strong><span translate=\"no\" class=\"notranslate\">New York's Not My Home</span></strong>\".</p>" +
+                    "<p>Canción de su álbum del año 1972. In essa esprime perfettamente quella quella necessità di ritornare alle nostre radici quando il rumore e la voragine di una grande città come&nbsp;<span translate=\"no\" class=\"notranslate\">New York</span>&nbsp;diventano insopportabili.</p>" +
+                    "<p>Un día antes de lanzar el single titulado:</p>" +
+                    "<p>\"<strong><span translate=\"no\" class=\"notranslate\">I Got A Name</span></strong>\", desgraciadamente falleció en un accidente aéreo. Fue un 20 de septiembre del año 1973.</p>" +
+                    "<p>La avioneta que cogió para proseguir su gira musical, al despegar, se estrelló contra un árbol. Paradójicamente, era el único árbol que se encontraba cerca del aeropuerto.</p>" +
+                    "<p>No fue hasta hace relativamente poco que supe de su música. Gracias al cantante y compositor&nbsp;<span translate=\"no\" class=\"notranslate\">Guille Milkyway</span>&nbsp;, que lo recomendó en una emisora.</p>" +
+                    "<p>La parte instrumental consigue transmitir toda esa melancolía encerrada en la canción.</p>" +
+                    "<p>Como en esas tardes \"tontas\", en que quieres estar sentado en el sofá y ver cómo la lluvia del exterior de la ventana hace el resto.</p>" +
+                    "<p>Gracias por dejarnos temas como este, y tu legado musical. Corto, pero intenso.</p>" +
+                    "<p>Agradecimientos por el enlace de la canción y la carátula a YouTube, y al canal oficial del artista.</p>"
             }
-
-            var searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.onkeyup = function() {
-                    var q = searchInput.value.toLowerCase().trim();
-                    document.querySelectorAll('.post').forEach(function(post) {
-                        var text = post.innerText.toLowerCase();
-                        if (q === "") {
-                            post.style.display = post.classList.contains('hidden-archive') ? 'none' : 'flex';
-                        } else {
-                            post.style.display = text.includes(q) ? 'flex' : 'none';
-                        }
-                    });
-                };
-            }
-
-            var baseMinima = 288;
-            var visitasAlmacenadas = localStorage.getItem('blog_visitas_totales');
-            var totalVisitas = visitasAlmacenadas ? parseInt(visitasAlmacenadas, 10) : baseMinima;
-            if (!sessionStorage.getItem('visita_registrada')) {
-                totalVisitas += 1;
-                localStorage.setItem('blog_visitas_totales', totalVisitas);
-                sessionStorage.setItem('visita_registrada', 'true');
-            }
-            var counterEl = document.getElementById('counterValue');
-            if (counterEl) counterEl.innerText = Math.max(baseMinima, totalVisitas);
-
-            initPoolCanvas();
-            initEarthCanvas();
-            initCosmosCanvas();
-        }
-
-        // --- 1. Partículas flotantes de colores para #lugares (Memoria viva) ---
-        function initPoolCanvas() {
-            var canvas = document.getElementById('poolCanvas');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var width, height;
-            var particles = [];
-            var colors = ['#e64b35', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
-
-            function resize() {
-                width = canvas.width = canvas.offsetWidth;
-                height = canvas.height = canvas.offsetHeight;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            for (var i = 0; i < 50; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    r: 2 + Math.random() * 3.5,
-                    vx: (Math.random() - 0.5) * 0.6,
-                    vy: (Math.random() - 0.5) * 0.6,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    alpha: 0.3 + Math.random() * 0.5
-                });
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-
-                particles.forEach(function(p) {
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0) p.x = width;
-                    if (p.x > width) p.x = 0;
-                    if (p.y < 0) p.y = height;
-                    if (p.y > height) p.y = 0;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.globalAlpha = p.alpha;
-                    ctx.fill();
-                    ctx.globalAlpha = 1.0;
-                });
-
-                requestAnimationFrame(draw);
-            }
-            requestAnimationFrame(draw);
-        }
-
-        // --- 2. Earth, Moon & Shooting Stars for #ciencia ---
-        function initEarthCanvas() {
-            var canvas = document.getElementById('earthCanvas');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var width, height;
-            var rotation = 0;
-            var moonAngle = 0;
-            var stars = [];
-            var shootingStars = [];
-
-            function resize() {
-                width = canvas.width = canvas.offsetWidth;
-                height = canvas.height = canvas.offsetHeight;
-                stars = [];
-                for (var i = 0; i < 150; i++) {
-                    stars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        r: Math.random() * 1.5,
-                        alpha: 0.3 + Math.random() * 0.7,
-                        twinkle: Math.random() * Math.PI * 2
-                    });
-                }
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            function spawnShootingStar() {
-                if (Math.random() > 0.98 && shootingStars.length < 2) {
-                    shootingStars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height * 0.5,
-                        len: 50 + Math.random() * 60,
-                        speed: 7 + Math.random() * 4,
-                        angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2,
-                        life: 1
-                    });
-                }
-            }
-
-            function drawEarth(cx, cy, radius, rot) {
-                var glow = ctx.createRadialGradient(cx, cy, radius * 0.7, cx, cy, radius * 1.4);
-                glow.addColorStop(0, 'rgba(80, 160, 255, 0)');
-                glow.addColorStop(0.7, 'rgba(60, 140, 255, 0.1)');
-                glow.addColorStop(1, 'rgba(30, 100, 220, 0)');
-                ctx.beginPath();
-                ctx.arc(cx, cy, radius * 1.4, 0, Math.PI * 2);
-                ctx.fillStyle = glow;
-                ctx.fill();
-
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-                ctx.clip();
-
-                var ocean = ctx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.3, 0, cx, cy, radius);
-                ocean.addColorStop(0, '#3a8fd0');
-                ocean.addColorStop(0.6, '#1a5f9e');
-                ocean.addColorStop(1, '#0d3a6b');
-                ctx.fillStyle = ocean;
-                ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
-
-                ctx.translate(cx, cy);
-                ctx.rotate(rot);
-                ctx.fillStyle = 'rgba(60, 140, 70, 0.85)';
-
-                ctx.beginPath();
-                ctx.ellipse(-radius * 0.15, -radius * 0.1, radius * 0.28, radius * 0.45, 0.2, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.ellipse(radius * 0.55, 0, radius * 0.18, radius * 0.55, -0.3, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.ellipse(-radius * 0.55, -radius * 0.25, radius * 0.35, radius * 0.25, 0.4, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
-                ctx.beginPath();
-                ctx.ellipse(radius * 0.1, -radius * 0.35, radius * 0.4, radius * 0.12, 0.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.restore();
-
-                var light = ctx.createRadialGradient(cx - radius * 0.4, cy - radius * 0.35, 0, cx, cy, radius);
-                light.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
-                light.addColorStop(0.5, 'rgba(0, 0, 0, 0)');
-                light.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
-                ctx.beginPath();
-                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-                ctx.fillStyle = light;
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-                ctx.strokeStyle = 'rgba(140, 200, 255, 0.4)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            }
-
-            function drawMoon(cx, cy, earthRadius) {
-                var orbitRadius = earthRadius * 2.2;
-                moonAngle += 0.003;
-                var moonX = cx + Math.cos(moonAngle) * orbitRadius;
-                var moonY = cy + Math.sin(moonAngle) * (orbitRadius * 0.5);
-
-                ctx.beginPath();
-                ctx.arc(moonX, moonY, 9, 0, Math.PI * 2);
-                var moonGrad = ctx.createRadialGradient(moonX - 3, moonY - 3, 1, moonX, moonY, 9);
-                moonGrad.addColorStop(0, '#e2e8f0');
-                moonGrad.addColorStop(0.7, '#94a3b8');
-                moonGrad.addColorStop(1, '#475569');
-                ctx.fillStyle = moonGrad;
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-                ctx.lineWidth = 1;
-                ctx.stroke();
-            }
-
-            function draw(t) {
-                ctx.clearRect(0, 0, width, height);
-
-                ctx.fillStyle = '#000008';
-                ctx.fillRect(0, 0, width, height);
-
-                stars.forEach(function(s) {
-                    var a = s.alpha * (0.5 + 0.5 * Math.sin(t * 0.002 + s.twinkle));
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(255, 255, 255, ' + a + ')';
-                    ctx.fill();
-                });
-
-                spawnShootingStar();
-                for (var i = shootingStars.length - 1; i >= 0; i--) {
-                    var ss = shootingStars[i];
-                    ss.x += Math.cos(ss.angle) * ss.speed;
-                    ss.y += Math.sin(ss.angle) * ss.speed;
-                    ss.life -= 0.015;
-
-                    if (ss.life <= 0) {
-                        shootingStars.splice(i, 1);
-                        continue;
-                    }
-
-                    var tailX = ss.x - Math.cos(ss.angle) * ss.len;
-                    var tailY = ss.y - Math.sin(ss.angle) * ss.len;
-
-                    var grd = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
-                    grd.addColorStop(0, 'rgba(255, 255, 255, ' + ss.life + ')');
-                    grd.addColorStop(1, 'rgba(180, 200, 255, 0)');
-                    ctx.beginPath();
-                    ctx.moveTo(ss.x, ss.y);
-                    ctx.lineTo(tailX, tailY);
-                    ctx.strokeStyle = grd;
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                }
-
-                rotation += 0.002;
-                var cx = width * 0.5;
-                var cy = height * 0.52;
-                var radius = Math.min(width, height) * 0.26;
-
-                drawEarth(cx, cy, radius, rotation);
-                drawMoon(cx, cy, radius);
-
-                requestAnimationFrame(draw);
-            }
-            requestAnimationFrame(draw);
-        }
-
-        // --- 3. Cosmos / Starfield for #sobre ---
-        function initCosmosCanvas() {
-            var canvas = document.getElementById('cosmosCanvas');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var width, height;
-            var stars = [];
-            var shootingStars = [];
-
-            function resize() {
-                width = canvas.width = canvas.offsetWidth;
-                height = canvas.height = canvas.offsetHeight;
-                stars = [];
-                for (var i = 0; i < 180; i++) {
-                    stars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        r: Math.random() * 1.6,
-                        alpha: 0.2 + Math.random() * 0.8,
-                        speed: 0.05 + Math.random() * 0.15,
-                        twinkle: Math.random() * Math.PI * 2
-                    });
-                }
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            function spawnShootingStar() {
-                if (Math.random() > 0.985 && shootingStars.length < 2) {
-                    shootingStars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height * 0.4,
-                        len: 40 + Math.random() * 60,
-                        speed: 6 + Math.random() * 5,
-                        angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
-                        life: 1
-                    });
-                }
-            }
-
-            function draw(t) {
-                ctx.fillStyle = 'rgba(2, 4, 18, 0.25)';
-                ctx.fillRect(0, 0, width, height);
-
-                stars.forEach(function(s) {
-                    s.y += s.speed;
-                    if (s.y > height) {
-                        s.y = 0;
-                        s.x = Math.random() * width;
-                    }
-                    var a = s.alpha * (0.6 + 0.4 * Math.sin(t * 0.003 + s.twinkle));
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(220, 230, 255, ' + a + ')';
-                    ctx.fill();
-                });
-
-                spawnShootingStar();
-                for (var i = shootingStars.length - 1; i >= 0; i--) {
-                    var ss = shootingStars[i];
-                    ss.x += Math.cos(ss.angle) * ss.speed;
-                    ss.y += Math.sin(ss.angle) * ss.speed;
-                    ss.life -= 0.015;
-
-                    if (ss.life <= 0) {
-                        shootingStars.splice(i, 1);
-                        continue;
-                    }
-
-                    var tailX = ss.x - Math.cos(ss.angle) * ss.len;
-                    var tailY = ss.y - Math.sin(ss.angle) * ss.len;
-
-                    var grd = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
-                    grd.addColorStop(0, 'rgba(255, 255, 255, ' + ss.life + ')');
-                    grd.addColorStop(1, 'rgba(180, 200, 255, 0)');
-                    ctx.beginPath();
-                    ctx.moveTo(ss.x, ss.y);
-                    ctx.lineTo(tailX, tailY);
-                    ctx.strokeStyle = grd;
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                }
-
-                requestAnimationFrame(draw);
-            }
-
-            ctx.fillStyle = '#020412';
-            ctx.fillRect(0, 0, width, height);
-            requestAnimationFrame(draw);
-        }
+        };
     </script>
 </body>
 </html>
