@@ -1,1 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+const posts = await getCollection('posts');
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algo + que Música y Radio | Vivencias, Reflexiones y Recuerdos</title>
+    <meta name="description" content="Un espacio personal de música, vivencias, ciencia y reflexiones íntimas.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap');
+        :root {
+            --bg:#f5f2ec;
+            --ink:#171717;
+            --muted:#6e6a63;
+            --accent:#e64b35;
+            --card:#ffffff;
+            --line:#ddd7cc;
+        }
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.5;padding:40px 7vw;}
+        h1{font-family:"Space Grotesk",sans-serif;font-size:2.5rem;margin-bottom:20px;}
+        .grid{display:flex;flex-wrap:wrap;gap:24px;}
+        .post{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;width:100%;max-width:380px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+        .cover{height:180px;background-size:cover;background-position:center;}
+        .content{padding:20px;}
+        small{color:var(--muted);font-size:.72rem;font-weight:700;text-transform:uppercase;}
+        h3{font-size:1.2rem;margin:8px 0;}
+        p{color:var(--muted);font-size:.9rem;margin-bottom:14px;}
+        .read-more{display:inline-block;color:var(--accent);font-weight:700;text-decoration:none;}
+        .read-more:hover{text-decoration:underline;}
+    </style>
+</head>
+<body>
+    <h1>Algo <span style="color:var(--accent)">+</span> que Música y Radio</h1>
+    <p>Publicaciones con páginas físicas independientes para SEO:</p>
+    
+    <div class="grid">
+        {posts.map(post => (
+            <article class="post">
+                {post.data.modalImg && (
+                    <div class="cover" style={`background-image: url(${post.data.modalImg})`}></div>
+                )}
+                <div class="content">
+                    <small>{post.data.category ? post.data.category : 'BLOG'}</small>
+                    <h3>{post.data.title}</h3>
+                    <p>{post.data.description}</p>
+                    <a class="read-more" href={`/ALGO-/posts/${post.slug}/`}>Seguir leyendo →</a>
+                </div>
+            </article>
+        ))}
+    </div>
+</body>
+</html>
 
