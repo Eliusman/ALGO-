@@ -1939,9 +1939,9 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             initCosmos();
         });
 
-        window.addEventListener('DOMContentLoaded', () => {
+        // FUNCIONALIDAD DE INICIALIZACIÓN GARANTIZADA PARA ASTRO
+        function initAll() {
             organizarSeccionesYArchivos();
-
             renderCalendar();
             initEarthCanvas();
             drawEarthCanvas();
@@ -1961,8 +1961,15 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             }
 
             let valorFinal = Math.max(baseMinima, totalVisitas);
-            document.getElementById('counterValue').innerText = valorFinal;
-        });
+            const counterElem = document.getElementById('counterValue');
+            if (counterElem) counterElem.innerText = valorFinal;
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAll);
+        } else {
+            initAll();
+        }
 
         function openModal(articleKey, buttonElement) {
             const modal = document.getElementById('articleModal');
@@ -2152,7 +2159,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg",
                 content: 
                     "<p>Dar una pincelada a un <strong>estilo musical</strong> de tu tierra siempre es de buen gusto. Eso es exactamente lo que hizo el cantautor <strong>Alfred Garcia</strong> con su canción <em>«Rumba Catalana»</em>, dando visibilidad a un género que nació en el siglo pasado. Y de esto ha llovido bastante.</p>" +
-                    "<p><em>(A partir de aquí, pasamos al catalán):</em></p>" +
+                    "<p><em>(A partir de hier, pasamos al catalán):</em></p>" +
                     "<h2>Origen de la <strong>rumba catalana</strong></h2>" +
                     "<p>La rumba catalana va néixer de la fusió de diferents barreges alhora. Allà per les dècades dels quaranta i cinquanta del segle XX, arribaven a Catalunya moltes bandes de Llatinoamèrica amb ritmes i música innovadora. Entre altres, els ritmes cubans.</p>" +
                     "<p>Els artistes gitanos d’aquella època van agafar tots aquests ritmes per donar-los un estil propi. Una barreja única al món que va permetre crear aquest nou estil musical: la <strong>rumba catalana</strong>.</p>" +
@@ -2210,4 +2217,78 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 content: 
                     "<p>No cojas la báscula de cocina. No te voy a dar cantidades. Hoy no.<br>Tampoco te voy a dar ninguna receta. Hoy tampoco toca. Eso será otro día.</p>" +
                     "<p>Hoy quiero hablarte de la relación que existe entre ese plato, o ese alimento que tanto te gusta, y los <strong>recuerdos</strong> que te trae.</p>" +
-                    "<p>Puede ser de varias formas o maneras.<br
+                    "<p>Puede ser de varias formas o maneras.<br>Quizá sea cuando recuerdas ese <strong>olor saliendo de la cocina</strong>. Cuando seguramente tu madre lo estaba preparando y tú corrías hacia ella a preguntar si hoy había “eso” de comer.</p>" +
+                    "<p>Tal vez era ese sitio que entraste sin ninguna expectativa o pretensión y te metiste entre pecho y espalda un <strong>manjar</strong> que difícilmente esperabas, pero quedó grabado en tus sentidos. Como ese algo digno de ser repetido otro día.</p>" +
+                    "<p>Es curioso que cuando llega a ocurrir, ese <strong>sabor</strong>, ese <strong>olor</strong>, siempre o casi siempre lo acabas relacionando con un día, en un lugar y en una época muy concreta de tu vida.</p>" +
+                    "<p>Y creo que las veces que más nos transportamos mentalmente a épocas pasadas es precisamente con todo lo relacionado con nuestros <strong>recuerdos gastronómicos</strong>.</p>" +
+                    "<p>Mediante el gusto y el olfato mandamos señales directas a nuestra <strong>amígdala</strong> y al <strong>hipocampo</strong> de nuestro cerebro. Y es en ese preciso momento en que queda grabado en la memoria de cada persona.</p>" +
+                    "<p>Acordaros de la escena de la película <em>Ratatouille</em>, cuando el crítico gastronómico Antón Ego se le cae literalmente la cuchara de la mano al probar el plato que le sirven.<br>Eso ocurre involuntariamente.<br><strong>FLASH!!!</strong><br><strong>Sentidos → Cerebro → Recuerdos.</strong></p>" +
+                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Aunque tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
+                    "<p><strong>Sáltatelo</strong> al menos una sola vez al año.<br>Tus recuerdos y tu paladar te lo agradecerán infinitamente.</p>" +
+                    "<p>Ah, asegúrate de coger bien la cuchara o el tenedor, no sea que te pase como a Antón Ego.</p>" +
+                    "<p>¿Y a ti, cuál es ese plato que te transporta inmediatamente a otro momento de tu vida?</p>"
+            },
+            'art-sabias-new': {
+                title: "LAS IDEAS COMPARTIDAS SABEN MUCHO MEJOR",
+                meta: "24 SEPTIEMBRE 2026 · ENSEÑANZA SIN AULA",
+                content: 
+                    "<p>Existen <strong>ideas o trucos útiles</strong>, que cuando te los cuentan, a veces piensas: ¿Y cómo no se me habría ocurrido a mí?</p>" +
+                    "<p>En esta sección hablaremos de las que aparentemente son chorradas, y las que a mí personalmente, a veces me han sorprendido por su eficacia.</p>" +
+                    "<p>Tampoco es que tenga una chistera llena de trucos. Para eso ya estaba el gran mago&nbsp;<span translate=\"no\" class=\"notranslate\">Juan Tamaríz</span>&nbsp;, que manejaba la baraja de cartas como ninguno.</p>" +
+                    "<p>Buscaré compartir cosas que os sirvan en el día a día.</p>"
+            },
+            'art-sinpermiso-new': {
+                title: "IMPRESCINDIBLE",
+                meta: "24 SEPTIEMBRE 2026 · TECNOLOGIA",
+                content: 
+                    "<p>Está <strong>aplicación móvil</strong> me ha salvado de perderme auténticas joyas musicales, (siempre hablando desde mi primer círculo de gusto personal).</p>" +
+                    "<p>Ya habrá tiempo de hablar en alguna sección de las artimañas que hacíamos para poder guardar algún trozo de canción, que a veces, tardaría años en volver a encontrarla en alguna emisora.</p>" +
+                    "<p>Con&nbsp;<strong><span translate=\"no\" class=\"notranslate\">SHAZAM</span></strong>&nbsp;, la verdad es que localizar el título y el artista, suele ser muy sencillo.</p>" +
+                    "<p>Otra cosa es que alguien, nos vea en alguna situación, intentando no perder la oportunidad de localizar una canción.</p>" +
+                    "<p>En alguna ocasión, he perdido la oportunidad de localizarla, porque la situación era tan cómica, que hasta tuve que disimular y desistir en el intento. Cuando lo pienso, todavía me entra la risa.</p>"
+            },
+            'art-encontré-bellissima': {
+                title: "<span translate=\"no\" class=\"notranslate\">ANNALISA</span>&nbsp;-&nbsp;<span translate=\"no\" class=\"notranslate\">BELLISSIMA</span>",
+                meta: "28 SEPTIEMBRE 2026 · DESCUBRIMIENTO",
+                content: 
+                    "<p><strong>Navegando y buscando joyas musicales por la red, me topé con este temazo que atrapa desde el primer segundo... (Versión en italiano a continuación):</strong></p>" +
+                    "<p>Navigando e cercando gemme in rete, mi sono imbattuto in questo pezzo fantastico che cattura fin dal primo secondo...</p>" +
+                    "<p>Si tratta di&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Bellissima</span></strong>&nbsp;, interpretata dalla grande cantautrice italiana&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Annalisa</span></strong>&nbsp;.</p>" +
+                    "<p>Anche se a un primo ascolto può sembrare un brano puramente energico e ballabile, il testo nasconde una grande intensità emotiva, affrontando gli alti e bassi dell'amore, la vulnerabilità e la necessità di riscoprire se stessi.</p>" +
+                    "<p>È di quelle canzoni che ti catturano fin dai primi accordi e che dimostrano l'incredibile forza vocale ed espressiva presente nell'attuale <strong>panorama pop italiano</strong>.</p>" +
+                    "<p>Me la sono trovata davanti quest'estate, mentre ero in vacanza. E anche se non è una novità, è stata comunque degna di aprire la mia applicazione e scoprire chi fosse.</p>" +
+                    "<p>Ringraziamenti al canale ufficiale, di cui abbiamo messo il link.</p>"
+            },
+            'art-estrellas-new': {
+                title: "No importa dónde están",
+                meta: "24 SEPTIEMBRE 2026 · OMNIPRESENTES",
+                content: 
+                    "<p>Ésta sección es para recordar aquellas personas que han dejado una profunda <strong>huella en la música</strong>.</p>" +
+                    "<p>Pero aquí quiero hacer una distinción. No me voy a regir por mencionar a leyendas de la música, únicamente porque sean leyendas.</p>" +
+                    "<p>Me explico. Aquí voy a mencionar las que son para mí mis leyendas, no para el mundo en general. Para eso, te vas a cualquier sitio de música y las encuentras rápido.</p>" +
+                    "<p>Las que me han marcado y dejado huella, ya sean vivas, como que ya estén en otra dimensión.</p>" +
+                    "<p>Porque tod@s tenemos las nuestras. Y aquí homenajearé a las mías.</p>"
+            },
+            'art-estrellas-jim-croce': {
+                title: "<span translate=\"no\" class=\"notranslate\">JIM CROCE</span>",
+                meta: "26 SEPTIEMBRE 2026 · LEYENDA DEL FOLK",
+                content: 
+                    "<p>Quiero comenzar esta sección recordando la figura del cantautor norteamericano de <strong>música folk</strong>&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Jim Croce</span></strong>&nbsp;. Referente absoluto del género.</p>" +
+                    "<p>Tan sólo publicó 4 álbumes entre los años 1966 y 1973. Precisamente, entre esos años, nací yo. Era único en plasmar en sus canciones situaciones cotidianas.</p>" +
+                    "<p>Esta canción que os recomiendo, no es la más conocida de él, pero, sin embargo, para mí, es la que más me gusta.</p>" +
+                    "<p>Marchó de su pueblo a la gran ciudad, pero nunca terminó de adaptarse, y a raíz de esa experiencia compuso esta canción:</p>" +
+                    "<p>\"<strong><span translate=\"no\" class=\"notranslate\">New York's Not My Home</span></strong>\".</p>" +
+                    "<p>Canción de su álbum del año 1972. In essa esprime perfettamente quella necessità di ritornare alle nostre radici quando il rumore e la voragine di una grande città come&nbsp;<span translate=\"no\" class=\"notranslate\">New York</span>&nbsp;diventano insopportabili.</p>" +
+                    "<p>Un día antes de lanzar el single titulado:</p>" +
+                    "<p>\"<strong><span translate=\"no\" class=\"notranslate\">I Got A Name</span></strong>\", desgraciadamente falleció en un accidente aéreo. Fue un 20 de septiembre del año 1973.</p>" +
+                    "<p>La avioneta que cogió para proseguir su gira musical, al despegar, se estrelló contra un árbol. Paradójicamente, era el único árbol que se encontraba cerca del aeropuerto.</p>" +
+                    "<p>No fue hasta hace relativamente poco que supe de su música. Gracias al cantante y compositor&nbsp;<span translate=\"no\" class=\"notranslate\">Guille Milkyway</span>&nbsp;, que lo recomendó en una emisora.</p>" +
+                    "<p>La parte instrumental consigue transmitir toda esa melancolía encerrada en la canción.</p>" +
+                    "<p>Como en esas tardes \"tontas\", en que quieres estar sentado en el sofá y ver cómo la lluvia del exterior de la ventana hace el resto.</p>" +
+                    "<p>Gracias por dejarnos temas como este, y tu legado musical. Corto, pero intenso.</p>" +
+                    "<p>Agradecimientos por el enlace de la canción y la carátula a YouTube, y al canal oficial del artista.</p>"
+            }
+        };
+    </script>
+</body>
+</html>
