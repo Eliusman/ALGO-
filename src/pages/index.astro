@@ -1,5 +1,5 @@
 ---
-// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (CALENDARIO CORREGIDO DEFINITIVO)
+// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (CALENDARIO Y HISTÓRICO CORREGIDOS)
 ---
 
 <!DOCTYPE html>
@@ -1246,56 +1246,39 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 if (btn) {
                     const hiddenCount = posts.length - 1;
                     const sectionId = container.getAttribute('data-section-id');
-                    if (hiddenCount > 0) {
-                        btn.style.display = 'inline-block';
-                        if (sectionId === 'musica') {
-                            btn.innerText = `Ver histórico de música (+${hiddenCount})`;
-                        } else if (sectionId === 'estrellas') {
-                            btn.innerText = `Ver histórico de estrellas (+${hiddenCount})`;
-                        } else if (sectionId === 'sinpermiso') {
-                            btn.innerText = `Ver histórico de lo encontré (+${hiddenCount})`;
-                        } else if (sectionId === 'lugares') {
-                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
-                        } else {
-                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
-                        }
+                    if (sectionId === 'musica') {
+                        btn.innerText = `Ver histórico de música (+${hiddenCount})`;
+                    } else if (sectionId === 'estrellas') {
+                        btn.innerText = `Ver histórico de estrellas (+${hiddenCount})`;
+                    } else if (sectionId === 'sinpermiso') {
+                        btn.innerText = `Ver histórico de lo encontré (+${hiddenCount})`;
+                    } else if (sectionId === 'lugares') {
+                        btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
                     } else {
-                        btn.style.display = 'inline-block';
-                        if (sectionId === 'musica') {
-                            btn.innerText = `Ver histórico de música (+0)`;
-                        } else if (sectionId === 'estrellas') {
-                            btn.innerText = `Ver histórico de estrellas (+0)`;
-                        } else if (sectionId === 'sinpermiso') {
-                            btn.innerText = `Ver histórico de lo encontré (+0)`;
-                        } else if (sectionId === 'lugares') {
-                            btn.innerText = `Ver artículos en histórico (+0)`;
-                        } else {
-                            btn.innerText = `Ver artículos en histórico (+0)`;
-                        }
+                        btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
                     }
                 }
             });
         }
 
-        // --- MAPA DINÁMICO DE PUBLICACIONES EXTRAÍDO DE LOS ARTÍCULOS ---
         const publishedPosts = {};
 
         function cargarFechasPublicadas() {
             const posts = document.querySelectorAll('.post');
             posts.forEach(post => {
-                const datetimeAttr = post.getAttribute('data-datetime'); // Ej: "2026-10-08 10:00"
-                const postId = post.id.replace('post-', ''); // Ej: "art-musica-rumbacatalana"
+                const datetimeAttr = post.getAttribute('data-datetime');
+                const postId = post.id.replace('post-', '');
                 const titleElem = post.querySelector('h3');
                 const title = titleElem ? titleElem.innerText : '';
 
                 if (datetimeAttr) {
-                    const dateKey = datetimeAttr.split(' ')[0]; // Extrae solo "2026-10-08"
+                    const dateKey = datetimeAttr.split(' ')[0];
                     publishedPosts[dateKey] = { id: postId, title: title };
                 }
             });
         }
 
-        let currentCalDate = new Date(2026, 9, 1); // Octubre 2026 (mes 9 en JS)
+        let currentCalDate = new Date(2026, 9, 1);
         const monthNames = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
@@ -1426,40 +1409,28 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             const hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
             const isCurrentlyExpanded = btn.innerText.includes('Ocultar');
             
-            if (isCurrentlyExpanded) {
-                hiddenPosts.forEach(post => {
+            hiddenPosts.forEach(post => {
+                if (isCurrentlyExpanded) {
                     post.style.display = 'none';
-                    post.classList.add('hidden-archive');
-                });
-                const totalHidden = hiddenPosts.length;
-                if (gridId === 'grid-musica') {
-                    btn.innerText = `Ver histórico de música (+${totalHidden})`;
-                } else if (gridId === 'grid-estrellas') {
-                    btn.innerText = `Ver histórico de estrellas (+${totalHidden})`;
-                } else if (gridId === 'grid-sinpermiso') {
-                    btn.innerText = `Ver histórico de lo encontré (+${totalHidden})`;
-                } else if (gridId === 'grid-lugares') {
-                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
                 } else {
-                    btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
-                }
-            } else {
-                if (hiddenPosts.length === 0) return;
-                hiddenPosts.forEach(post => {
                     post.style.display = 'flex';
-                    post.classList.remove('hidden-archive');
-                });
-                if (gridId === 'grid-musica') {
-                    btn.innerText = 'Ocultar histórico de música';
-                } else if (gridId === 'grid-estrellas') {
-                    btn.innerText = 'Ocultar histórico de estrellas';
-                } else if (gridId === 'grid-sinpermiso') {
-                    btn.innerText = 'Ocultar histórico de lo encontré';
-                } else if (gridId === 'grid-lugares') {
-                    btn.innerText = 'Ocultar históricos';
-                } else {
-                    btn.innerText = 'Ocultar históricos';
                 }
+            });
+
+            const totalHidden = hiddenPosts.length;
+            const sectionId = grid.parentElement.getAttribute('data-section-id') || '';
+
+            if (isCurrentlyExpanded) {
+                if (sectionId === 'musica') btn.innerText = `Ver histórico de música (+${totalHidden})`;
+                else if (sectionId === 'estrellas') btn.innerText = `Ver histórico de estrellas (+${totalHidden})`;
+                else if (sectionId === 'sinpermiso') btn.innerText = `Ver histórico de lo encontré (+${totalHidden})`;
+                else if (sectionId === 'lugares') btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+                else btn.innerText = `Ver artículos en histórico (+${totalHidden})`;
+            } else {
+                if (sectionId === 'musica') btn.innerText = 'Ocultar histórico de música';
+                else if (sectionId === 'estrellas') btn.innerText = 'Ocultar histórico de estrellas';
+                else if (sectionId === 'sinpermiso') btn.innerText = 'Ocultar histórico de lo encontré';
+                else btn.innerText = 'Ocultar históricos';
             }
         }
 
@@ -2231,7 +2202,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Y creo que las veces que más nos transportamos mentalmente a épocas pasadas es precisamente con todo lo relacionado con nuestros <strong>recuerdos gastronómicos</strong>.</p>" +
                     "<p>Mediante el gusto y el olfato mandamos señales directas a nuestra <strong>amígdala</strong> y al <strong>hipocampo</strong> de nuestro cerebro. Y es en ese preciso momento en que queda grabado en la memoria de cada persona.</p>" +
                     "<p>Acordaros de la escena de la película <em>Ratatouille</em>, cuando el crítico gastronómico Antón Ego se le cae literalmente la cuchara de la mano al probar el plato que le sirven.<br>Eso ocurre involuntariamente.<br><strong>FLASH!!!</strong><br><strong>Sentidos → Cerebro → Recuerdos.</strong></p>" +
-                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Aunque tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
+                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Although tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
                     "<p><strong>Sáltatelo</strong> al menos una sola vez al año.<br>Tus recuerdos y tu paladar te lo agradecerán infinitamente.</p>" +
                     "<p>Ah, asegúrate de coger bien la cuchara o el tenedor, no sea que te pase como a Antón Ego.</p>" +
                     "<p>¿Y a ti, cuál es ese plato que te transporta inmediatamente a otro momento de tu vida?</p>"
