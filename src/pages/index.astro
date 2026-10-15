@@ -1,5 +1,9 @@
 ---
-// PÁGINA PRINCIPAL ESTABILIZADA PARA ASTRO (CALENDARIO, HISTÓRICO Y MODALES CORREGIDOS)
+// PÁGINA PRINCIPAL CORREGIDA PARA ASTRO
+// - Calendario dinámico (varios posts el mismo día)
+// - Histórico funciona en secciones anidadas (Lugares / Ciencia)
+// - Scripts con is:inline
+// - hidden-archive con !important
 ---
 
 <!DOCTYPE html>
@@ -1217,13 +1221,58 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             document.removeEventListener('click', initAudioOnClick);
         }, { once: true });
 
+        /* ---------- HELPER: subir hasta el section con data-section-id ---------- */
+        function getSectionFromGrid(grid) {
+            let el = grid;
+            while (el && el !== document.body) {
+                if (el.hasAttribute && el.hasAttribute('data-section-id')) return el;
+                el = el.parentElement;
+            }
+            return null;
+        }
+
+        function getBtnFromGrid(grid) {
+            // Busca el botón .btn-archive dentro del mismo contenedor visual del grid
+            const section = getSectionFromGrid(grid);
+            if (section) {
+                return section.querySelector('.btn-archive');
+            }
+            // Fallback: hermano o padre inmediato
+            if (grid.parentElement) {
+                return grid.parentElement.querySelector('.btn-archive');
+            }
+            return null;
+        }
+
+        function getSectionIdFromGrid(grid) {
+            const section = getSectionFromGrid(grid);
+            return section ? (section.getAttribute('data-section-id') || '') : '';
+        }
+
+        function textoBotonHistorico(sectionId, hiddenCount, ocultar) {
+            if (ocultar) {
+                if (sectionId === 'musica') return 'Ocultar histórico de música';
+                if (sectionId === 'estrellas') return 'Ocultar histórico de estrellas';
+                if (sectionId === 'sinpermiso') return 'Ocultar histórico de lo encontré';
+                return 'Ocultar históricos';
+            }
+            // Ver histórico
+            if (sectionId === 'musica') return `Ver histórico de música (+${hiddenCount})`;
+            if (sectionId === 'estrellas') return `Ver histórico de estrellas (+${hiddenCount})`;
+            if (sectionId === 'sinpermiso') return `Ver histórico de lo encontré (+${hiddenCount})`;
+            if (sectionId === 'lugares') return `Ver artículos en histórico (+${hiddenCount})`;
+            return `Ver artículos en histórico (+${hiddenCount})`;
+        }
+
+        /* ---------- ORGANIZAR SECCIONES Y ARCHIVOS (CORREGIDO) ---------- */
         function organizarSeccionesYArchivos() {
             const grids = document.querySelectorAll('.section .grid');
-            
+
             grids.forEach(grid => {
                 const posts = Array.from(grid.querySelectorAll('.post'));
                 if (posts.length === 0) return;
 
+                // Ordenar de más reciente a más antiguo
                 posts.sort((a, b) => {
                     const dateA = a.getAttribute('data-datetime') || '1970-01-01 00:00';
                     const dateB = b.getAttribute('data-datetime') || '1970-01-01 00:00';
@@ -1241,55 +1290,41 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     }
                 });
 
-                const container = grid.parentElement;
-                const btn = container.querySelector('.btn-archive');
+                const btn = getBtnFromGrid(grid);
                 if (btn) {
                     const hiddenCount = posts.length - 1;
-                    const sectionId = container.getAttribute('data-section-id');
-                    if (hiddenCount > 0) {
-                        btn.style.display = 'inline-block';
-                        if (sectionId === 'musica') {
-                            btn.innerText = `Ver histórico de música (+${hiddenCount})`;
-                        } else if (sectionId === 'estrellas') {
-                            btn.innerText = `Ver histórico de estrellas (+${hiddenCount})`;
-                        } else if (sectionId === 'sinpermiso') {
-                            btn.innerText = `Ver histórico de lo encontré (+${hiddenCount})`;
-                        } else if (sectionId === 'lugares') {
-                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
-                        } else {
-                            btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
-                        }
-                    } else {
-                        btn.style.display = 'inline-block';
-                        if (sectionId === 'musica') {
-                            btn.innerText = `Ver histórico de música (+0)`;
-                        } else if (sectionId === 'estrellas') {
-                            btn.innerText = `Ver histórico de estrellas (+0)`;
-                        } else if (sectionId === 'sinpermiso') {
-                            btn.innerText = `Ver histórico de lo encontré (+0)`;
-                        } else if (sectionId === 'lugares') {
-                            btn.innerText = `Ver artículos en histórico (+0)`;
-                        } else {
-                            btn.innerText = `Ver artículos en histórico (+0)`;
-                        }
-                    }
+                    const sectionId = getSectionIdFromGrid(grid);
+                    btn.style.display = 'inline-block';
+                    btn.innerText = textoBotonHistorico(sectionId, hiddenCount, false);
                 }
             });
         }
 
-        const publishedPosts = {
-            '2026-09-24': { id: 'art-pensamientos-prueba', title: 'EL PENSAR SI OCUPA LUGAR' },
-            '2026-09-26': { id: 'art-estrellas-jim-croce', title: 'JIM CROCE' },
-            '2026-09-28': { id: 'art-encontré-bellissima', title: 'ANNALISA - BELLISSIMA' },
-            '2026-10-01': { id: 'art-lugares-eugenio-c', title: 'DE SANTOS A BARCELONA' },
-            '2026-10-03': { id: 'art-musica-wangok', title: 'Música de China con alma Disney: La sorpresa del grupo OK' },
-            '2026-10-06': { id: 'art-ciencia-theia', title: 'THEIA, o el origen de la LUNA: ¿Y si te dijera que nació de un choque colosal?' },
-            '2026-10-08': { id: 'art-musica-rumbacatalana', title: 'Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic' },
-            '2026-10-10': { id: 'art-pensamientos-acordeon', title: 'Música en el blog, agradecimientos y el arte del acordeón' },
-            '2026-10-13': { id: 'art-delantal-recuerdos', title: 'La magia de los recuerdos gastronómicos' }
-        };
+        /* ---------- CALENDARIO: fechas dinámicas (soporta varios posts el mismo día) ---------- */
+        const publishedPosts = {}; // dateKey → array de { id, title }
 
-        let currentCalDate = new Date(2026, 9, 1);
+        function cargarFechasPublicadas() {
+            // Limpiar por si se llama más de una vez
+            Object.keys(publishedPosts).forEach(k => delete publishedPosts[k]);
+
+            const posts = document.querySelectorAll('.post');
+            posts.forEach(post => {
+                const datetimeAttr = post.getAttribute('data-datetime');
+                if (!datetimeAttr) return;
+
+                const postId = post.id.replace(/^post-/, '');
+                const titleElem = post.querySelector('h3');
+                const title = titleElem ? titleElem.innerText.trim() : '';
+                const dateKey = datetimeAttr.split(' ')[0]; // YYYY-MM-DD
+
+                if (!publishedPosts[dateKey]) {
+                    publishedPosts[dateKey] = [];
+                }
+                publishedPosts[dateKey].push({ id: postId, title: title });
+            });
+        }
+
+        let currentCalDate = new Date(2026, 9, 1); // Octubre 2026
         const monthNames = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
@@ -1298,53 +1333,74 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
         function renderCalendar() {
             const year = currentCalDate.getFullYear();
             const month = currentCalDate.getMonth();
+
             const titleElem = document.getElementById('calMonthTitle');
             if (titleElem) {
                 titleElem.innerText = `${monthNames[month]} ${year}`;
             }
-            
+
             const container = document.getElementById('calendarDays');
             if (!container) return;
             container.innerHTML = '';
-            
+
             let firstDayIndex = new Date(year, month, 1).getDay();
+            // Lunes = 0 (España)
             firstDayIndex = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
-            
+
             const totalDays = new Date(year, month + 1, 0).getDate();
             const postDates = Object.keys(publishedPosts);
-            const latestDateKey = postDates.length > 0 ? postDates.reduce((latest, current) => current > latest ? current : latest) : null;
-            
+
+            // Última fecha con publicación (la más reciente)
+            const latestDateKey = postDates.length > 0
+                ? postDates.reduce((latest, current) => current > latest ? current : latest)
+                : null;
+
+            // Celdas vacías al inicio
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyDiv = document.createElement('div');
                 emptyDiv.className = 'calendar-day empty';
                 container.appendChild(emptyDiv);
             }
-            
+
             for (let day = 1; day <= totalDays; day++) {
                 const dayDiv = document.createElement('div');
                 dayDiv.className = 'calendar-day';
                 dayDiv.innerText = day;
-                
+
                 const formattedMonth = String(month + 1).padStart(2, '0');
                 const formattedDay = String(day).padStart(2, '0');
                 const dateKey = `${year}-${formattedMonth}-${formattedDay}`;
-                
+
                 let hasPost = false;
-                if (publishedPosts[dateKey]) {
+
+                if (publishedPosts[dateKey] && publishedPosts[dateKey].length > 0) {
                     hasPost = true;
-                    const postInfo = publishedPosts[dateKey];
+                    // Usamos el primer post del día (el más reciente si se ordenó antes)
+                    // Si hay varios, el onclick irá al más reciente de ese día
+                    const postsOfDay = publishedPosts[dateKey];
+                    // Ordenar por id no ayuda; mejor ir al primero (se rellenó en orden DOM)
+                    // Para ir siempre al más reciente del día, reordenamos por data-datetime
+                    // Como ya están en el objeto por orden de aparición, tomamos el último
+                    const postInfo = postsOfDay[postsOfDay.length - 1];
+
                     const isLatest = (dateKey === latestDateKey);
-                    
+
                     if (isLatest) {
                         dayDiv.classList.add('latest-post');
-                        dayDiv.title = 'Ir a la última publicación';
+                        dayDiv.title = postsOfDay.length > 1
+                            ? `Última publicación (+${postsOfDay.length - 1} más ese día)`
+                            : 'Ir a la última publicación';
                     } else {
                         dayDiv.classList.add('past-post');
-                        dayDiv.title = 'Ir a la publicación';
+                        dayDiv.title = postsOfDay.length > 1
+                            ? `${postsOfDay.length} publicaciones este día`
+                            : 'Ir a la publicación';
                     }
+
                     dayDiv.onclick = () => goToArticle(postInfo.id);
                 }
 
+                // Día de hoy (solo si no hay post)
                 const today = new Date();
                 const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
                 if (dateKey === todayKey && !hasPost) {
@@ -1356,29 +1412,26 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             }
         }
 
+        /* ---------- IR A ARTÍCULO (CORREGIDO – funciona con Lugares/Ciencia anidados) ---------- */
         function goToArticle(articleId) {
             const articleElement = document.getElementById('post-' + articleId);
             if (!articleElement) return;
 
             const parentGrid = articleElement.closest('.grid');
+            if (!parentGrid) return;
+
+            // Si estaba oculto en el archivo, lo mostramos
             if (articleElement.classList.contains('hidden-archive')) {
                 articleElement.style.display = 'flex';
                 articleElement.classList.remove('hidden-archive');
-                const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+
+                const btn = getBtnFromGrid(parentGrid);
                 if (btn) {
                     const hiddenCount = parentGrid.querySelectorAll('.post.hidden-archive').length;
-                    const sectionId = parentGrid.parentElement.getAttribute('data-section-id');
-                    if (sectionId === 'musica') {
-                        btn.innerText = hiddenCount > 0 ? `Ver histórico de música (+${hiddenCount})` : 'Ocultar histórico de música';
-                    } else if (sectionId === 'estrellas') {
-                        btn.innerText = hiddenCount > 0 ? `Ver histórico de estrellas (+${hiddenCount})` : 'Ocultar histórico de estrellas';
-                    } else if (sectionId === 'sinpermiso') {
-                        btn.innerText = hiddenCount > 0 ? `Ver histórico de lo encontré (+${hiddenCount})` : 'Ocultar histórico de lo encontré';
-                    } else if (sectionId === 'lugares') {
-                        btn.innerText = hiddenCount > 0 ? `Ver artículos en histórico (+${hiddenCount})` : 'Ocultar históricos';
-                    } else if (sectionId === 'pensamientos') {
-                        btn.innerText = hiddenCount > 0 ? `Ver artículos en histórico (+${hiddenCount})` : 'Ocultar históricos';
-                    }
+                    const sectionId = getSectionIdFromGrid(parentGrid);
+                    btn.innerText = hiddenCount > 0
+                        ? textoBotonHistorico(sectionId, hiddenCount, false)
+                        : textoBotonHistorico(sectionId, 0, true);
                 }
             }
 
@@ -1404,7 +1457,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             });
 
             if (latestPost && latestPost.id) {
-                const articleId = latestPost.id.replace('post-', '');
+                const articleId = latestPost.id.replace(/^post-/, '');
                 goToArticle(articleId);
             }
         }
@@ -1414,64 +1467,54 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             renderCalendar();
         }
 
+        /* ---------- TOGGLE ARCHIVO (CORREGIDO – usa gridId, no parentElement) ---------- */
         function toggleArchive(gridId, btn) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
-            const posts = grid.querySelectorAll('.post');
-            const isCurrentlyExpanded = btn.innerText.includes('Ocultar');
-            
-            posts.forEach((post, index) => {
-                if (index > 0) {
-                    if (isCurrentlyExpanded) {
-                        post.style.display = 'none';
-                        post.classList.add('hidden-archive');
-                    } else {
-                        post.style.display = 'flex';
-                        post.classList.remove('hidden-archive');
-                    }
-                }
-            });
 
-            const hiddenCount = posts.length - 1;
-            const sectionId = grid.parentElement.getAttribute('data-section-id') || '';
+            const hiddenPosts = grid.querySelectorAll('.post.hidden-archive');
+            const isCurrentlyExpanded = btn.innerText.includes('Ocultar');
+            const sectionId = getSectionIdFromGrid(grid);
 
             if (isCurrentlyExpanded) {
-                if (sectionId === 'musica') btn.innerText = `Ver histórico de música (+${hiddenCount})`;
-                else if (sectionId === 'estrellas') btn.innerText = `Ver histórico de estrellas (+${hiddenCount})`;
-                else if (sectionId === 'sinpermiso') btn.innerText = `Ver histórico de lo encontré (+${hiddenCount})`;
-                else if (sectionId === 'lugares') btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
-                else btn.innerText = `Ver artículos en histórico (+${hiddenCount})`;
+                // Colapsar
+                hiddenPosts.forEach(post => {
+                    post.style.display = 'none';
+                });
+                const totalHidden = hiddenPosts.length;
+                btn.innerText = textoBotonHistorico(sectionId, totalHidden, false);
             } else {
-                if (sectionId === 'musica') btn.innerText = 'Ocultar histórico de música';
-                else if (sectionId === 'estrellas') btn.innerText = 'Ocultar histórico de estrellas';
-                else if (sectionId === 'sinpermiso') btn.innerText = 'Ocultar histórico de lo encontré';
-                else btn.innerText = 'Ocultar históricos';
+                // Expandir
+                if (hiddenPosts.length === 0) return;
+                hiddenPosts.forEach(post => {
+                    post.style.display = 'flex';
+                });
+                btn.innerText = textoBotonHistorico(sectionId, 0, true);
             }
         }
 
+        /* ---------- BUSCADOR ---------- */
         function filterArticles() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const input = document.getElementById('searchInput');
+            if (!input) return;
+            const query = input.value.toLowerCase().trim();
             const posts = document.querySelectorAll('.post');
-            
+
             posts.forEach(post => {
                 const text = post.innerText.toLowerCase();
                 const parentGrid = post.closest('.grid');
-                const btn = parentGrid ? parentGrid.parentElement.querySelector('.btn-archive') : null;
+                const btn = parentGrid ? getBtnFromGrid(parentGrid) : null;
                 const isExpanded = btn && btn.innerText.includes('Ocultar');
                 const isInitiallyHidden = post.classList.contains('hidden-archive');
-                
-                if (query === "") {
+
+                if (query === '') {
                     if (isInitiallyHidden && !isExpanded) {
                         post.style.display = 'none';
                     } else {
                         post.style.display = 'flex';
                     }
                 } else {
-                    if (text.includes(query)) {
-                        post.style.display = 'flex';
-                    } else {
-                        post.style.display = 'none';
-                    }
+                    post.style.display = text.includes(query) ? 'flex' : 'none';
                 }
             });
         }
@@ -1939,9 +1982,10 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             initCosmos();
         });
 
-        // FUNCIONALIDAD DE INICIALIZACIÓN GARANTIZADA PARA ASTRO
-        function initAll() {
+        window.addEventListener('DOMContentLoaded', () => {
             organizarSeccionesYArchivos();
+            cargarFechasPublicadas();
+
             renderCalendar();
             initEarthCanvas();
             drawEarthCanvas();
@@ -1961,15 +2005,8 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
             }
 
             let valorFinal = Math.max(baseMinima, totalVisitas);
-            const counterElem = document.getElementById('counterValue');
-            if (counterElem) counterElem.innerText = valorFinal;
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initAll);
-        } else {
-            initAll();
-        }
+            document.getElementById('counterValue').innerText = valorFinal;
+        });
 
         function openModal(articleKey, buttonElement) {
             const modal = document.getElementById('articleModal');
@@ -2143,7 +2180,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Hoy os traigo un <strong>descubrimiento musical</strong> increíble directo desde <strong>China</strong>. Una canción con un toque mágico y entrañable que parece sacada de una película de <strong>Disney</strong>.</p>" +
                     "<p>(A continuación, el texto para mis seguidores asiáticos).</p>" +
                     "<p>有些艺术家总是能带给我们惊喜。今天带给大家的这首歌，我非常高兴能与你们分享。</p>" +
-                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”, 不如说他们本来就在那里。</p>" +
+                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”，不如说他们本来就在那里。</p>" +
                     "<p>如果有人问我这首歌出自哪部电影的原声带，我一定会毫不犹豫地回答：是<strong>迪士尼</strong>的歌曲。</p>" +
                     "<p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由<strong>华特</strong>先生以及后来他的动画工厂带给我们的经典电影记忆。</p>" +
                     "<p>请大家亲自听一听，然后告诉我你们是否也有同感。</p>" +
@@ -2159,7 +2196,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                 modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg",
                 content: 
                     "<p>Dar una pincelada a un <strong>estilo musical</strong> de tu tierra siempre es de buen gusto. Eso es exactamente lo que hizo el cantautor <strong>Alfred Garcia</strong> con su canción <em>«Rumba Catalana»</em>, dando visibilidad a un género que nació en el siglo pasado. Y de esto ha llovido bastante.</p>" +
-                    "<p><em>(A partir de hier, pasamos al catalán):</em></p>" +
+                    "<p><em>(A partir de aquí, pasamos al catalán):</em></p>" +
                     "<h2>Origen de la <strong>rumba catalana</strong></h2>" +
                     "<p>La rumba catalana va néixer de la fusió de diferents barreges alhora. Allà per les dècades dels quaranta i cinquanta del segle XX, arribaven a Catalunya moltes bandes de Llatinoamèrica amb ritmes i música innovadora. Entre altres, els ritmes cubans.</p>" +
                     "<p>Els artistes gitanos d’aquella època van agafar tots aquests ritmes per donar-los un estil propi. Una barreja única al món que va permetre crear aquest nou estil musical: la <strong>rumba catalana</strong>.</p>" +
@@ -2223,7 +2260,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p>Y creo que las veces que más nos transportamos mentalmente a épocas pasadas es precisamente con todo lo relacionado con nuestros <strong>recuerdos gastronómicos</strong>.</p>" +
                     "<p>Mediante el gusto y el olfato mandamos señales directas a nuestra <strong>amígdala</strong> y al <strong>hipocampo</strong> de nuestro cerebro. Y es en ese preciso momento en que queda grabado en la memoria de cada persona.</p>" +
                     "<p>Acordaros de la escena de la película <em>Ratatouille</em>, cuando el crítico gastronómico Antón Ego se le cae literalmente la cuchara de la mano al probar el plato que le sirven.<br>Eso ocurre involuntariamente.<br><strong>FLASH!!!</strong><br><strong>Sentidos → Cerebro → Recuerdos.</strong></p>" +
-                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Aunque tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
+                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Although tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
                     "<p><strong>Sáltatelo</strong> al menos una sola vez al año.<br>Tus recuerdos y tu paladar te lo agradecerán infinitamente.</p>" +
                     "<p>Ah, asegúrate de coger bien la cuchara o el tenedor, no sea que te pase como a Antón Ego.</p>" +
                     "<p>¿Y a ti, cuál es ese plato que te transporta inmediatamente a otro momento de tu vida?</p>"
@@ -2254,7 +2291,7 @@ Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con 
                     "<p><strong>Navegando y buscando joyas musicales por la red, me topé con este temazo que atrapa desde el primer segundo... (Versión en italiano a continuación):</strong></p>" +
                     "<p>Navigando e cercando gemme in rete, mi sono imbattuto in questo pezzo fantastico che cattura fin dal primo secondo...</p>" +
                     "<p>Si tratta di&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Bellissima</span></strong>&nbsp;, interpretata dalla grande cantautrice italiana&nbsp;<strong><span translate=\"no\" class=\"notranslate\">Annalisa</span></strong>&nbsp;.</p>" +
-                    "<p>Anche se a un primo ascolto può sembrare un brano puramente energico e ballabile, il testo nasconde una grande intensità emotiva, affrontando gli alti e bassi dell'amore, la vulnerabilità e la necessità di riscoprire se stessi.</p>" +
+                    "<p>Anche se a un primo ascolto può sembrare un brano puramente energico e ballabile, il testo nasconde una grande intensità emotiva, affrontando gli alti e bassi dell'amore, la vulnerabilità e la necesidad de riscoprire se stessi.</p>" +
                     "<p>È di quelle canzoni che ti catturano fin dai primi accordi e che dimostrano l'incredibile forza vocale ed espressiva presente nell'attuale <strong>panorama pop italiano</strong>.</p>" +
                     "<p>Me la sono trovata davanti quest'estate, mentre ero in vacanza. E anche se non è una novità, è stata comunque degna di aprire la mia applicazione e scoprire chi fosse.</p>" +
                     "<p>Ringraziamenti al canale ufficiale, di cui abbiamo messo il link.</p>"
