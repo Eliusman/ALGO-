@@ -30,7 +30,7 @@ Uno de los reclutas se acercó a él y le pidió que le firmara un autógrafo. E
 
 Ahora le tenéis que poner imaginación a la escena:
 
-Dalí coge la pluma estilográfica, todo el mundo mirando como le obsequiaba al recluta con el autógrafo dedicado.
+Dalí coge la pluma estilográfica, todo el mundo mirando como obsequiaba al recluta con el autógrafo dedicado.
 Y justo cuando termina de realizar la dedicatoria,revienta la estilográfica con fuerza contra la parte de la muralla del castillo.
 
 Todos se quedaron de piedra, (nunca mejor dicho).
