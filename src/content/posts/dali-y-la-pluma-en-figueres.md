@@ -30,11 +30,12 @@ Uno de los reclutas se acercó a él y le pidió que le firmara un autógrafo. E
 
 Ahora le tenéis que poner imaginación a la escena:
 
-Dalí coge la pluma estilográfica, todo el mundo que estaba allí mirando como le obsequiaba con su autógrafo dedicado. Y justo cuando termina de realizar la dedicaroria, coge esa misma pluma y la revienta con fuerza contra la parte de la muralla del castillo dónde se encontraban.
+Dalí coge la pluma estilográfica, todo el mundo mirando como le obsequiaba al recluta con el autógrafo dedicado.
+Y justo cuando termina de realizar la dedicatoria,revienta la estilográfica con fuerza contra la parte de la muralla del castillo.
 
 Todos se quedaron de piedra, (nunca mejor dicho).
 
-Y seguidamente lanza la frase:
+Y seguidamente lanza la frase que no se me olvida:
 
 > **"Dónde firma SALVADOR DALÍ, no firma NADIE más".**
 
@@ -42,7 +43,7 @@ Me dijo mi padre que se lío un follón impresionante. Al final lo que pasó es 
 
 De vez en cuando me acuerdo de ésta anécdota, y hoy he querido compartirla con tod@s vosotr@s. Son historias, que si no se cuentan, acaban perdiéndose en el olvido.
 
-Gracias por interesaros en leerme cuando publico y por vuestro valioso tiempo.
+Gracias por interesaros en leerme cuando escribo los artículos, y por entregarme parte de vuestro valioso tiempo.
 
 Nos vemos en la próxima publicación.
 
