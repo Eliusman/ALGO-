@@ -52,7 +52,7 @@ const homeUrl = "../../index.html";
 <body>
     <a class="back-home" href={homeUrl}>← Volver a la página principal</a>
     <main class="article-container">
-        <small>CIENCIA</small>
+        <small>{post.data.category}</small>
         <h1>{post.data.title}</h1>
         {post.data.modalImg && <img src={post.data.modalImg} alt={post.data.title} />}
         
