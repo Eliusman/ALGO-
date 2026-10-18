@@ -10,7 +10,7 @@ En el primer artículo de ésta sección os hablé del viaje en barco desde Bras
 
 Mis historias no tienen correlación temporal, es decir, no voy a seguir una cronología de las vivencias e historias. Yo iré explicando mis cosas sin preocuparme de nada de eso.
 
-Os voy a contar una anécdota desconocida para el gran público. Una de esas historias que te cuentan una vez, y al cabo del tiempo, cuando el que te lo ha contado seguramente no se acuerda de eso, tú se lo recuerdas. Porque cuando te lo contaron, y conociendo al personaje que se creó sobre él, dices: " Es que tenía que hacerlo él".
+Os voy a contar una anécdota desconocida para el gran público. Una de esas historias que te cuentan una vez, y al cabo del tiempo, cuando el que te lo ha contado seguramente no se acuerda de eso, tú se lo recuerdas. Porque cuando te lo explicaron, y conociendo el personaje que se creó él mismo, llegas a la conclusión de decir: "Eso solo lo podría hacer él".
 
 Me gustaría ir a mí padre y decirle que me lo contara una vez más.
 
