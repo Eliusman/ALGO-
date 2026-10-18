@@ -2,10 +2,9 @@
 title: "A veces meto la pata"
 description: "Una pequeña reflexión sobre los errores, las caídas del blog y las ganas de seguir mejorando."
 pubDate: 2026-10-18
-tags: ["pensamientos", "reflexiones"]
+category: "pensamientos"
+modalImg: "https://i.ibb.co/JjLvTXdC/Error.jpg"
 ---
-
-![Error en el blog](https://i.ibb.co/JjLvTXdC/Error.jpg)
 
 A veces meto la pata. Y pasa lo que pasa.
 
