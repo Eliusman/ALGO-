@@ -1,5 +1,5 @@
 ---
-title: "A veces me lío entre tanto archivo en el blog"
+: "A veces me lío entre tanto archivo en el blog"
 description: "Una reflexión sobre las ganas de seguir mejorando el espacio personal a pesar de los bloqueos e inconvenientes técnicos."
 pubDate: 2026-10-19
 heroImage: "https://i.ibb.co/TqNFcbCG/Error-404.png"
