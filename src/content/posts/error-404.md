@@ -11,7 +11,7 @@ Tengo la mala costumbre de no dejar algo estancado. Siempre que tenga sentido, i
 Aunque a veces no tienes más remedio que centrarte en lo que realmente controlas.
 Hay imposibles que quizá no lo sean, pero que no hay manera de desencallar.
 
-O porque no tienes la suficiente paciencia, o porque no ves con claridad cómo implementar las herramientas necesarias para conseguir que funcione.
+Porque no tienes la suficiente paciencia, o porque no ves con claridad cómo implementar las herramientas necesarias para conseguir que funcione.
 En este caso, afortunadamente sí que ha tenido solución y he podido volver a publicar.
 
 Empecé de una manera sencilla a hacer el blog, pero al ir añadiendo cada vez más contenido e ir variando cosas, el blog colapsó.
