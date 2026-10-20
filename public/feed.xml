@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Algo + que Música y Radio</title>
+<link>https://eliusman.github.io/ALGO-/</link>
+<description>Un espacio personal de música, vivencias, ciencia al estilo Sagan y reflexiones íntimas. Descubre historias contadas desde la calma y la memoria viva.</description>
+<language>es</language>
+<copyright>© 2026 Algo + que Música & Radio</copyright>
+<atom:link href="https://eliusman.github.io/ALGO-/feed.xml" rel="self" type="application/rss+xml" />
+<lastBuildDate>Tue, 20 Oct 2026 11:30:00 +0200</lastBuildDate>
+​<item>
+<title>Error 404</title>
+<link>https://eliusman.github.io/ALGO-/posts/error-404/</link>
+<guid isPermaLink="false">art-pensamientos-error404</guid>
+<pubDate>Tue, 20 Oct 2026 11:30:00 +0200</pubDate>
+<description><![CDATA[Tengo la mala costumbre de no dejar algo estancado. Siempre que tenga sentido, intento arreglar las cosas. Después de mucho tiempo dedicado y un colapso total, he podido migrar el blog a un nuevo sistema y volver a publicar...]]></description>
+</item>
+​<item>
+<title>Salvador Dalí: El Big Bang del Surrealismo</title>
+<link>https://eliusman.github.io/ALGO-/posts/salvador-dali-big-bang-surrealismo/</link>
+<guid isPermaLink="false">art-arte-dali-01</guid>
+<pubDate>Tue, 13 Oct 2026 09:00:00 +0200</pubDate>
+<description><![CDATA[Un viaje a través de la mente provocadora y genial de Salvador Dalí, analizando cómo transformó el arte y la realidad a través del método paranoico-crítico.]]></description>
+</item>
+​</channel>
+</rss>
