@@ -9,7 +9,7 @@ modalImg: "https://i.ibb.co/23VKPMYW/Error-404.png"
 Tengo la mala costumbre de no dejar algo estancado. Siempre que tenga sentido, intento arreglar las cosas.
 
 Aunque a veces no tienes más remedio que centrarte en lo que realmente controlas.
-Hay imposibles que quizá no lo sean, pero que no hay manera de desencallar.
+Hay imposibles que quizá no lo sean tanto, pero que no hay manera de saber desencallarlo.
 
 Porque no tienes la suficiente paciencia, o porque no ves con claridad cómo implementar las herramientas necesarias para conseguir que funcione.
 En este caso, afortunadamente sí que ha tenido solución y he podido volver a publicar.
