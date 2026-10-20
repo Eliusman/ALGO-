@@ -2,7 +2,7 @@ import { getCollection } from 'astro:content';
 
 export async function GET(context) {
   // Obtiene automáticamente todos tus archivos .md de la colección
-  const posts = await getCollection('blog');
+  const posts = await getCollection('posts');
 
   return rss({
     title: 'Algo + que Música y Radio',
