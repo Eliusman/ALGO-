@@ -24,7 +24,7 @@ Deseo que no vuelva a suceder porque ha sido un mareo total. Pero es eso, un sim
 
 No puedo garantizar nada. En esta vida no hay nada garantizado, excepto dos o tres cosas.
 
-Y digo esto de que puede volver a pasar porque, cuando imagino alguna mejora en el blog, voy a querer implantarla.
+Y digo esto de que puede volver a pasar porque, cuando imagino alguna mejora en el blog, voy a querer implantarlo.
 Aunque corra el riesgo de volverlo a romper.
 Lo fácil sería publicar y listo, pero como no soy así, lo volveré a hacer las veces que crea oportunas.
 
