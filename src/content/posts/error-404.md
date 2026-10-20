@@ -1,6 +1,6 @@
 ---
 title: "Error 404"
-description: "Tengo la mala costumbre de no dejar nada estancado. Después de un colapso en el blog y de migrar el sistema, vuelvo a publicar. Gracias por vuestra comprensión."
+description: "Tengo la mala costumbre de no dejar nada estancado. Después de un colapso en el blog y de migrar el sistema, vuelvo a publicar. Gracias por vuestra comprensión..."
 pubDate: 2026-10-20
 category: "pensamientos"
 modalImg: "https://i.ibb.co/23VKPMYW/Error-404.png"
