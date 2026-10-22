@@ -1,5 +1,5 @@
 ---
-// PÁGINA PRINCIPAL - ahora lee automáticamente los posts de src/content/posts/
+// PÁGINA PRINCIPAL - lee automáticamente los posts de src/content/posts/
 import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('posts'))
@@ -13,7 +13,10 @@ const postsByCategory = {
   pensamientos: allPosts.filter(p => p.data.category.toLowerCase() === 'pensamientos'),
   delantal: allPosts.filter(p => p.data.category.toLowerCase() === 'delantal'),
   sabias: allPosts.filter(p => p.data.category.toLowerCase() === 'sabias'),
-  sinpermiso: allPosts.filter(p => p.data.category.toLowerCase() === 'sinpermiso'),
+  "lo encontré": allPosts.filter(p => {
+    const cat = p.data.category.toLowerCase().trim();
+    return ['lo encontré', 'lo encontre', 'loencontré', 'loencontre', 'sinpermiso'].includes(cat);
+  }),
   estrellas: allPosts.filter(p => p.data.category.toLowerCase() === 'estrellas'),
 };
 
@@ -653,12 +656,12 @@ function formatDateEs(d: Date) {
             font-weight: 800;
         }
 
-        #sinpermiso {
+        #lo-encontre {
             background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.45)), url("https://i.ibb.co/Q7r80zqB/Que-canci-n-es.jpg") center/cover no-repeat;
             color: #ffffff;
         }
-        #sinpermiso::before { display: none; }
-        #sinpermiso h2, #sinpermiso .tag {
+        #lo-encontre::before { display: none; }
+        #lo-encontre h2, #lo-encontre .tag {
             color: #ffffff;
             text-shadow: 0 2px 6px rgba(0,0,0,0.9);
             font-weight: 800;
@@ -785,7 +788,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="#ciencia"><span translate="no" class="notranslate">Saganeando</span></a>
                 <a href="#delantal">El Delantal</a>
                 <a href="#sabias">¿Lo sabías?</a>
-                <a href="#sinpermiso">Identificado</a>
+                <a href="#lo-encontre">Lo Encontré</a>
                 <a href="#estrellas">Estrellas</a>
                 <a href="#archivo-search" style="color:var(--accent); font-weight:bold;">🔍 Buscador</a>
                 <a href="#suscripcion-seccion" style="color:#facc15; font-weight:bold;">🔔 Suscripción</a>
@@ -1100,11 +1103,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </section>
 
         <!-- LO ENCONTRÉ -->
-        <section id="sinpermiso" class="section" data-section-id="sinpermiso">
+        <section id="lo-encontre" class="section" data-section-id="lo-encontre">
             <p class="tag">¿PERO QUIEN ES?</p>
             <h2>Lo Encontré</h2>
-            <div class="grid" id="grid-sinpermiso">
-                {postsByCategory.sinpermiso.map((post, i) => {
+            <div class="grid" id="grid-lo-encontre">
+                {postsByCategory["lo encontré"].map((post, i) => {
                   const img = post.data.modalImg || post.data.coverImage || '';
                   const isLatest = i === 0;
                   const dt = post.data.pubDate.toISOString().slice(0, 10) + ' 10:00';
@@ -1124,9 +1127,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   );
                 })}
             </div>
-            {postsByCategory.sinpermiso.length > 1 && (
+            {postsByCategory["lo encontré"].length > 1 && (
               <div class="load-more-container">
-                <button class="btn-archive" onclick="toggleArchive('grid-sinpermiso', this)">Ver histórico de lo encontré (+{postsByCategory.sinpermiso.length - 1})</button>
+                <button class="btn-archive" onclick="toggleArchive('grid-lo-encontre', this)">Ver histórico de lo encontré (+{postsByCategory["lo encontré"].length - 1})</button>
               </div>
             )}
         </section>
@@ -1283,12 +1286,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         function getBtnFromGrid(grid) {
-            // Busca el botón .btn-archive dentro del mismo contenedor visual del grid
             const section = getSectionFromGrid(grid);
             if (section) {
                 return section.querySelector('.btn-archive');
             }
-            // Fallback: hermano o padre inmediato
             if (grid.parentElement) {
                 return grid.parentElement.querySelector('.btn-archive');
             }
@@ -1304,18 +1305,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (ocultar) {
                 if (sectionId === 'musica') return 'Ocultar histórico de música';
                 if (sectionId === 'estrellas') return 'Ocultar histórico de estrellas';
-                if (sectionId === 'sinpermiso') return 'Ocultar histórico de lo encontré';
+                if (sectionId === 'lo-encontre' || sectionId === 'loencontre' || sectionId === 'sinpermiso') return 'Ocultar histórico de lo encontré';
                 return 'Ocultar históricos';
             }
-            // Ver histórico
             if (sectionId === 'musica') return `Ver histórico de música (+${hiddenCount})`;
             if (sectionId === 'estrellas') return `Ver histórico de estrellas (+${hiddenCount})`;
-            if (sectionId === 'sinpermiso') return `Ver histórico de lo encontré (+${hiddenCount})`;
+            if (sectionId === 'lo-encontre' || sectionId === 'loencontre' || sectionId === 'sinpermiso') return `Ver histórico de lo encontré (+${hiddenCount})`;
             if (sectionId === 'lugares') return `Ver artículos en histórico (+${hiddenCount})`;
             return `Ver artículos en histórico (+${hiddenCount})`;
         }
 
-        /* ---------- ORGANIZAR SECCIONES Y ARCHIVOS (CORREGIDO) ---------- */
+        /* ---------- ORGANIZAR SECCIONES Y ARCHIVOS ---------- */
         function organizarSeccionesYArchivos() {
             const grids = document.querySelectorAll('.section .grid');
 
@@ -1323,7 +1323,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 const posts = Array.from(grid.querySelectorAll('.post'));
                 if (posts.length === 0) return;
 
-                // Ordenar de más reciente a más antiguo
                 posts.sort((a, b) => {
                     const dateA = a.getAttribute('data-datetime') || '1970-01-01 00:00';
                     const dateB = b.getAttribute('data-datetime') || '1970-01-01 00:00';
@@ -1351,11 +1350,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         }
 
-        /* ---------- CALENDARIO: fechas dinámicas (soporta varios posts el mismo día) ---------- */
-        const publishedPosts = {}; // dateKey → array de { id, title }
+        /* ---------- CALENDARIO: fechas dinámicas ---------- */
+        const publishedPosts = {}; 
 
         function cargarFechasPublicadas() {
-            // Limpiar por si se llama más de una vez
             Object.keys(publishedPosts).forEach(k => delete publishedPosts[k]);
 
             const posts = document.querySelectorAll('.post');
@@ -1366,7 +1364,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 const postId = post.id.replace(/^post-/, '');
                 const titleElem = post.querySelector('h3');
                 const title = titleElem ? titleElem.innerText.trim() : '';
-                const dateKey = datetimeAttr.split(' ')[0]; // YYYY-MM-DD
+                const dateKey = datetimeAttr.split(' ')[0]; 
 
                 if (!publishedPosts[dateKey]) {
                     publishedPosts[dateKey] = [];
@@ -1375,7 +1373,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         }
 
-        let currentCalDate = new Date(2026, 9, 1); // Octubre 2026
+        let currentCalDate = new Date(2026, 9, 1); 
         const monthNames = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
@@ -1395,18 +1393,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             container.innerHTML = '';
 
             let firstDayIndex = new Date(year, month, 1).getDay();
-            // Lunes = 0 (España)
             firstDayIndex = (firstDayIndex === 0) ? 6 : firstDayIndex - 1;
 
             const totalDays = new Date(year, month + 1, 0).getDate();
             const postDates = Object.keys(publishedPosts);
 
-            // Última fecha con publicación (la más reciente)
             const latestDateKey = postDates.length > 0
                 ? postDates.reduce((latest, current) => current > latest ? current : latest)
                 : null;
 
-            // Celdas vacías al inicio
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyDiv = document.createElement('div');
                 emptyDiv.className = 'calendar-day empty';
@@ -1426,12 +1421,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 if (publishedPosts[dateKey] && publishedPosts[dateKey].length > 0) {
                     hasPost = true;
-                    // Usamos el primer post del día (el más reciente si se ordenó antes)
-                    // Si hay varios, el onclick irá al más reciente de ese día
                     const postsOfDay = publishedPosts[dateKey];
-                    // Ordenar por id no ayuda; mejor ir al primero (se rellenó en orden DOM)
-                    // Para ir siempre al más reciente del día, reordenamos por data-datetime
-                    // Como ya están en el objeto por orden de aparición, tomamos el último
                     const postInfo = postsOfDay[postsOfDay.length - 1];
 
                     const isLatest = (dateKey === latestDateKey);
@@ -1451,7 +1441,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     dayDiv.onclick = () => goToArticle(postInfo.id);
                 }
 
-                // Día de hoy (solo si no hay post)
                 const today = new Date();
                 const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
                 if (dateKey === todayKey && !hasPost) {
@@ -1463,7 +1452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
         }
 
-        /* ---------- IR A ARTÍCULO (CORREGIDO – funciona con Lugares/Ciencia anidados) ---------- */
+        /* ---------- IR A ARTÍCULO ---------- */
         function goToArticle(articleId) {
             const articleElement = document.getElementById('post-' + articleId);
             if (!articleElement) return;
@@ -1471,7 +1460,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const parentGrid = articleElement.closest('.grid');
             if (!parentGrid) return;
 
-            // Si estaba oculto en el archivo, lo mostramos
             if (articleElement.classList.contains('hidden-archive')) {
                 articleElement.style.display = 'flex';
                 articleElement.classList.remove('hidden-archive');
@@ -1518,7 +1506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             renderCalendar();
         }
 
-        /* ---------- TOGGLE ARCHIVO (CORREGIDO – usa gridId, no parentElement) ---------- */
+        /* ---------- TOGGLE ARCHIVO ---------- */
         function toggleArchive(gridId, btn) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
@@ -1528,14 +1516,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const sectionId = getSectionIdFromGrid(grid);
 
             if (isCurrentlyExpanded) {
-                // Colapsar
                 hiddenPosts.forEach(post => {
                     post.style.display = 'none';
                 });
                 const totalHidden = hiddenPosts.length;
                 btn.innerText = textoBotonHistorico(sectionId, totalHidden, false);
             } else {
-                // Expandir
                 if (hiddenPosts.length === 0) return;
                 hiddenPosts.forEach(post => {
                     post.style.display = 'flex';
@@ -2231,9 +2217,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     "<p>Hoy os traigo un <strong>descubrimiento musical</strong> increíble directo desde <strong>China</strong>. Una canción con un toque mágico y entrañable que parece sacada de una película de <strong>Disney</strong>.</p>" +
                     "<p>(A continuación, el texto para mis seguidores asiáticos).</p>" +
                     "<p>有些艺术家总是能带给我们惊喜。今天带给大家的这首歌，我非常高兴能与你们分享。</p>" +
-                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”，不如说他们本来就在那里。</p>" +
+                    "<p>他们来自<strong>中国</strong>，嗯，与其说是“来”，不如说พวกเขา本来就在那里。</p>" +
                     "<p>如果有人问我这首歌出自哪部电影的原声带，我一定会毫不犹豫地回答：是<strong>迪士尼</strong>的歌曲。</p>" +
-                    "<p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由<strong>华特</strong>先生以及后来他的动画工厂带给我们的经典电影记忆。</p>" +
+                    "<p>我不知道该如何去形容它，但当聆听它时，它会唤起那些曾由<strong>华特</strong>先生以及后来 headquarters 动画工厂带给我们的经典电影记忆。</p>" +
                     "<p>请大家亲自听一听，然后告诉我你们是否也有同感。</p>" +
                     "<p>向 <strong>OK 乐队</strong>致以热烈的祝贺。你们把这首作品演绎得太完美了。</p>" +
                     "<p>祝你们未来取得更多成功。</p>" +
@@ -2242,7 +2228,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     "<p><a href=\"https://youtu.be/orqjiuJWiF8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escuchar enlace original en YouTube ➔</a></p>"
             },
             'art-musica-rumbacatalana': {
-                title: "Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic",
+                title: "Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil uniquely",
                 meta: "8 OCTUBRE 2026 · RECOMENDACIÓN",
                 modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg",
                 content: 
@@ -2257,7 +2243,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     "<p>Us deixo l'enllaç directe a la cançó:</p>" +
                     "<p><a href=\"https://youtu.be/PUSSbuGhNnQ\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Escolta «Rumba Catalana» d'Alfred Garcia a YouTube ➔</a></p>" +
                     "<p>I un autre enllaç amb una entrevista força interessant que li van fer al canal <strong>El Sentido de la Birra</strong>:</p>" +
-                    "<p><a href=\"https://youtu.be/5jpniQRrMUQ?=PCKSe2WREm6ugQJP\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Veure entrevista a Alfred Garcia a El Sentido de la Birra ➔</a></p>" +
+                    "<p><a href=\"https://youtu.be/5jpniQRr constitutional?v=5jpniQRr\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"original-link\">▶ Veure entrevista a Alfred Garcia a El Sentido de la Birra ➔</a></p>" +
                     "<p>Desde aquí també li llanço una salutació a aquest canal.</p>"
             },
             'art-lugares-universo': {
@@ -2311,7 +2297,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     "<p>Y creo que las veces que más nos transportamos mentalmente a épocas pasadas es precisamente con todo lo relacionado con nuestros <strong>recuerdos gastronómicos</strong>.</p>" +
                     "<p>Mediante el gusto y el olfato mandamos señales directas a nuestra <strong>amígdala</strong> y al <strong>hipocampo</strong> de nuestro cerebro. Y es en ese preciso momento en que queda grabado en la memoria de cada persona.</p>" +
                     "<p>Acordaros de la escena de la película <em>Ratatouille</em>, cuando el crítico gastronómico Antón Ego se le cae literalmente el bolígrafo de la mano al probar el plato que le sirven.<br>Eso ocurre involuntariamente.<br><strong>FLASH!!!</strong><br><strong>Sentidos → Cerebro → Recuerdos.</strong></p>" +
-                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Aunque lleve azúcar por un tubo.<br>Although tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
+                    "<p>Por eso, no tengas reparo en volver a probar eso, o aquello.<br>Aunque te lo prohibieran.<br>Aunque esté lleno de colesterol del teóricamente malo.<br>Although lleve azúcar por un tubo.<br>Although tengas una dieta estricta en no comer cierto plato que te encanta…</p>" +
                     "<p><strong>Sáltatelo</strong> al menos una sola vez al año.<br>Tus recuerdos y tu paladar te lo agradecerán infinitamente.</p>" +
                     "<p>Ah, asegúrate de coger bien la cuchara o el tenedor, no sea que te pase como a Antón Ego.</p>" +
                     "<p>¿Y a ti, cuál es ese plato que te transporta inmediatamente a otro momento de tu vida?</p>"
@@ -2370,7 +2356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     "<p>Un día antes de lanzar el single titulado:</p>" +
                     "<p>\"<strong><span translate=\"no\" class=\"notranslate\">I Got A Name</span></strong>\", desgraciadamente falleció en un accidente aéreo. Fue un 20 de septiembre del año 1973.</p>" +
                     "<p>La avioneta que cogió para proseguir su gira musical, al despegar, se estrelló contra un árbol. Paradójicamente, era el único árbol que se encontraba cerca del aeropuerto.</p>" +
-                    "<p>No fue hasta hace relativamente poco que supe de su música. Gracias al cantante y compositor&nbsp;<span translate=\"no\" class=\"notranslate\">Guille Milkyway</span>&nbsp;, que lo recomendó en una emisora.</p>" +
+                    "<p>No fue hasta hace относительно poco que supe de su música. Gracias al cantante y compositor&nbsp;<span translate=\"no\" class=\"notranslate\">Guille Milkyway</span>&nbsp;, que lo recomendó en una emisora.</p>" +
                     "<p>La parte instrumental consigue transmitir toda esa melancolía encerrada en la canción.</p>" +
                     "<p>Como en esas tardes \"tontas\", en que quieres estar sentado en el sofá y ver cómo la lluvia del exterior de la ventana hace el resto.</p>" +
                     "<p>Gracias por dejarnos temas como este, y tu legado musical. Corto, pero intenso.</p>" +
