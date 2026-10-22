@@ -13,7 +13,7 @@ Una canción espontánea nacida en el programa *La Travessa* de TV3. Humor, admi
 
 Hi ha coincidències que no es busquen, es troben. Un moment precís on, sense saber per què, dues realitats conflueixen en un mateix punt. I es crea alguna cosa inesperada, i a la vegada molt entranyable.
 
-En aquest cas, la cançó: **Raquel Sans**.
+Estem davant d'aquest cas, la cançó: **Raquel Sans**.
 
 Això és el que ha succeït en el programa concurs de proves esportives *La Travessa*, que emet la cadena de televisió TV3.
 
