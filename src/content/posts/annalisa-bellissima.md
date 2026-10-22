@@ -2,7 +2,7 @@
 title: "ANNALISA - BELLISSIMA"
 description: "Navegando y buscando joyas por la red, me topé con este temazo que atrapa desde el primer segundo..."
 pubDate: 2026-09-28
-category: "Lo encontré"
+category: "sinpermiso"
 modalImg: "https://img.youtube.com/vi/qz88Dx-_lA4/hqdefault.jpg"
 videoUrl: "https://youtu.be/qz88Dx-_lA4"
 ---
