@@ -1,6 +1,6 @@
 ---
 title: "Humor, naturalitat i coincidències: Raquel Sans"
-description: "Una canción espontánea nacida en 'La Travessa' de TV3 gracias a Miki Núñez y The Tyets. Humor, admiración y mucha naturalidad."
+description: "Una canción espontánea nacida en 'La Travessa' de TV3 gracias a Miki Núñez y The Tyets. Humor, admiración y mucha naturalidad..."
 pubDate: 2026-10-22
 category: "sinpermiso"
 modalImg: "https://img.youtube.com/vi/RQnM1yL3fn8/hqdefault.jpg"
