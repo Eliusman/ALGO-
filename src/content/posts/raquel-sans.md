@@ -17,7 +17,7 @@ En aquest cas, la cançó: **Raquel Sans**.
 
 Això és el que ha succeït en el programa concurs de proves esportives *La Travessa*, que emet la cadena de televisió TV3.
 
-Els concursants competeixen entre elles en parelles. Dues d’elles eren les formades per:
+Els concursants competeixen entre ells en parelles. Dues d’elles eren les formades per:
 
 - **Miki Núñez** i **Raquel Sans**
 - El duet musical **The Tyets**
