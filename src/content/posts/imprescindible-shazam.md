@@ -2,7 +2,7 @@
 title: "IMPRESCINDIBLE"
 description: "Esta aplicación móvil me ha salvado de perderme auténticas joyas musicales..."
 pubDate: 2026-09-24
-category: "sinpermiso"
+category: "Lo encontré"
 modalImg: "https://i.ibb.co/PvLzq7j5/Localizador-canciones.png"
 ---
 
