@@ -32,8 +32,8 @@ La pròpia Raquel ha dit que, per edat, tots tres podrien ser els seus fills.
 
 Us felicito per fer una cançó tan optimista i alegre. D’aquelles que s’enganxen i aixequen l’ànim de qualsevol.
 
-Ja no m’importa qui ha guanyat el concurs. El premi per mi és sentir aquesta cançó que ens heu regalat.
+Ja no m’importa qui ha guanyat el concurs. El premi per a mi, és sentir aquesta cançó que ens heu regalat.
 
 *(Agraïments al canal oficial de la cançó i a tothom que ha col·laborat en fer aquesta cançó possible.)*
 
-~~~ Ens veiem aviat ~~~
+Ens veiem aviat!
