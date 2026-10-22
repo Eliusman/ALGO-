@@ -7,7 +7,7 @@ modalImg: "https://img.youtube.com/vi/RQnM1yL3fn8/hqdefault.jpg"
 videoUrl: "https://youtu.be/RQnM1yL3fn8?si=FzdUH1L3mEfxXfZq"
 ---
 
-Una canción espontánea nacida en el programa *La Travessa* de TV3. Humor, admiración y mucha naturalidad.
+Una canción espontánea nacida en el programa *La Travessa* de TV3. Humor, admiración y mucha naturalidad...
 
 *(A partir d'aquí, en català):*
 
@@ -26,7 +26,7 @@ En un moment del programa, els tres cantants li comenten a la presentadora que p
 
 I en un dels capítols, guitarra en mà, comencen a cantar, improvisant el que avui ja és una de les cançons del moment: **«Raquel Sans»**.
 
-Fruit de la profunda admiració que li tenen a la presentadora. De fet, ells quan eren petits la vèiem al telenotícies.
+Fruit de la profunda admiració que li tenen a la presentadora. De fet, ells quan eren petits la veien al telenotícies.
 
 La pròpia Raquel ha dit que, per estar, tots tres podrien ser els seus fills.
 
@@ -34,6 +34,6 @@ Us felicito per fer una cançó tan optimista i alegre. D’aquelles que s’eng
 
 Ja no m’importa qui ha guanyat el concurs. El premi per mi és sentir aquesta cançó que ens heu regalat.
 
-*(Agraïments al canal oficial de la cançó i a tothom que ha col·laborat en fer aquesta cançó possible.)*
+*(Agraïments al canal oficial de **Miki Núñez** i a tothom que ha col·laborat en fer aquesta cançó possible.)*
 
-~~~ Ens veiem aviat ~~~
+Ens veiem aviat!!
