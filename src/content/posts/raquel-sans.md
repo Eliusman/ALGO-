@@ -28,7 +28,7 @@ I en un dels capítols, guitarra en mà, comencen a cantar, improvisant el que a
 
 Fruit de la profunda admiració que li tenen a la presentadora. De fet, ells quan eren petits la vèiem al telenotícies.
 
-La pròpia Raquel ha dit que, per estar, tots tres podrien ser els seus fills.
+La pròpia Raquel ha dit que, per edat, tots tres podrien ser els seus fills.
 
 Us felicito per fer una cançó tan optimista i alegre. D’aquelles que s’enganxen i aixequen l’ànim de qualsevol.
 
