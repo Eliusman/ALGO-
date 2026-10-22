@@ -34,6 +34,6 @@ Us felicito per fer una cançó tan optimista i alegre. D’aquelles que s’eng
 
 Ja no m’importa qui ha guanyat el concurs. El premi per a mi, és sentir aquesta cançó que ens heu regalat.
 
-*(Agraïments al canal oficial de la cançó i a tothom que ha col·laborat en fer aquesta cançó possible.)*
+*(Agraïments al canal oficial del **Miki Núñez** i a tothom que ha col·laborat en fer aquesta cançó possible.)*
 
 Ens veiem aviat!
