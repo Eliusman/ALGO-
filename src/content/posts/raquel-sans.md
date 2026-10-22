@@ -26,7 +26,7 @@ En un moment del programa, els tres cantants li comenten a la presentadora que p
 
 I en un dels capítols, guitarra en mà, comencen a cantar, improvisant el que avui ja és una de les cançons del moment: **«Raquel Sans»**.
 
-Fruit de la profunda admiració que li tenen a la presentadora. De fet, ells quan eren petits la vèiem al telenotícies.
+Fruit de la profunda admiració que li tenen a la presentadora. De fet, ells quan eren petits la veien al telenotícies.
 
 La pròpia Raquel ha dit que, per edat, tots tres podrien ser els seus fills.
 
