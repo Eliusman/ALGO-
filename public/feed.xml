@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algo + que Música y Radio</title>
+    <link>https://eliusman.github.io/ALGO-/</link>
+    <description>Un espacio personal de música, vivencias, ciencia al estilo Sagan y reflexiones íntimas.</description>
+    <language>es-es</language>
+    <atom:link href="https://eliusman.github.io/ALGO-/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <!-- Artículo: Tributo a Whitney Houston -->
+    <item>
+      <title><![CDATA[Emotivo tributo a Whitney Houston]]></title>
+      <link>https://eliusman.github.io/ALGO-/posts/whitney-houston/</link>
+      <guid>https://eliusman.github.io/ALGO-/posts/whitney-houston/</guid>
+      <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Un tributo a la inolvidable voz de Whitney Houston y la emoción imborrable de su legado musical.]]></description>
+    </item>
+
+    <!-- Artículo: Raquel Sans -->
+    <item>
+      <title><![CDATA[Humor, naturalitat i coincidències: Raquel Sans]]></title>
+      <link>https://eliusman.github.io/ALGO-/posts/raquel-sans/</link>
+      <guid>https://eliusman.github.io/ALGO-/posts/raquel-sans/</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Una canción espontánea nacida en 'La Travessa' de TV3 gracias a Miki Núñez y The Tyets. Humor, admiración y mucha naturalidad.]]></description>
+    </item>
+
+  </channel>
+</rss>
