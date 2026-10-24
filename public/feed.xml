@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mi blog de música y leyendas</title>
+    <link>https://tu-dominio.com</link> <!-- Cambia esto por tu dominio real -->
+    <description>Artículos de actualidad musical, leyendas y reflexiones.</description>
+    <language>es-es</language>
+    <atom:link href="https://tu-dominio.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <!-- Artículo: Tributo a Whitney Houston -->
+    <item>
+      <title><![CDATA[Emotivo tributo a Whitney Houston]]></title>
+      <link>https://tu-dominio.com/emotivo-tributo-a-whitney-houston</link>
+      <guid>https://tu-dominio.com/emotivo-tributo-a-whitney-houston</guid>
+      <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Un tributo a la inolvidable voz de Whitney Houston y la emoción imborrable de su legado musical.]]></description>
+    </item>
+
+    <!-- Artículo: Raquel Sans (Miki Núñez i The Tyets) -->
+    <item>
+      <title><![CDATA[Miki Núñez i The Tyets homenatgen la periodista Raquel Sans amb la seva nova cançó]]></title>
+      <link>https://tu-dominio.com/raquel-sans-miki-nunez-the-tyets</link>
+      <guid>https://tu-dominio.com/raquel-sans-miki-nunez-the-tyets</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Descobreix tots els detalls sobre el videoclip i la col·laboració entre Miki Núñez i The Tyets en el seu nou senzill dedicat a Raquel Sans.]]></description>
+    </item>
+
+  </channel>
+</rss>
