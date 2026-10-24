@@ -20,7 +20,7 @@ Los norteamericanos muchas veces son los más criticados del planeta por muchas 
 
 En tu caso no pudo ser.
 
-Las circunstancias de la vida y la gente que te rodeaba no pudieron o no supieron ayudarte en el camino sin salida en que terminó tu camino entre nosotr@s. Te fuiste de aquí demasiado pronto, pero tu recuerdo y tu legado es enorme.
+Las circunstancias de la vida y la gente que te rodeaba no pudieron o no supieron ayudarte en el camino sin salida en que terminó tu estancia entre nosotr@s. Te fuiste de aquí demasiado pronto, pero tu recuerdo y tu legado es enorme.
 
 Mucha gente no te olvida, empezando por todos los grandes artistas que hicieron posible esta canción homenaje en tu memoria.
 
