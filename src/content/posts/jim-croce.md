@@ -1,5 +1,5 @@
 ---
-title: "JIM CROCE"
+title: "Jim Croce"
 description: "Quiero comenzar esta sección, recordando la figura del cantautor norteamericano Jim Croce. Únicamente publicó 4 álbumes entre los años 1966 y 1973..."
 pubDate: 2026-09-26
 category: "estrellas"
