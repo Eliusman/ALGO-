@@ -1,5 +1,5 @@
 ---
-title: "VA POR TÍ, CARL"
+title: "Va por tí, Carl"
 description: "En los años 80 nos deleitaste con una serie que, cuando acababas de ver el capítulo, tenías la sensación de ser una diminuta mota de polvo en el infinito COSMOS."
 pubDate: 2026-09-24
 category: "ciencia"
