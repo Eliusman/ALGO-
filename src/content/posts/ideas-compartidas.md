@@ -1,5 +1,5 @@
 ---
-title: "LAS IDEAS COMPARTIDAS SABEN MUCHO MEJOR"
+title: "Las ideas compartidas saben mucho mejor"
 description: "Existen ideas o trucos, que cuando te los cuentan, a veces piensas..."
 pubDate: 2026-09-24
 category: "sabias"
