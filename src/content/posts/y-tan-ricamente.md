@@ -1,5 +1,5 @@
 ---
-title: "Y TAN RICAMENTE"
+title: "Y tan ricamente"
 description: "Vamos con esta sección. Andiamo!! Aquí no voy a tratar de como se hace un huevo frito, o ir poniendo recetas con cantidades..."
 pubDate: 2026-09-24
 category: "delantal"
