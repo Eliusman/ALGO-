@@ -1,5 +1,5 @@
 ---
-title: "EL PENSAR SI OCUPA LUGAR"
+title: "El pensar si ocupa Lugar"
 description: "En esta sección, me dedicaré a escribir mis pensamientos, ocurrencias y cosas que quiera explicar o comentar..."
 pubDate: 2026-09-24
 category: "pensamientos"
