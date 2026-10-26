@@ -1,5 +1,5 @@
 ---
-title: "IMPRESCINDIBLE"
+title: "Imprescindible"
 description: "Esta aplicación móvil me ha salvado de perderme auténticas joyas musicales..."
 pubDate: 2026-09-24
 category: "Lo encontré"
