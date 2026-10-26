@@ -1,5 +1,5 @@
 ---
-title: "DE SANTOS A BARCELONA"
+title: "De Santos a Barcelona"
 description: "Soy fruto de la combinación extraña de dos continentes. Entre el ritmo de Brasil y el abrazo cosmopolita de Barcelona."
 pubDate: 2026-10-01
 category: "lugares"
