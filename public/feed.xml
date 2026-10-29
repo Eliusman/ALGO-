@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algo + que Música y Radio</title>
+    <link>https://eliusman.github.io/ALGO-/</link>
+    <description>Un espacio personal de música, vivencias, ciencia al estilo Sagan y reflexiones íntimas.</description>
+    <language>es-es</language>
+    <atom:link href="https://eliusman.github.io/ALGO-/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <!-- Artículo: Elena Francis -->
+    <item>
+      <title><![CDATA[Elena Francis: La primera "influencer"]]></title>
+      <link>https://eliusman.github.io/ALGO-/posts/elena-francis-la-primera-influencer/</link>
+      <guid>https://eliusman.github.io/ALGO-/posts/elena-francis-la-primera-influencer/</guid>
+      <pubDate>Wed, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Mis primeros recuerdos radiofónicos: el consultorio de Elena Francis, el personaje que no existía y la sintonía de Víctor Herbert. Una historia de radio, humo de soldador y memoria de los años 70.]]></description>
+    </item>
+
+  </channel>
+</rss>
