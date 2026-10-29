@@ -64,7 +64,7 @@ Hasta **1984**, donde desapareció su emisión definitivamente.
 
 En el año **2006**, en una masía cerca de Barcelona, se encontraron miles y miles de las cartas que se enviaban a ese programa. En concreto, se encontraron en la masía de **Can Tirell** (Cornellà).
 
-Tras un trabajo encomiable, fueron recuperadas y digitalizadas gran cantidad de ellas. Dichas cartas están en el **Archivo Comarcal del Baix Llobregat**. Y están consideradas de interés público.
+Tras un trabajo encomiable, fueron recuperadas y digitalizadas gran cantidad de ellas. Dichas cartas están en el **Archivo Comarcal del Baix Llobregat**. Están consideradas de interés público.
 
 Es un material que es muy valioso para comprender la sociedad de esa época.
 
