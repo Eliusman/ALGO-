@@ -1,6 +1,6 @@
 ---
 title: "Elena Francis: La primera \"influencer\""
-description: "Mis primeros recuerdos radiofónicos: el consultorio de Elena Francis, el personaje que no existía y la sintonía de Víctor Herbert. Una historia de radio, humo de soldador y memoria de los años 70..."
+description: "Mis primeros recuerdos radiofónicos: el consultorio de Elena Francis, la persona que no existía y la sintonía de Víctor Herbert. Una historia de radio, humo de soldador y memoria de los años 70..."
 pubDate: 2026-10-29
 category: "lugares"
 modalImg: "https://i.ibb.co/whX8WH7z/Locutorio-Elena.jpg"
