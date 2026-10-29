@@ -28,7 +28,7 @@ No os podéis imaginar las veces que le daba al susodicho botoncito. Para mí er
 
 Bueno, ahora entremos de lleno en lo que os quería explicar:
 
-El otro humo al que me refería era el del soldador eléctrico. Me viene a la memoria ir alguna tarde a casa de algún amigo suyo a soldar componentes en placas electrónicas.
+El otro humo al que me refería era el del soldador eléctrico. Me viene a la memoria ir alguna tarde a casa de un  amigo de mi padre a soldar componentes en placas electrónicas.
 
 Poner resistencias, condensadores y otros componentes, para posteriormente soldarlos con estaño. El olor y el humo que desprende esta práctica es muy peculiar. Inconfundible al recuerdo.
 
