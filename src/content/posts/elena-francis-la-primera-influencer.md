@@ -22,7 +22,7 @@ Mi padre fumaba **«Ducados»** (recuerdo la cajetilla azul y blanca envuelta en
 
 No tengo presente que estuviera frecuentemente respirando ese humo, porque de hecho fumaba poco.
 
-Recuerdo en casa que tenía un **cenicero** muy curioso. Era un artilugio que estaba situado al lado del sofá. Consistía en una base metálica redonda y plana apoyada en el suelo. Le seguía una barra fina metálica que terminaba en un cenicero propiamente dicho. Llevaba un botón central. La ceniza y las colillas se iban poniendo en la parte de arriba y cuando le dabas al botón, se abrían unas aspas metálicas que, girando con cierta velocidad, engullían todos los restos depositados en la parte superior.
+Recuerdo en casa que tenía un **cenicero** muy curioso. Era un artilugio que estaba situado al lado del sofá. Consistía en una base metálica redonda y plana apoyada en el suelo. Le seguía una barra fina metálica que terminaba en el cenicero propiamente dicho. Llevaba un botón central. La ceniza y las colillas se iban poniendo en la parte de arriba y cuando le dabas al botón, se abrían unas aspas metálicas que, girando con cierta velocidad, engullían todos los restos depositados en la parte superior.
 
 No os podéis imaginar las veces que le daba al susodicho botoncito. Para mí era un juguete más.
 
