@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algo + que Música y Radio</title>
+    <link>https://eliusman.github.io/ALGO-/</link>
+    <description>Un espacio personal de música, vivencias, ciencia al estilo Sagan y reflexiones íntimas.</description>
+    <language>es-es</language>
+    <atom:link href="https://eliusman.github.io/ALGO-/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <!-- Artículo: El Chojín -->
+    <item>
+      <title><![CDATA[Domingo Antonio Edjang Moreno: El Chojín]]></title>
+      <link>https://eliusman.github.io/ALGO-/posts/el-chojin-balance/</link>
+      <guid>https://eliusman.github.io/ALGO-/posts/el-chojin-balance/</guid>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[No me gusta el rap, pero esta canción me ha ganado: El Chojín, su tema "Balance" y el guiño de su estribillo al "Ti amo" de Umberto Tozzi.]]></description>
+    </item>
+
+  </channel>
+</rss>
