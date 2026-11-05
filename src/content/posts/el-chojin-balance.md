@@ -1,5 +1,5 @@
 ---
-title: "DOMINGO ANTONIO EDJANG MORENO: EL CHOJÍN"
+title: "Domingo Antonio Edjan Moreno: El Chojín"
 description: "No me gusta el rap. No me atrae ese tipo de música. Sin embargo, esta canción me ha ganado..."
 pubDate: 2026-11-04
 category: "sinpermiso"
