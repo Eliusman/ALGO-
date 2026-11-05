@@ -1,6 +1,6 @@
 ---
 title: "De Santos a Barcelona"
-description: "Soy fruto de la combinación extraña de dos continentes. Entre el ritmo de Brasil y el abrazo cosmopolita de Barcelona."
+description: "Soy fruto de la combinación extraña de dos continentes. Entre el ritmo de Brasil y el abrazo cosmopolita de Barcelona..."
 pubDate: 2026-10-01
 category: "lugares"
 modalImg: "https://i.ibb.co/rRDt3tPC/Eugenio-C.png"
