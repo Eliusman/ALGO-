@@ -1,6 +1,6 @@
 ---
 title: "Emotivo tributo a Whitney Houston"
-description: "Un tributo a la inolvidable voz de Whitney Houston y la emoción imborrable de su legado musical."
+description: "Un tributo a la inolvidable voz de Whitney Houston y la emoción imborrable de su legado musical..."
 pubDate: 2026-10-24
 category: "estrellas"
 modalImg: "https://img.youtube.com/vi/3iB1pZiEjWI/hqdefault.jpg"
