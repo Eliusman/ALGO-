@@ -1,6 +1,6 @@
 ---
 title: "Música de China con alma Disney: La sorpresa del grupo OK"
-description: "Descubre un increíble descubrimiento musical directo desde China con un toque mágico y entrañable que parece sacada de una película de Disney."
+description: "Descubre un increíble descubrimiento musical directo desde China con un toque mágico y entrañable que parece sacada de una película de Disney..."
 pubDate: 2026-10-03
 category: "musica"
 modalImg: "https://img.youtube.com/vi/orqjiuJWiF8/hqdefault.jpg"
