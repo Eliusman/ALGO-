@@ -7,7 +7,7 @@ modalImg: "https://img.youtube.com/vi/RQnM1yL3fn8/hqdefault.jpg"
 videoUrl: "https://youtu.be/RQnM1yL3fn8?si=FzdUH1L3mEfxXfZq"
 ---
 
-Una canción espontánea nacida en el programa *La Travessa* de TV3. Humor, admiración y mucha naturalidad...
+Una canción espontánea nacida en el programa *La Travessa* de TV3. Humor, admiración y mucha naturalidad.
 
 *(A partir d'aquí, en català):*
 
