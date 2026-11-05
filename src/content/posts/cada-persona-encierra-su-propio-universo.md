@@ -1,6 +1,6 @@
 ---
 title: "Cada persona encierra su propio Universo"
-description: "Es uno de mis pensamientos más recurrentes. Las miles de historias que se pierden por el camino de cada vida y nunca serán contadas."
+description: "Es uno de mis pensamientos más recurrentes. Las miles de historias que se pierden por el camino de cada vida y nunca serán contadas..."
 pubDate: 2026-09-24
 category: "lugares"
 modalImg: "https://i.ibb.co/mVzHwNPw/1789482567467.png"
