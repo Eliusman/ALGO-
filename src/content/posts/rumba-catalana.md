@@ -1,6 +1,6 @@
 ---
 title: "Rumba Catalana: la cançó d’Alfred Garcia que recupera un estil únic"
-description: "Dar una pincelada a un estilo musical de tu tierra siempre es de buen gusto. Descubre el origen de la rumba catalana y la canción de Alfred Garcia."
+description: "Dar una pincelada a un estilo musical de tu tierra siempre es de buen gusto. Descubre el origen de la rumba catalana y la canción de Alfred Garcia..."
 pubDate: 2026-10-08
 category: "musica"
 modalImg: "https://img.youtube.com/vi/PUSSbuGhNnQ/hqdefault.jpg"
