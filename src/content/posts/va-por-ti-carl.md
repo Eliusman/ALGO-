@@ -1,6 +1,6 @@
 ---
 title: "Va por tí, Carl"
-description: "En los años 80 nos deleitaste con una serie que, cuando acababas de ver el capítulo, tenías la sensación de ser una diminuta mota de polvo en el infinito COSMOS."
+description: "En los años 80 nos deleitaste con una serie que, cuando acababas de ver el capítulo, tenías la sensación de ser una diminuta mota de polvo en el infinito COSMOS..."
 pubDate: 2026-09-24
 category: "ciencia"
 modalImg: "https://i.ibb.co/wFFPqdtL/Domimio-p-blico-Carl-Sagan.jpg"
