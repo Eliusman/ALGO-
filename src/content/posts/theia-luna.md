@@ -1,6 +1,6 @@
 ---
 title: "THEIA, o el origen de la LUNA: ¿Y si te dijera que nació de un choque colosal?"
-description: "Hace millones de años, la historia de nuestro hogar pudo haber terminado antes de empezar. Descubre la teoría sobre el origen de la Luna."
+description: "Hace millones de años, la historia de nuestro hogar pudo haber terminado antes de empezar. Descubre la teoría sobre el origen de la Luna..."
 pubDate: 2026-10-06
 category: "ciencia"
 modalImg: "https://i.ibb.co/vGWrLfC/Origen-Lunar.jpg"
