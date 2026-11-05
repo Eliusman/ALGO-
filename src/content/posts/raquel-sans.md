@@ -37,3 +37,4 @@ Ja no m’importa qui ha guanyat el concurs. El premi per mi és sentir aquesta 
 *(Agraïments al canal oficial de **Miki Núñez** i a tothom que ha col·laborat en fer aquesta cançó possible.)*
 
 Ens veiem aviat!!
+¡¡Salut!!
