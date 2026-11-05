@@ -1,6 +1,6 @@
 ---
 title: "Donde firma Salvador Dalí, no firma nadie más: la anécdota en Figueres"
-description: "Una historia inédita explicada por mi padre sobre el genial artista Salvador Dalí y unos reclutas en el castillo de Figueres a principios de los años cincuenta."
+description: "Una historia inédita explicada por mi padre sobre el genial artista Salvador Dalí y unos reclutas en el castillo de Figueres a principios de los años cincuenta..."
 pubDate: 2026-10-16
 category: "lugares"
 modalImg: "https://i.ibb.co/0R4sYbBh/Figueres.jpg"
