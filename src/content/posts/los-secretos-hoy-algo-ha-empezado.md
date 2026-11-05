@@ -1,6 +1,6 @@
 ---
 title: "Los Secretos y su versión acústica inolvidable: Hoy algo ha empezado"
-description: "Inauguro esta nueva etapa analizando una emotiva versión acústica de Los Secretos con orquesta que caló muy hondo."
+description: "Inauguro esta nueva etapa analizando una emotiva versión acústica de Los Secretos con orquesta que caló muy hondo..."
 pubDate: 2026-09-24
 category: "musica"
 modalImg: "https://i.ytimg.com/vi/rYNW1IxaFf4/hqdefault.jpg"
