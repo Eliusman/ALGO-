@@ -3,7 +3,8 @@ title: "Del blanco y negro al color: los payasos de la tele y Rumbo a la campiñ
 description: "Recuerdos del primer televisor en color, de Gabi, Miliki y Fofito y de la canción Rumbo a la campiña, del mallorquín Bonet de San Pedro..."
 pubDate: 2026-11-07
 category: "musica"
-modalImg: "https://i.ibb.co/gMtMGCBp/Del-Blanco-y-negro-al-color.jpg"
+modalImg: https://i.ibb.co/n8k6fSxk/payaso-vinilos-bn-1536x1040-1.jpg
+
 videoUrl: "https://youtu.be/ea4cohWOKwE"
 ---
 
