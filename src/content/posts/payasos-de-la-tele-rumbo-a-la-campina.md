@@ -32,7 +32,7 @@ En esa época la "red social" por excelencia era la televisión, desbancando a l
 
 Un 6 de enero de esa época, los **Reyes Magos** nos regalaron un **disco doble de los payasos**. Es el que tenéis como imagen en el artículo. Contenía todas las canciones que cantaban por la tele.
 
-Había una que me gustaba mucho y que se salía de lo "normal". Y a mí todo lo que rompe y sale de lo normal me atrae.
+Había una que me gustaba mucho y que se salía de lo "normal". Y a mí, casi todo lo que rompe y sale de lo normal me atrae.
 
 La canción era: **"Rumbo a la campiña"**.
 
