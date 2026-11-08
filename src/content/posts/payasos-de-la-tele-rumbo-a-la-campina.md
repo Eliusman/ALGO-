@@ -26,7 +26,7 @@ Por la tarde, al salir del cole, había programación infantil (para los que lo 
 
 A Fofó lo disfruté poco, ya que en una operación falleció. Se equivocaron en quirófano y le pusieron en la transfusión un tipo de sangre no compatible con su grupo sanguíneo.
 
-En España, desde el inicio de la televisión hasta finales de la década de los años 80 del siglo XX, solo existían **dos canales de tele**. La 1 y la 2. La primera iba en la frecuencia del **VHF**, y la 2 en la del **UHF**.
+En España, desde el inicio de la televisión en 1956 hasta finales de la década de los años 80 del siglo XX, solo existían **dos canales de tele**. La 1 y la 2. La primera iba en la frecuencia del **VHF**, y la 2 en la del **UHF**.
 
 En esa época la "red social" por excelencia era la televisión, desbancando a la tradicional **radio**. Incluso se vaticinó que con la llegada de la TV desaparecería totalmente la radio. Afortunadamente no acertaron en la predicción.
 
