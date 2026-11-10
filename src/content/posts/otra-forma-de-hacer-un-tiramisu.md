@@ -1,11 +1,11 @@
-
 ---
 title: "Otra forma de hacer un tiramisú"
 description: "Receta de tiramisú en forma de canción: Tremendo tiramisú, de la banda Tremendamente. Cualquier día es perfecto para ponerse un delantal y hacer un postre casero..."
 pubDate: 2026-11-10
 category: "delantal"
-modalImg: "https://img.youtube.com/vi/7auT4PqhsXA/hqdefault.jpg"
-videoUrl: "https://youtu.be/7auT4PqhsXA"
+modalImg:
+"https://youtu.be/7auT4PqhsXA?=VLeQXGu7pLiQ61kD"
+ videoUrl: "https://youtu.be/7auT4PqhsXA"
 ---
 
 Venga, aquí estoy de nuevo.
