@@ -1,0 +1,10 @@
+<article class="post" data-datetime="2026-11-10 10:00" id="post-art-delantal-tiramisu">
+    <div class="cover" style="background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.3)), url('https://img.youtube.com/vi/7auT4PqhsXA/hqdefault.jpg'); background-position: center center; background-size: cover;"></div>
+    <div class="content">
+        <small>10 NOVIEMBRE 2026 · CON LOS 5 SENTIDOS</small>
+        <h3>Otra forma de hacer un tiramisú</h3>
+        <p>Receta de tiramisú en forma de canción: Tremendo tiramisú, de la banda Tremendamente. Cualquier día es perfecto para ponerse un delantal...</p>
+        <button onclick="openModal('art-delantal-tiramisu', this)">Seguir leyendo →</button>
+        <a href="https://youtu.be/7auT4PqhsXA" target="_blank" rel="noopener noreferrer" class="original-link">▶ Escuchar enlace original</a>
+    </div>
+</article>
