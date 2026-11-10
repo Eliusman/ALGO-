@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algo + que Música y Radio</title>
+    <link>https://eliusman.github.io/ALGO-/</link>
+    <description>Un espacio personal de música, vivencias, ciencia al estilo Sagan y reflexiones íntimas.</description>
+    <language>es-es</language>
+    <atom:link href="https://eliusman.github.io/ALGO-/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Tue, 10 Nov 2026 16:40:00 +0100</lastBuildDate>
+
+    <item>
+      <title><![CDATA[Otra forma de hacer un tiramisú]]></title>
+      <link>https://eliusman.github.io/ALGO-/posts/otra-forma-de-hacer-un-tiramisu/</link>
+      <guid isPermaLink="false">art-delantal-tiramisu</guid>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 +0100</pubDate>
+      <description><![CDATA[Receta de tiramisú en forma de canción: Tremendo tiramisú, de la banda Tremendamente. Cualquier día es perfecto para ponerse un delantal y hacer un postre casero...]]></description>
+    </item>
+
+  </channel>
+</rss>
