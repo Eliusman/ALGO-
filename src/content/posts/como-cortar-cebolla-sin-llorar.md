@@ -14,11 +14,11 @@ Bien, con este método no hace falta ni la **campana extractora** ni ponerse **g
 
 Las instrucciones son tan simples como sencillas.
 
-Colocamos el **trapo de cocina** que normalmente usamos, bien mojado, muy cerca de donde tenemos la tabla de operaciones. Ahí donde vamos a cortar esa cebolla, fresca o no, que vamos a cocinar.
+Colocamos el **trapo de cocina** que normalmente usamos, bien mojado, muy cerca de donde tenemos la tabla de operaciones. Ahí es donde vamos a cortar esa cebolla, (fresca o no), que posteriormente vamos a cocinar, o salpimentar y añadir a nuestra ensalada.
 
 Pues resulta que ese simple **trapo mojado** será el que atraiga las partículas causantes de que el lagrimal de nuestros ojos se vea afectado.
 
-Al estar tan cerca de la cebolla, la **humedad** del trapo atraerá esas partículas antes de que lleguen a nuestros ojos.
+Al estar tan cerca de la cebolla, la **humedad** del trapo atraerá el gas volátil irritante llamado óxido de propanotial, antes de que lleguen a nuestros ojos.
 
 No es magia, es simple **química**.
 
