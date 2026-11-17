@@ -31,13 +31,13 @@ Siempre he pensado que los premios y los reconocimientos son muy relativos. A ve
 
 Estoy convencido de que Kings Elliot dará mucho que hablar en los próximos años, no tanto por la polémica de Eurovisión, sino por su talento. Sus canciones son envolventes, creativas y tienen una personalidad muy clara y definida.
 
-Os invito a escuchar su trabajo, especialmente *Born Blue*, una de las canciones que mejor representa su universo musical.
+Os invito a escuchar su trabajo, especialmente **Born Blue**, una de las canciones que mejor representa su universo musical.
 
 Para mí ha sido un gran descubrimiento. Desconocía por completo a esta artista y, después de escucharla, se ha convertido en una de esas voces que uno quiere seguir de cerca.
 
 El vídeoclip es sencillo y a la vez original. A ver si coincidimos y también os agrada como a mí.
 
-Os dejo con el enorme tema: *Born Blue*:
+Os dejo con el enorme tema: **Born Blue**:
 
 ▶ [Escuchar "Born Blue" de Kings Elliot en YouTube](https://youtu.be/jGIZdP8O6No)
 
