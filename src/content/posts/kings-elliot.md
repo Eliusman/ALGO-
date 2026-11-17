@@ -9,7 +9,7 @@ videoUrl: "https://youtu.be/jGIZdP8O6No"
 
 **Kings Elliot** es una de esas artistas que te atrapan desde la primera vez que la escuchas. Suiza de nacimiento y afincada en Londres, combina una voz muy personal con canciones cargadas de emoción, melodia y mucho sentimiento.
 
-Detrás del nombre artístico está **Anja Gmür**. Llegó a Londres con el sueño de dedicarse a la música y, como tantas otras, empezó desde abajo: pequeños conciertos, trabajos para mantenerse y muchas canciones escritas hasta conseguir hacerse un  pequeño hueco. Al escuchar estos inicios, me va venido a la mente la película **La La Land**.
+Detrás del nombre artístico está **Anja Gmür**. Llegó a Londres con el sueño de dedicarse a la música y, como tantas otras, empezó desde abajo: pequeños conciertos, trabajos para mantenerse y muchas canciones escritas hasta conseguir hacerse un  pequeño hueco. Al escuchar estos inicios, me ha venido a la mente la película **La La Land**.
 
 Su estilo se mueve entre el **pop alternativo** y las emociones más íntimas. Habla de inseguridades, de batallas interiores y de esos sentimientos que casi todos reconocemos en algún momento de nuestras vidas.
 
@@ -19,7 +19,7 @@ En 2025 publicó **Born Blue**, su primer álbum de larga duración, después de
 
 Este año su nombre saltó a los titulares por un motivo inesperado. **Kings Elliot** había presentado su candidatura para representar a Suiza en **Eurovisión 2026**. Sin embargo, decidió retirarse del proceso tras conocer la decisión de la Unión Europea de Radiodifusión de permitir la participación de Israel en el festival.
 
-La propia artista lo explicó públicamente y compartió una actuación de *Born Blue*, la canción con la que podría haber competido.
+La propia artista lo explicó públicamente y compartió una actuación de **Born Blue**, la canción con la que podría haber competido para alzarse con la victoria.
 
 La televisión suiza no confirmó oficialmente si ya había sido seleccionada como representante, por lo que no se puede afirmar con certeza.
 
@@ -29,7 +29,7 @@ Siempre he pensado que los premios y los reconocimientos son muy relativos. A ve
 
 ### Una cantante con futuro
 
-Estoy convencido de que Kings Elliot dará mucho que hablar en los próximos años, no tanto por la polémica de Eurovisión, sino por su talento. Sus canciones son envolventes, creativas y tienen una personalidad muy clara y definida.
+Estoy convencido de que **Kings Elliot** dará mucho que hablar en los próximos años, no tanto por la polémica de **Eurovisión**, sino por su talento. Sus canciones son envolventes, creativas y tienen una personalidad muy clara y definida.
 
 Os invito a escuchar su trabajo, especialmente **Born Blue**, una de las canciones que mejor representa su universo musical.
 
