@@ -13,7 +13,7 @@ Detrás del nombre artístico está **Anja Gmür**. Llegó a Londres con el sue�
 
 Su estilo se mueve entre el **pop alternativo** y las emociones más íntimas. Habla de inseguridades, de batallas interiores y de esos sentimientos que casi todos reconocemos en algún momento de nuestras vidas.
 
-En 2025 publicó *Born Blue*, su primer álbum de larga duración, después de varios EP que fueron consolidando su carrera. Es una artista que ha crecido de forma discreta pero constante, sin necesidad de hacer demasiado ruido en todo el proceso.
+En 2025 publicó **Born Blue**, su primer álbum de larga duración, después de varios EP que fueron consolidando su carrera. Es una artista que ha crecido de forma discreta pero constante, sin necesidad de hacer demasiado ruido en todo el proceso.
 
 ### La decisión sobre Eurovisión 2026
 
