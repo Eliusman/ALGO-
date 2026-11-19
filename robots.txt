@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://eliusman.github.io/ALGO-/sitemap.xml
