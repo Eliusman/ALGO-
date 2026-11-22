@@ -10,7 +10,7 @@ Hoy os traigo algo que llevo poco tiempo haciendo en la cocina, pero que ahora p
 
 Yo le llamo "**Falsa Sobrasada**" porque su aspecto final lo parece. Pero no lo es.
 
-Su base principal es la **calabaza**. También lleva **ajo**, **aceite virgen de oliva**, **vinagre de manzana**, **carne de ñora**, sal y especias al gusto.
+Su base principal es la **calabaza**. También lleva **ajo**, **aceite virgen de oliva**, **vinagre de manzana**, **carne de ñora**, sal y especias variadas.
 
 Las cantidades, al gusto e ir probando.
 
