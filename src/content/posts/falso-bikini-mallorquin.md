@@ -22,7 +22,7 @@ Yo compro la calabaza ya cortada en bandeja, de esa que venden en cualquier supe
 
 La voy poniendo en la picadora y, cuando está picada, la salpimiento y la pongo a freír lentamente con un chorro de aceite.
 
-Le echo un chorro de vinagre de manzana y algo de agua para que no se pegue mientras se fríe.
+También le añado dos o tres cucharadas soperas de vinagre de manzana y algo de agua para que no se pegue mientras se fríe.
 
 Por otra parte, pico unos ajos y los pongo en un pequeño cuenco con aceite hasta que los cubra. Esto lo tapo con film transparente y unos 2 minutos al microondas.
 
