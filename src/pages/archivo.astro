@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const homeUrl = import.meta.env.BASE_URL;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivo completo de artículos | Algo + que Música y Radio</title>
+  <meta name="description" content="Listado completo de todas las publicaciones, historias, música y reflexiones de Algo + que Música y Radio." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://github.io" />
+  <style>
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: #f5f2ec;
+      color: #171717;
+      margin: 0;
+      padding: 40px 6vw;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 36px;
+      border-radius: 14px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      background: #e64b35;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    h1 { margin-top: 0; }
+    ul { list-style: none; padding: 0; }
+    li {
+      padding: 14px 0;
+      border-bottom: 1px solid #e5e0d8;
+    }
+    a.post-link {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #b53a28;
+      text-decoration: none;
+    }
+    a.post-link:hover { text-decoration: underline; }
+    small {
+      display: block;
+      color: #6e6a63;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 4px;
+    }
+    p { margin: 6px 0 0; color: #444; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href={homeUrl}>← Volver a la portada</a>
+    <h1>Archivo completo ({posts.length} publicaciones)</h1>
+    <ul>
+      {posts.map(post => (
+        <li>
+          <small>{post.data.pubDate.toISOString().slice(0, 10)} · {post.data.category}</small>
+          <a class="post-link" href={`${homeUrl}posts/${post.slug}/`}>{post.data.title}</a>
+          {post.data.description && <p>{post.data.description}</p>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</body>
+</html>
