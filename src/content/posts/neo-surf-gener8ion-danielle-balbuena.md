@@ -69,7 +69,7 @@ Un mundo dañado, extraño y aparentemente desordenado. Pero, en medio de
 ese escenario, la vida sigue su curso y el ser humano intenta adaptarse
 a esa nueva realidad.
 
-Quizá esa sea una de las ideas más interesantes del vídeo: incluso
+Quizá eso sea una de las ideas más interesantes del vídeo: incluso
 cuando el entorno parece venirse abajo, las personas continúan buscando
 momentos de libertad, diversión y complicidad.
 
